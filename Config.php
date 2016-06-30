@@ -14,6 +14,10 @@ class Config {
     const SGBD_USERNAME = 'root';
     const SGBD_PASSWORD = '';
     
+    public static function getRootPath(){
+        return '/PAW_TP_Recurso/';
+    }
+    
     public static function getImagesPathBase(){
         return realpath(dirname( __FILE__ )) . IMAGES_FOLDER;
     }

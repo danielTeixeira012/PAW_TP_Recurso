@@ -7,14 +7,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="Application/Styles/Index.css">
         <title></title>
     </head>
     <body>
-        <?php require_once './Application/Imports/Header.php'; ?>
-        
-                <?php require_once './Application/Imports/Footer.php'; ?>
-
-        
+        <?php
+        // put your code here
+        ?>
     </body>
 </html>
