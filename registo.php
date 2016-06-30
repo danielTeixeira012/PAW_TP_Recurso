@@ -9,7 +9,7 @@ require_once __DIR__ . '/Application/Validator/UploadFotoPrestador.php';
         <meta charset="UTF-8">
         <title></title>
         <script src="Application/JS/registoJS.js"></script>
-        <link rel="stylesheet"  href="Application/styles/registoCSS.css">
+        <link rel="stylesheet"  href="Application/Styles/registoCSS.css">
     </head>
     <body>
         <header>

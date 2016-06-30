@@ -1,0 +1,61 @@
+
+body{
+    width: 100%;
+}
+header{
+    text-align: center;
+    background-color: #C4DCE6;
+    height: 100px;
+}
+
+h1{
+    color: white;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+section #tipoEmpregador{
+    margin-bottom: 25px;
+}
+
+#formPrestador{
+    display: none;
+}
+
+#formEmpregador{
+    display: none;
+}
+
+input, textArea, select{
+    display: block;
+    margin-bottom: 15px;
+    width: 280px; 
+}
+
+input#tipoEmpregador, input#tipoPrestador{
+    display: inline;
+    margin:0px;
+    width:25px;
+}
+
+form label{
+    float: left;
+    margin-bottom: 15px;
+    width: 150px;
+}
+
+td a, .button2{
+    background-color: #C4DCE6;
+    border: none;
+    color: #303030;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.button2:hover{
+    background-color: #A3DEF8;
+    color: #303030;
+}
