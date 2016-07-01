@@ -65,7 +65,7 @@ if ($session && $tipo) {
                         <tr>
                             <td><?= $ofertasMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?>
                             <td><a class="button2" href="../verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a></td>
-                            <td><a class="button2" href="../removerFavoritos.php?oferta=<?= $value['idOferta'] ?>">Remover dos Favoritos</a></td>
+                            <td><a class="button2" href="removerFavoritos.php?oferta=<?= $value['idOferta'] ?>">Remover dos Favoritos</a></td>
                         </tr>
                         <?php
                     }

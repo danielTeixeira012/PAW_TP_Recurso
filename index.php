@@ -15,7 +15,7 @@ $session = SessionManager::existSession('email');
     <head>
         <meta charset="UTF-8">
         <title></title>
-                <link rel="stylesheet" type="text/css" href="Application/Styles/Index.css">
+        <link rel="stylesheet" type="text/css" href="Application/Styles/Index.css">
         <script src="Application/Libs/jquery-2.2.4.js"></script>
         <script src="Application/JS/PesquisaJS.js"></script>
     </head>
@@ -50,11 +50,11 @@ $session = SessionManager::existSession('email');
                             if (empty($resCan)) {
                                 ?>
 
-                                <a href="adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/starplus.png" alt="favorito"></a>
+                                <a href="Prestador/adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/starplus.png" alt="favorito"></a>
                                 <?php
                             } else {
                                 ?>
-                                <a href="adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/star.png" alt="favorito"></a>
+                                <a href="Prestador/adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/star.png" alt="favorito"></a>
 
                                 <?php
                             }

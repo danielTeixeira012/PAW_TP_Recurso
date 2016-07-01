@@ -15,12 +15,15 @@ class Comentario {
     private $idComentario;
     private $idOferta;
     private $comentario;
+    private $autor;
     
-    function __construct($idComentario, $idOferta, $comentario) {
+    function __construct($idComentario, $idOferta, $comentario, $autor) {
         $this->idComentario = $idComentario;
         $this->idOferta = $idOferta;
         $this->comentario = $comentario;
+        $this->autor = $autor;
     }
+    
     function getIdComentario() {
         return $this->idComentario;
     }
@@ -31,6 +34,10 @@ class Comentario {
 
     function getComentario() {
         return $this->comentario;
+    }
+
+    function getAutor() {
+        return $this->autor;
     }
 
     function setIdComentario($idComentario) {
@@ -45,6 +52,20 @@ class Comentario {
         $this->comentario = $comentario;
     }
 
+    function setAutor($autor) {
+        $this->autor = $autor;
+    }
+
+    
+    public function convertObjectToArray() {
+        $data = array(
+            'idComentario' => '',
+            'idOferta' => $this->getIdOferta(),
+            'comentario' => $this->getComentario(),
+            'autor' => $this->getAutor()
+            );
+        return $data;
+    }
 
 }
 
