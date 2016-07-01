@@ -42,7 +42,7 @@ $empregadorMan = new EmpregadorManager();
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button2" id="editarButton" href="VerPerfil.php">Editar dados...</a>
+            <a class="button2" id="editarButton" href="EditarEmpregador.php">Editar dados...</a>
         </section>
 
 
@@ -70,7 +70,7 @@ $empregadorMan = new EmpregadorManager();
 
                             <td><?= $value['tituloOferta'] ?></td>
                             <td><a class="button2" href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver</a></td>
-                            <td><a class="button2" href="OfertaEdit.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>
+                            <td><a class="button2" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>
                         </tr>
 
                         <?php

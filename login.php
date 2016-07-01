@@ -11,19 +11,19 @@ if ($session && $tipo) {
     if ($tipoUtilizador === 'prestador') {
         ?>
         <section id="loginSec">
-            <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="logOut.php"><button class="button">LogOut</button></a></p>
+            <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="<?php echo Config::getRootPath() . 'logOut.php'?>"><button class="button">LogOut</button></a></p>
         </section>
         <?php
     } else if ($tipoUtilizador === 'empregador') {
         ?>
         <section id="loginSec">
-            <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="logOut.php"><button class="button">LogOut</button></a></p>
+            <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="<?php echo Config::getRootPath() . 'logOut.php'?>"><button class="button">LogOut</button></a></p>
         </section>
         <?php
     } else if ($tipoUtilizador === 'administrador') {
         ?>
         <section id="loginSec">
-            <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="logOut.php"><button class="button">LogOut</button></a></p>
+            <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="<?php echo Config::getRootPath() . 'logOut.php'?>"><button class="button">LogOut</button></a></p>
         </section>
         <?php
     }

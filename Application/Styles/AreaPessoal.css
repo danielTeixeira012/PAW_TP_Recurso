@@ -1,0 +1,250 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 50px;
+    background-color: #FAFAFA;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#head{
+    background-color: #020509;
+    position: relative;
+    width: 100%;
+    top:0px;
+}
+
+#loginSec #registo{
+    display: inline;
+}
+
+#loginSec{
+    position: absolute; 
+    right: 0px;
+    margin-top: 8px;
+    margin-right: 4px;
+}
+
+#loginSec p{
+    margin: 0px;
+    color: white;
+}
+
+#loginSec .inputLog{    
+
+}
+
+#head ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #020509;
+}
+
+#head li {
+    float: left;
+}
+
+#head li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#head li a:hover:not(.active) {
+    background-color: #ff0038;
+}
+
+#head .active {
+    background-color: #4CAF50;
+}
+
+#head input{
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/******/
+.dropdown {
+  position: relative;
+}
+
+.drop-nav{
+      display: none;
+      padding: 16px;
+      min-width: 150px;   
+}
+
+
+.drop-nav a {
+    padding: 12px 16px;
+    display: block;
+}
+
+
+.dropdown:hover .drop-nav{
+  display: block;
+  
+}
+
+/********/
+
+.button{
+    background-color: #00c4cc;
+    border: none;
+    color: #ffffff;
+    height: 30px;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.button:hover{
+    background-color: #0CDDE7;
+}
+
+
+#categorias{
+    height: 100%;
+    position: absolute; 
+    left: 0;
+    width: 21%;
+    padding: 2%;
+    color: white;
+    background-color: #00c4cc;
+    text-align: left;
+    overflow: scroll;
+    
+}
+
+#categorias b{
+    color:#020509;
+    font-weight: 900;
+}
+
+#categorias p{
+    margin-top: 8px;
+}
+
+#categorias #editarButton{
+    margin-top: 20px;
+}
+
+#categorias img#fotoPerfil{ 
+    width: 150px;
+    height: 150px;
+}
+
+#opcoes{
+    margin-left: 26%;
+    text-align: center;
+    float: left;
+    width: 74%;
+}
+
+#opcoes a{
+    text-decoration: none;
+    color: #868D90;
+    font-weight: bold;
+    text-align: center;
+}
+
+#opcoes article img{ 
+    margin: 5px;
+    width: 90px;
+    height: 90px;
+}
+
+#opcoes article{  
+    background-color: white;
+    margin: 5px;
+    width: 150px;
+    height: 150px;
+    overflow: auto;
+    display: inline-block;
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+#foot{
+    position: fixed;
+    bottom: 0px;
+    margin-left: 25%;
+    display: block;
+    color:white;
+    clear:both;
+    height: 50px;
+    width: 100%;
+    background-color: #020509;
+    text-align:center;
+}
+
+#foot p{
+    position: absolute;
+    top: 15px;
+    left: 20%;
+ 
+}
+
+
+/*Tables*/
+
+table {
+    margin:10px;
+    border-collapse: collapse;
+
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #868D90;
+    color: #fff;
+}
+
+tr:hover{
+    background-color: #868D90;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

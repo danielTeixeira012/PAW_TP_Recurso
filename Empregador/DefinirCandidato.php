@@ -6,10 +6,11 @@ use Config as Conf;
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
 require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
-require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
+require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
+$idOferta = filter_input(INPUT_GET, 'oferta');
 if ($session && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') !== 'empregador') {
         header('location: ../index.php');
@@ -17,13 +18,14 @@ if ($session && $tipo) {
 } else {
     header('location: ../index.php');
 }
-$empregadorMan = new EmpregadorManager();
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
         <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
+        <script src="../Application/JS/jquery-2.2.4.js"></script>
+        <script src="../Application/JS/AceitarCandidaturaJS.js"></script>
     </head>
     <body>
 
@@ -31,6 +33,7 @@ $empregadorMan = new EmpregadorManager();
 
         <section id="categorias">
             <?php
+            $empregadorMan = new EmpregadorManager();
             $empreg = Empregador::convertArrayToObject($empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]);
             ?>
             <!--Adicionar Imagem -->
@@ -42,57 +45,49 @@ $empregadorMan = new EmpregadorManager();
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button2" id="editarButton" href="EditarEmpregador.php">Editar dados...</a>
+            <a class="button2" id="editarButton" href="EditEmpregador.php">Editar dados...</a>
         </section>
 
-
-        <section id="opcoes">
-
+        <section id="candidaturas">           
             <?php
-            $database = new OfertaManager();
-            $empregadorMan = new EmpregadorManager();
-
-            $userEmail = SessionManager::getSessionValue('email');
-            $id = $empregadorMan->getIdByMail($userEmail)[0]['idEmpregador'];
-            $ofertas = $database->getOfertasPublicadasUser($id);
-            if (!empty($ofertas)) {
+            $candidaturasMan = new CandidaturaManager();
+            
+            $candidaturas = $candidaturasMan->getCandidaturasSubmetidasByIdOferta($idOferta);
+            if (!empty($candidaturas)) {
                 ?>
-
                 <table>
                     <tr>
-                        <th>Titulo</th>
+                        <th>Candidatura</th>
+                        <th>Prestador</th> 
+                        <th>Oferta</th>
 
                     </tr>
                     <?php
-                    foreach ($ofertas as $key => $value) {
+                    foreach ($candidaturas as $key => $value) {
                         ?>
-                        <tr id="<?= $value['idOferta'] ?>"> 
-
-                            <td><?= $value['tituloOferta'] ?></td>
-                            <td><a class="button2" href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver</a></td>
-                            <td><a class="button2" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>
-               
+                        <tr data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>">
+                            <td><?= $value['idCandidatura'] ?></td>
+                            <td><?= $value['idPrestador'] ?></td>
+                            <td><?= $value['idOferta'] ?></td>
+                            <td><a href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>">Ver prestador</a></td>
+                            <td><button class="aceitarButton" id="aceitarButton">Aceitar</button></td>
                         </tr>
 
                         <?php
                     }
+                } else {
                     ?>
-                </table>   
-                <?php
-            } else {
+                    <p>Não existem candidaturas que necessitem de defenição de candidato de imediato</p>
+                    <?php
+                }
                 ?>
-            
-                <p>Não existem ofertas Publicadas</p>
-                <?php
-                
-            }
-            ?>
+
+            </table>
+
 
         </section>
-
 
         <?php require_once '../Application/imports/Footer.php' ?>
 
     </body>
 </html>
-
