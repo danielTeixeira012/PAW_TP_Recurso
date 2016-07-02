@@ -4,12 +4,9 @@ require_once (realpath(dirname(__FILE__)) . '/../Config.php');
 use Config as Conf;
 
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
-require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
-require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
-require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
-require_once (Conf::getApplicationModelPath() . 'Candidatura.php');
+require_once (Conf::getApplicationManagerPath() . 'FavoritosManager.php');
 
 $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
@@ -31,20 +28,18 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <meta http-equiv="refresh" content="3; url='../index.php'"/>
+        <meta http-equiv="refresh" content="3; url='areaPessoalPrestador.php'"/>
     </head>
     <body>
         <?php
         $id = filter_input(INPUT_GET, 'oferta');
-        $ManagerOferta = new OfertaManager();
-        $res = $ManagerOferta->getOfertaByID($id);
         $ManagerPrestador = new PrestadorManager();
         $resPrest = $ManagerPrestador->verifyEmail(SessionManager::getSessionValue('email'));
-        $candidatura = new Candidatura('', $resPrest[0]['idPrestador'], $id, 'favorita');
-        $ManagerCandidatura = new CandidaturaManager();
-        $results = $ManagerCandidatura->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($resPrest[0]['idPrestador'], 'favorita', $id);
+        $managerFavoritos = new FavoritosManager();
+        $results = $managerFavoritos->verificarFavorito($id, $resPrest[0]['idPrestador']);
         if (empty($results)) {
-            $ManagerCandidatura->insertCandidatura($candidatura);
+            $favorito = new Favoritos('', $resPrest[0]['idPrestador'], $id);
+            $managerFavoritos->insertFavorito($favorito);
             ?>
             <h2>A oferta foi adicionada aos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
             <?php
