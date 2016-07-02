@@ -1,8 +1,9 @@
-function escreverResultado(data){
+function candidatarRes(data){
     document.getElementById('candidatar').remove();
     var p = document.createElement('p');
     p.innerHTML = data;
     document.getElementById('article').appendChild(p);
+    alert(data);
 }
 
 function candidatarAJAX(){
@@ -10,7 +11,7 @@ function candidatarAJAX(){
     
     $.get('Application/Service/CandidatarService.php', {idOferta: id}, 
         function(data){
-            escreverResultado(data);
+            candidatarRes(data);
     }
     );
 }
