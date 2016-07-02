@@ -7,6 +7,7 @@ require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
 require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'FavoritosManager.php');
+require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 
 $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
@@ -37,6 +38,9 @@ and open the template in the editor.
         $resPrest = $ManagerPrestador->verifyEmail(SessionManager::getSessionValue('email'));
         $managerFavoritos = new FavoritosManager();
         $results = $managerFavoritos->verificarFavorito($id, $resPrest[0]['idPrestador']);
+        $manOferta = new OfertaManager();
+        $exist = $manOferta->getOfertaByID($id);
+        if(!empty($exist)){
         if (empty($results)) {
             $favorito = new Favoritos('', $resPrest[0]['idPrestador'], $id);
             $managerFavoritos->insertFavorito($favorito);
@@ -46,6 +50,11 @@ and open the template in the editor.
         } else {
             ?>
             <h2>A oferta já existe nos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+            <?php
+        }}
+        else{
+            ?>
+            <h2>A oferta não existe, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
             <?php
         }
         ?>
