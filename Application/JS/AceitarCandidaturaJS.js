@@ -27,9 +27,10 @@ function AceitarAJAX() {
 
 function initEvents() {
 
-    $aceitarC = document.getElementById('aceitarButton');
-    if ($aceitarC !== null) {
-        $aceitarC.addEventListener('click', AceitarAJAX);
+    var buts = document.getElementsByClassName('aceitarButton');
+    var i = 0;
+    for (i = 0; i < buts.length; ++i) {
+        buts[i].addEventListener('click', AceitarAJAX);
     }
 }
 

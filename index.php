@@ -30,40 +30,43 @@ $session = SessionManager::existSession('email');
 
             foreach ($ofertas as $key => $value) {
                 ?>
+                <a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>">
+                    <article>
 
-                <article>
-                    <section>
-                        <a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>">
+                        <section>
                             <img src="Application/Resources/Images/entrevista_emprego.jpg"/>
                             <input type='hidden' id='<?= $value['idOferta'] ?>'/>
                             <h2><?= $value['tituloOferta'] ?></h2>
                             <p><b>Região:</b> <?= $value['regiao'] ?></p>
                             <p><b>Info:</b><?= $value['informacaoOferta'] ?> </p>
-                    </section>
-                    <?php
-                    if ($session && $tipo) {
-                        if (SessionManager::getSessionValue('tipoUser') === 'prestador') {
-                            $manPre = new PrestadorManager();
-                            $res = $manPre->verifyEmail(SessionManager::getSessionValue('email'));
-                            $manCan = new CandidaturaManager();
-                            $resCan = $manCan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($res[0]['idPrestador'], 'favorita', $value['idOferta']);
-                            if (empty($resCan)) {
-                                ?>
 
-                                <a href="Prestador/adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/starplus.png" alt="favorito"></a>
-                                <?php
-                            } else {
-                                ?>
-                                <a href="Prestador/adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/star.png" alt="favorito"></a>
+                        </section>
 
-                                <?php
+                        <?php
+                        if ($session && $tipo) {
+                            if (SessionManager::getSessionValue('tipoUser') === 'prestador') {
+                                $manPre = new PrestadorManager();
+                                $res = $manPre->verifyEmail(SessionManager::getSessionValue('email'));
+                                $manCan = new CandidaturaManager();
+                                $resCan = $manCan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($res[0]['idPrestador'], 'favorita', $value['idOferta']);
+                                if (empty($resCan)) {
+                                    ?>
+
+                                    <a href="Prestador/adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/starplus.png" alt="favorito"></a>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <a href="Prestador/adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/star.png" alt="favorito"></a>
+
+                                    <?php
+                                }
                             }
                         }
-                    }
-                    ?>
+                        ?>
 
-                    </a>
-                </article>
+
+                    </article>
+                </a>
 
 
                 <?php

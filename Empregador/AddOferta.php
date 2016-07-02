@@ -19,11 +19,13 @@ if ($session && $tipo) {
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
         <title></title>
     </head>
     <body>
-         <?php
-       require_once __DIR__ . '/../Application/Validator/OfertaValidator.php';
+        <?php require_once '../Application/imports/Header.php' ?>
+        <?php
+        require_once __DIR__ . '/../Application/Validator/OfertaValidator.php';
         ?>
         <section id="form">
             <form id="formOferta" action="AddOfertaValida.php" method="post" >
@@ -52,19 +54,18 @@ if ($session && $tipo) {
                 <label for="salario">Salario</label><input id="salario" name="sal" onkeyup="floatInput(this)"><p class="error"><?= isset($errorsO) && array_key_exists('sal', $errorsO) ? $errorsO['sal'] : '' ?></p>
                 <label for="requisitos">Requisitos</label><textarea id="requisitos" name="req"></textarea><p class="error"><?= isset($errorsO) && array_key_exists('req', $errorsO) ? $errorsO['req'] : '' ?></p>
                 <label for="dataInicio">Data Ínicio da Candidatura</label><input id="dataInicio" type="date" name="dataInicio"><p class="error"><?= isset($errorsO) && array_key_exists('dataInicio', $errorsO) ? $errorsO['dataInicio'] : '' ?></p>
-
                 <label for="dataFim">Data Limite Candidatura</label><input id="dataFim" type="date" name="dataFim"><p class="error"><?= isset($errorsO) && array_key_exists('dataFim', $errorsO) ? $errorsO['dataFim'] : '' ?></p>
-
-
-                <input class="button2" id="submeter" type="submit" value="Submeter" name="submeter">
+                <input class="buttonForm" id="submeter" type="submit" value="Submeter" name="submeter">
 
             </form>
-<!--            <h3>Dados Locais</h3>
-            <p>Guardar dados localmente</p><button class="button2" id="guardarTemp">Guardar</button>
+            <!--            <h3>Dados Locais</h3>
+                        <p>Guardar dados localmente</p><button class="button2" id="guardarTemp">Guardar</button>
+            
+                        <div id="lsDIV">
+            
+                        </div>-->
 
-            <div id="lsDIV">
-
-            </div>-->
         </section>
+        <?php require_once '../Application/imports/Footer.php' ?>
     </body>
 </html>

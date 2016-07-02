@@ -45,13 +45,41 @@ $empregadorMan = new EmpregadorManager();
 
 
         <section id="opcoes">
-            <a href="AddOferta.php">Adicionar Oferta</a>
-            <a href="EditarEmpregador.php">Editar Empregador</a>
-            <a href="EditarOferta.php">Editar Oferta</a>
-            <a href="OfertasPrestadorPendentes.php">Oferta Pendentes</a>
-            <a href="OfertasPrestadorPublicadas.php">Oferta Publicadas</a>
-            <a href="OfertasPrestadorFinalizadas.php">Oferta Finalizadas</a>
-            <a href="OfertasPrestadorExpiradas.php">Oferta Expiradas</a>
+
+            <a href="AddOferta.php">
+                <article>
+                    
+                    <img src="../Application/Resources/icons/Add-256GRAY.png">
+                    <p>Adicionar Oferta</p>
+                </article>
+            </a>
+            <a href="OfertasPrestadorPendentes.php">
+                <article>
+                    
+                    <img src="../Application/Resources/icons/Add-Earth-256GRAY.png">
+                    <p>Ofertas Pendentes</p>
+                </article>
+            </a>
+            <a href="OfertasPrestadorPublicadas.php">
+            <article>
+               
+                <img src="../Application/Resources/icons/Earth-Node-256GRAY.png">
+                 <p>Ofertas Publicadas</p>
+            </article>
+                <a href="OfertasPrestadorFinalizadas.php">
+            <article>
+                
+                <img src="../Application/Resources/icons/User-Earth-256GRY.png">
+                <p>Ofertas Finalizadas</p>
+            </article>
+                </a>
+                <a href="OfertasPrestadorExpiradas.php">
+            <article>
+                
+                <img src="../Application/Resources/icons/Lock-Earth-256GRAY.png">
+                <p>Ofertas Expiradas</p>
+            </article>
+                </a>
         </section>
 
         <?php require_once '../Application/imports/Footer.php' ?>

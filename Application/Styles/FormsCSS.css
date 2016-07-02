@@ -122,70 +122,83 @@ body{
 
 }
 
-/*Ofertas CSS*/
 
-#ofertas{
-    text-align: center;
-    margin: 1%;
-    width: 98%;
-}
+/** Form area CSS **/
 
-#ofertas a{
-    text-decoration: none;
-    color:black;
-}
-
-#ofertas article{  
+section#form{  
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     background-color: white;
-    width: 300px;
-    height: 350px;
-    overflow: auto;
-    display: inline-block;
-    box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.5);
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;     
 }
-#ofertas article{  
-    text-align: center;
+
+#form input, textArea, select{
+    display: block;
+    margin-bottom: 15px;
+    width: 280px; 
+
+}
+
+#formOferta img {
     margin: 20px;
+    display: block;
+    width: 100px;
+    height: 100px;
+
 }
 
-#ofertas article section{  
-    width: 300px;
-    height: 300px;
-    text-align: left;
-    overflow: hidden;
+#form form label{
+    float: left;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    font-weight: bold;
+
 }
 
-#ofertas article h2{
-    font-size: large;
-    text-align: center;
-    color:#ff0038;
+#form textarea{
+    width: 280px;
+    height: 180px;
+    resize: none;
+    overflow: auto;
 }
 
-#ofertas article p{
-    font-size: medium; 
-    margin-left: 8px;
-    margin-right: 8px;
+#form input, textArea, select{
+    background: #FAFAFA;
+    border: 1px solid #303030;
+    color: #303030;
+    margin-left: 200px;
+    padding: 5px;
+    outline: none;
 }
 
-#ofertas article b{
-    color:#00c4cc;
+#form input:hover,#form textArea:hover,#form select:hover, #form input:focus,#form textArea:focus,#form select:focus{
+    background: #E4E4E4;    
 }
 
-
-article img{
-    padding: 0px;
-    height: 160px;
-    width: 300px;
+#form input.buttonForm{
+    background-color: #00c4cc;
+    border: none;
+    color: #ffffff;
+    height: 30px;
+    padding: 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 270px;
+    width: 150px;   
 }
 
-article a{
-    height: 160px;
-    width: 300px;
+#form input.buttonForm:hover{
+    background-color: #0CDDE7;     
 }
 
-.favorito{
-    width:30px;
-    height:30px;
+.error{
+    margin-left: 200px;
+    color:red;
 }
 
 /*** Footer ***/
@@ -201,3 +214,4 @@ article a{
     bottom:0px;
     box-shadow: 0px -1px 10px 0px rgba(0,0,0,0.75);
 }
+

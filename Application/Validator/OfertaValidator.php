@@ -18,10 +18,8 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
         $data = date("Y-m-d");
         $dataInicio = filter_input($input, 'dataInicio');
         if($dataInicio < $data){
-                  $errorsO['dataInicio'] = 'A data de início já passou';
-  
-        }
-        
+                  $errorsO['dataInicio'] = 'A data de início já passou';  
+        } 
     } else {
         $errorsO['dataInicio'] = 'A data não é válida';
     }

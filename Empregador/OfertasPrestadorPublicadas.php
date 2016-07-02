@@ -69,8 +69,8 @@ $empregadorMan = new EmpregadorManager();
                         <tr id="<?= $value['idOferta'] ?>"> 
 
                             <td><?= $value['tituloOferta'] ?></td>
-                            <td><a class="button2" href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver</a></td>
-                            <td><a class="button2" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>
+                            <td><a class="buttonTable" href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver</a></td>
+                            <td><a class="buttonTable" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>
                
                         </tr>
 
