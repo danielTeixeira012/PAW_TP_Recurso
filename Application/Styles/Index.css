@@ -157,8 +157,10 @@ body{
 
 #ofertas article h2{
     font-size: large;
+    padding: 10px;
     text-align: center;
-    color:#ff0038;
+    color:#383838;
+    font-family: Impact, Charcoal, sans-serif;
 }
 
 #ofertas article p{
@@ -168,24 +170,29 @@ body{
 }
 
 #ofertas article b{
-    color:#00c4cc;
+    color:#707070;
+    margin-right: 2px;
 }
 
 
-article img{
+#ofertas article img{
     padding: 0px;
     height: 160px;
     width: 300px;
 }
 
-article a{
+#ofertas article a{
     height: 160px;
     width: 300px;
 }
 
-.favorito{
+#ofertas article button{
+    border: none;
+}
+
+#ofertas .favorito, #ofertas button .localSave{
     width:30px;
-    height:30px;
+    height:30px;   
 }
 
 /*** Footer ***/

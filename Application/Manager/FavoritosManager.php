@@ -29,6 +29,10 @@ class FavoritosManager extends MyDataAccessPDO{
         return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $idPrestador));
     }
     
+    function getFavoritosByIDPrestadorAndIdOFerta($idPrestador, $idOferta){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $idPrestador, 'idOferta'=>$idOferta));
+    }
+    
     function insertFavorito(Favoritos $favorito){
         parent::insert(self::SQL_TABLE_NAME, $favorito->convertObjectToArray());
     }

@@ -13,6 +13,7 @@ $tipo = SessionManager::existSession('tipoUser');
 <html>
     <head>
         <meta charset="UTF-8">
+        <link  rel="stylesheet" type="text/css" href="Application/Styles/Listar.css">
         <link  rel="stylesheet" type="text/css" href="Application/Styles/verCSS.css">
         <title></title>
     </head>

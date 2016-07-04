@@ -11,17 +11,17 @@ require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 $email = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
-if($email && $tipo){
-    if(SessionManager::getSessionValue('tipoUser') !== 'empregador'){
+if ($email && $tipo) {
+    if (SessionManager::getSessionValue('tipoUser') !== 'empregador') {
         header('location: ../index.php');
     }
-}else{
+} else {
     header('location: ../index.php');
 }
-$exists = false; 
+$exists = false;
 $manEmpregador = new EmpregadorManager();
 $manOfertas = new OfertaManager();
-$manCandidaturas =  new CandidaturaManager();
+$manCandidaturas = new CandidaturaManager();
 
 $id = filter_input(INPUT_GET, 'prestador');
 
@@ -31,81 +31,101 @@ $ofertasPrestador = $manOfertas->getOfertaUser($idEmpregador);
 
 //verifica se pode ver historico prestador
 foreach ($ofertasPrestador as $key => $value) {
-    if(!empty($manCandidaturas->prestadorCandidatouseSubmetida($value['idOferta'], $id))||!empty($manCandidaturas->prestadorCandidatouseAceitadas($value['idOferta'], $id))||  !empty($manCandidaturas->prestadorCandidatouseRejeitadas($value['idOferta'], $id))){
+    if (!empty($manCandidaturas->prestadorCandidatouseSubmetida($value['idOferta'], $id)) || !empty($manCandidaturas->prestadorCandidatouseAceitadas($value['idOferta'], $id)) || !empty($manCandidaturas->prestadorCandidatouseRejeitadas($value['idOferta'], $id))) {
         $exists = true;
-    }   
+    }
 }
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
+        <link  rel="stylesheet" type="text/css" href="../Application/Styles/Listar.css">
+
         <title></title>
     </head>
     <body>
+        <?php require_once '../Application/imports/Header.php' ?>
         <?php
-        if($exists){
-        $canMan = new CandidaturaManager();
-        $candidaturasSubmetidas = $canMan->getCandidaturasSubmetidasByIdPrestador($id);
-        if (!empty($candidaturasSubmetidas)) {
-            ?>
-            <h1>Candidaturas Submetidas</h1>
-            <table>
-            <?php
-            foreach ($candidaturasSubmetidas as $key => $value) {
+        if ($exists) {
+            $canMan = new CandidaturaManager();
+            $candidaturasSubmetidas = $canMan->getCandidaturasSubmetidasByIdPrestador($id);
+            if (!empty($candidaturasSubmetidas)) {
                 ?>
-                    <tr>
-                        <td><?= $value['idOferta'] ?></td>
-                    </tr>
-        <?php
-    }
-}
-?>
-        </table>
-
+                <section id="candidaturasSubmetidas">
+                    <h1>Candidaturas Submetidas</h1>
+                    <table>
+                        <tr>
+                            <th>Oferta</th>
+                        </tr>
+                        <?php
+                        foreach ($candidaturasSubmetidas as $key => $value) {
+                            $oferta = $manOfertas->getOfertaByID($value['idOferta'])
+                            ?>
+                            <tr>       
+                                <td><?= $oferta[0]['tituloOferta'] ?></td>
+                                <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>                 
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                </table>
+            </section>
             <?php
             $candidaturasAceites = $canMan->getCandidaturasAceitesOfIdPrestador($id);
             if (!empty($candidaturasAceites)) {
                 ?>
-            <h1>Candidaturas Aceites</h1>
-            <table>
-            <?php
-            foreach ($candidaturasAceites as $key => $value) {
-                ?>
-                    <tr>
-                        <td><?= $value['idOferta'] ?></td>
-                    </tr>
-        <?php
-    }
-} else {
-    ?>
-                <p>Ainda não foi aceite para nenhum trabalho</p>
-                <?php
-            }
-            ?>
-        </table>
+                <section id="candidaturasAceites">
+                    <h1>Candidaturas Aceites</h1>
+                    <table>
+                        <tr>
+                            <th>Oferta</th>
+                        </tr>
+                        <?php
+                        foreach ($candidaturasAceites as $key => $value) {
+                            $oferta = $manOfertas->getOfertaByID($value['idOferta'])
+                            ?>
+                            <tr>
+                                <td><?= $oferta[0]['tituloOferta'] ?></td>
+                                <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>                 
+
+                            </tr>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                        <p>Ainda não foi aceite para nenhum trabalho</p>
+                        <?php
+                    }
+                    ?>
+                </table>
+            </section>
             <?php
             $candidaturasRejeitadas = $canMan->getCandidaturasRejeitasOfIdPrestador($id);
             if (!empty($candidaturasRejeitadas)) {
                 ?>
-            <h1>Candidaturas Rejeitadas</h1>
-            <table>
+                <section id="candidaturasRejeitadas">
+                    <h1>Candidaturas Rejeitadas</h1>
+                    <table>
+                        <?php
+                        foreach ($candidaturasRejeitadas as $key => $value) {
+                            ?>
+                            <tr>
+                                <td><?= $value['idOferta'] ?></td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                </table>
+            </section>
             <?php
-            foreach ($candidaturasRejeitadas as $key => $value) {
-                ?>
-                    <tr>
-                        <td><?= $value['idOferta'] ?></td>
-                    </tr>
-        <?php
-    }
-}
-?>
-        </table>
-            <?php
-        }else{
+        } else {
             ?>
             <p>Não pode aceder ao historico desejado</p>
             <?php
         }
-            ?>
+        ?>
+        <?php require_once '../Application/imports/Footer.php' ?>
     </body>
 </html>

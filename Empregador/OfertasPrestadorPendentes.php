@@ -42,7 +42,7 @@ $empregadorMan = new EmpregadorManager();
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button2" id="editarButton" href="EditarEmpregador.php">Editar dados...</a>
+            <a id="editarButton" href="EditarEmpregador.php"><button class="button">Editar dados...</button></a>
         </section>
 
 
@@ -68,11 +68,12 @@ $empregadorMan = new EmpregadorManager();
                     foreach ($ofertas as $key => $value) {
                         ?>
                         <tr id="<?= $value['idOferta'] ?>"> 
-                            <td><?= $value['tituloOferta'] ?></td>
-                            <td><a class="button2" href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver</a></td>
-                            <td><a class="button2" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>
-
-
+                            <td><p><?= $value['tituloOferta'] ?></p></td>
+<!--                            <td><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><img class="imageButton" src="../Application/Resources/icons/view.png" alt="Ver"></a></td>
+                            <td><a href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>"><img class="imageButton" src="../Application/Resources/icons/edit.png" alt="Editar"></a></td>
+                            -->
+                            <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>
+                            <td class="tdButtom"><a href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>"><button class="tableButton">Editar Oferta</button></a></td>                         
                         </tr>
 
                         <?php

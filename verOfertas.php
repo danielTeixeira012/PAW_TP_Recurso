@@ -17,6 +17,7 @@ $tipo = SessionManager::existSession('tipoUser');
 <html>
     <head>
         <meta charset="UTF-8">
+        <link  rel="stylesheet" type="text/css" href="Application/Styles/Listar.css">
         <title></title>  
         <script src="Application/Libs/jquery-2.2.4.js"></script>
         <script src="Application/JS/PublicarJS.js"></script>
@@ -24,8 +25,7 @@ $tipo = SessionManager::existSession('tipoUser');
         <script src="Application/JS/comentarioJS.js"></script>
     </head>
     <body>
-        <?php require_once 'Application/imports/Header.php'; ?>
-        <a href="index.php"><button class="button2">Voltar</button></a>
+        <?php require_once 'Application/imports/Header.php'; ?>      
         <?php
         $idOferta = filter_input(INPUT_GET, 'oferta');
         $man = new OfertaManager();
@@ -186,28 +186,30 @@ $tipo = SessionManager::existSession('tipoUser');
                     }
                     ?>
                 </article>
+                
             </section>
-            <section id="comentarios" itemscope data-id="<?= $idOferta ?>">
+        <section id="comentarios" itemscope data-id="<?= $idOferta ?>">
                 <?php
                 if ($email && $tipo) {
                     ?>
-                    <input id="areaComentario" type="text">
-                    <button id="comentar">Comentar</button>
+                <textarea id="areaComentario" type="text"></textarea>
+                <button class="button" id="comentar">Comentar</button>
                     <?php
                 }
                 ?>
                 <legend>Comentarios sobre a oferta</legend>
-                <?php 
-                    $ComentariosManager = new ComentariosManager();
-                    $comentarios = $ComentariosManager->getComentarios();
-                    
-                    foreach ($comentarios as $key => $value) {
-                        ?>
-                <article>
-                    <p><?=$value['comentario']?> Autor: <?=$value['autor']?></p>
-                </article>
-                        <?php
-                    }
+                <?php
+                $ComentariosManager = new ComentariosManager();
+                $comentarios = $ComentariosManager->getComentarios();
+
+                foreach ($comentarios as $key => $value) {
+                    ?>
+                    <article class="comentario">
+                        <p class="autor">Autor: <?= $value['autor'] ?></p>
+                        <p class="coment"><?= $value['comentario'] ?></p>                 
+                    </article>
+                    <?php
+                }
                 ?>
             </section>
             <?php

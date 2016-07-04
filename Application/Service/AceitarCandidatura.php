@@ -17,11 +17,9 @@ if ($exist) {
     $idCandidatura = filter_input(INPUT_GET, 'idCandidatura');
     $idOferta = filter_input(INPUT_GET, 'idOferta');
     $candidaturasMan = new CandidaturaManager();
-    $ofertaMan = new OfertaManager();
     $candidaturas = $candidaturasMan->getCandidaturasSubmetidasByIdOferta($idOferta);
     foreach ($candidaturas as $key => $value) {
         $cand = Candidatura::convertArrayToObject($value);
-
         if ($cand->getIdCandidatura() == $idCandidatura) {
             $cand->setStatusCandidatura('aceitada');
             $candidaturasMan->editCandidatura($cand, $idCandidatura);
@@ -32,10 +30,5 @@ if ($exist) {
             $candidaturasMan->editCandidatura($cand, $idCandidatura);
         }
     }
-    $oferta = $ofertaMan->getOfertaByID($idOferta);
-    $of = OfertaTrabalho::convertArrayToObject($oferta[0]);
-    $of->setStatusO('expirada');
-    $ofertaMan->editOferta($of, $idOferta);
-
     echo 'Candidaturas Avaliadas';
 }

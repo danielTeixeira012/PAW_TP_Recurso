@@ -24,7 +24,7 @@ if ($session && $tipo) {
         <meta charset="UTF-8">
         <title></title>
         <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
-        <script src="../Application/JS/jquery-2.2.4.js"></script>
+        <script src="../Application/Libs/jquery-2.2.4.js"></script>
         <script src="../Application/JS/AceitarCandidaturaJS.js"></script>
     </head>
     <body>
@@ -45,10 +45,10 @@ if ($session && $tipo) {
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button2" id="editarButton" href="EditEmpregador.php">Editar dados...</a>
+            <a id="editarButton" href="EditEmpregador.php"><button class="button">Editar dados...</button></a>
         </section>
 
-        <section id="candidaturas">           
+        <section id="opcoes">           
             <?php
             $candidaturasMan = new CandidaturaManager();
             
@@ -69,12 +69,15 @@ if ($session && $tipo) {
                             <td><?= $value['idCandidatura'] ?></td>
                             <td><?= $value['idPrestador'] ?></td>
                             <td><?= $value['idOferta'] ?></td>
-                            <td><a href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>">Ver prestador</a></td>
-                            <td><button class="aceitarButton" id="aceitarButton">Aceitar</button></td>
+                            <td><a href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><img class="imageButton" src="../Application/Resources/icons/viewPrest.png" alt="Ver Prestador"></a></td>
+                            <td><a class="aceitarButton" id="aceitarButton"><button class="button">Aceitar</button></a></td>
                         </tr>
 
                         <?php
                     }
+                    ?>
+                         </table>
+            <?php
                 } else {
                     ?>
                     <p>Não existem candidaturas que necessitem de defenição de candidato de imediato</p>
@@ -82,7 +85,7 @@ if ($session && $tipo) {
                 }
                 ?>
 
-            </table>
+           
 
 
         </section>

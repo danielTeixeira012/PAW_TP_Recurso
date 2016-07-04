@@ -1,7 +1,6 @@
 var ofertas = [];
 var countId = 0;
 
-
 function loadAllFromLocalSorage() {
 
     if (typeof (Storage) !== "undefined") {
@@ -122,7 +121,7 @@ function appenSelect() {
         document.getElementById("selectLoad").selectedIndex = -1;
         document.getElementById('selectLoad').addEventListener('change', preencherOferta);
     }
-
+    
 }
 
 function saveOferta() {
@@ -160,11 +159,6 @@ function saveOferta() {
     }
 
 }
-
-function verifyDelete() {
-    alert('xpto');
-}
-
 
 function initEvents() {
     document.getElementById('guardarTemp').addEventListener('click', saveOferta);

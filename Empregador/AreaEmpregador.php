@@ -40,49 +40,39 @@ $empregadorMan = new EmpregadorManager();
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button2" id="editarButton" href="EditarEmpregador.php">Editar dados...</a>
+            <a id="editarButton" href="EditarEmpregador.php"><button class="button">Editar dados...</button></a>
         </section>
-
-
         <section id="opcoes">
-
             <a href="AddOferta.php">
-                <article>
-                    
+                <article>          
                     <img src="../Application/Resources/icons/Add-256GRAY.png">
                     <p>Adicionar Oferta</p>
                 </article>
             </a>
             <a href="OfertasPrestadorPendentes.php">
-                <article>
-                    
+                <article>                    
                     <img src="../Application/Resources/icons/Add-Earth-256GRAY.png">
                     <p>Ofertas Pendentes</p>
                 </article>
             </a>
             <a href="OfertasPrestadorPublicadas.php">
-            <article>
-               
+            <article>               
                 <img src="../Application/Resources/icons/Earth-Node-256GRAY.png">
                  <p>Ofertas Publicadas</p>
             </article>
                 <a href="OfertasPrestadorFinalizadas.php">
-            <article>
-                
+            <article>                
                 <img src="../Application/Resources/icons/User-Earth-256GRY.png">
                 <p>Ofertas Finalizadas</p>
             </article>
                 </a>
                 <a href="OfertasPrestadorExpiradas.php">
-            <article>
-                
+            <article>                
                 <img src="../Application/Resources/icons/Lock-Earth-256GRAY.png">
                 <p>Ofertas Expiradas</p>
             </article>
                 </a>
         </section>
-
         <?php require_once '../Application/imports/Footer.php' ?>
-
     </body>
 </html>

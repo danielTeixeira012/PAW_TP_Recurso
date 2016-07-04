@@ -16,7 +16,16 @@ function escreverResultado(data) {
         document.getElementById('areaComentario').innerHTML = '';
         var section = document.getElementById('comentarios');
         var article = document.createElement('article');
-        article.innerHTML = res[0]['comentario'] + ' Autor: ' + res[0]['autor'];
+        article.setAttribute('class','comentario');
+        var p1 = document.createElement('p');
+        p1.setAttribute('class','autor');
+        p1.innerHTML = 'Autor: ' + res[0]['autor'];
+        var p2 = document.createElement('p');
+        p2.setAttribute('class','coment');
+        p2.innerHTML =res[0]['comentario'];
+        
+        article.appendChild(p1);
+        article.appendChild(p2);
         section.appendChild(article);
         document.getElementById('areaComentario').value = '';
     }else{
