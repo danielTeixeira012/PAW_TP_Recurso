@@ -20,7 +20,9 @@ function AceitarAJAX() {
     $.get('../Application/Service/AceitarCandidatura.php', {idCandidatura: idCandidatura, idOferta: idOferta},
             function (data) {
                 aceitarResultado(data);
-            }
+            }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 
 }

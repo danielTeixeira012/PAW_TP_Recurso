@@ -42,7 +42,9 @@ function eliminarOferta() {
     $.get('../Application/Service/EliminarOfertaService.php', {idOferta: id},
             function (data) {
                 resultsEliminarOferta(data, id);
-            }
+            }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 
@@ -50,7 +52,9 @@ function ativarOferta(button, id) {
     $.get('../Application/Service/AtivarOfertaService.php', {idOferta: id},
             function (data) {
                 resultsAtivarOferta(data, button);
-            }
+            }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 
@@ -59,7 +63,9 @@ function desativarOferta(button, id) {
     $.get('../Application/Service/DesativarOfertaService.php', {idOferta: id},
             function (data) {
                 resultsDesativarOferta(data, button);
-            }
+            }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 

@@ -15,7 +15,9 @@ function eliminarPrestadorAJAX() {
     $.get('../Application/Service/EliminarPrestadorService.php', {idPrestador: id},
             function (data) {
                 results(data,id);
-            }
+            }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 

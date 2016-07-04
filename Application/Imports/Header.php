@@ -13,7 +13,14 @@
                 <?php
                 if ($tipoUtilizador === 'prestador') {
                     ?>
-                    <li><a href=" <?php echo Config::getRootPath() . 'Prestador/areaPessoalPrestador.php'; ?>">Area Prestador</a></li>
+                    <li class="dropdown">
+                        <a href="<?php echo Config::getRootPath() . 'Prestador/areaPessoalPrestador.php'; ?>" class="dropbtn">Área Prestador</a>
+                        <ul class="drop-nav">
+                            <li><a href="<?php echo Config::getRootPath() . 'Prestador/ofertasTrabalhoFavoritas.php'; ?>">Ofertas Favoritas</a></li>
+                            <li><a href="<?php echo Config::getRootPath() . 'Prestador/ofertasTrabalhoSubmetidas.php'; ?>">Ofertas Submetidas</a></li>
+                            <li><a href="<?php echo Config::getRootPath() . 'Prestador/ofertasTrabalhoFinalizadas.php'; ?>">Ofertas Aceitado</a></li>
+                        </ul>
+                    </li>
                     <?php
                 } else if ($tipoUtilizador === 'empregador') {
                     ?>
@@ -31,7 +38,7 @@
                     <?php
                 } else if ($tipoUtilizador === 'administrador') {
                     ?>
-                    <li><a href=" <?php echo Config::getRootPath() . 'administrador/AreaAdministrador.php'; ?>">Área Administrador</a></li>
+                    <li><a href=" <?php echo Config::getRootPath() . 'Administrador/AreaAdministrador.php'; ?>">Área Administrador</a></li>
                     <?php
                 }
                 ?>

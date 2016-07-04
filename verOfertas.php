@@ -200,7 +200,7 @@ $tipo = SessionManager::existSession('tipoUser');
                 <legend>Comentarios sobre a oferta</legend>
                 <?php
                 $ComentariosManager = new ComentariosManager();
-                $comentarios = $ComentariosManager->getComentarios();
+                $comentarios = $ComentariosManager->getComentarioByIDOferta($idOferta);
 
                 foreach ($comentarios as $key => $value) {
                     ?>

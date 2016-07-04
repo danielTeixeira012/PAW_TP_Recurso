@@ -97,6 +97,10 @@ body{
     background-color: #0CDDE7;
 }
 
+#ErroLogin{
+    color: white;
+}
+
 /** dropdown menu CSS**/
 .dropdown {
     position: relative;
