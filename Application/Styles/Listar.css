@@ -105,7 +105,7 @@ body{
 
 }
 
-.button{
+.button, .buttonC{
     background-color: #00c4cc;
     border: none;
     color: #ffffff;
@@ -117,6 +117,11 @@ body{
     font-size: 12px;
 }
 
+.buttonC{
+    display: block;
+    margin: 20px;
+    margin-left:  120px;
+}
 .button:hover{
     background-color: #0CDDE7;
 }
@@ -220,14 +225,14 @@ tr:hover{
 
 #comentarios{
     padding: 5%;
-    width: 70%;
+    width: 50%;
     margin: auto;
 }
 
 
 .comentario{ 
-    width: 80%;
-    margin: 0px;
+    width: 50%;
+    margin: auto;
     padding: 10px;
     border-bottom: 1px solid #383838;
     text-align: left;

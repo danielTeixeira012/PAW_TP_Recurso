@@ -84,13 +84,7 @@ $empregadorMan = new EmpregadorManager();
                 <?php
             }
             ?>
-
-
-
-
         </section>
-
-
         <?php require_once '../Application/imports/Footer.php' ?>
 
     </body>

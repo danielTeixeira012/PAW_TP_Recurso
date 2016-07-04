@@ -69,11 +69,10 @@ $empregadorMan = new EmpregadorManager();
                         <tr id="<?= $value['idOferta'] ?>"> 
 
                             <td><?= $value['tituloOferta'] ?></td>
-<!--                            <td><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><img class="imageButton" src="../Application/Resources/icons/view.png" alt="Ver"></a></td>
+<!--                        <td><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><img class="imageButton" src="../Application/Resources/icons/view.png" alt="Ver"></a></td>
                             <td><a class="button2" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>-->
                             <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>
-                            <td class="tdButtom"><a class="button2" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>"><button class="tableButton">Editar Oferta</button</a></td>
-                        </tr>
+ß                        </tr>
                         <?php
                     }
                     ?>
@@ -85,9 +84,7 @@ $empregadorMan = new EmpregadorManager();
                 <?php
             }
             ?>
-
         </section>
-
         <?php require_once '../Application/imports/Footer.php' ?>
 
     </body>

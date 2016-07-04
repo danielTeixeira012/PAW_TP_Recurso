@@ -193,7 +193,7 @@ $tipo = SessionManager::existSession('tipoUser');
                 if ($email && $tipo) {
                     ?>
                 <textarea id="areaComentario" type="text"></textarea>
-                <button class="button" id="comentar">Comentar</button>
+                <button class="buttonC" id="comentar">Comentar</button>
                     <?php
                 }
                 ?>
