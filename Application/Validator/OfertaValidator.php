@@ -28,7 +28,10 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'dataFim') && filter_input($input, 'dataFim') != '') {
         $dataFim = filter_input($input, 'dataFim');
-        if($dataFim <= $data){
+        if($dataFim < $dataInicio){
+               $errorsO['dataFim'] = 'A data limite é inferior á data de Início';
+           }
+        if($dataFim <= $data){       
                   $errorsO['dataFim'] = 'A data limite já passou';
   
         }

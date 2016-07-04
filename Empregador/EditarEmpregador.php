@@ -31,11 +31,11 @@ if ($session && $tipo) {
         <section id="form">
             <h2>Editar Empregador</h2>
             <form id="formOferta" action="EditarEmpregadorValida.php" method="post">
-            <img src="../<?= $empregador['fotoPath']?>">
-            
+            <img src="../<?= $empregador['fotoPath']?>"> 
             <label for="emailE">Email</label><input readonly id="emailE" type="email" name="emailE" value="<?= $empregador['email'] ?>">
             <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE" value="<?= $empregador['nome'] ?>"><?= isset($errorsE) && array_key_exists('nomeE', $errorsE) ? $errorsE['nomeE'] : '' ?>
             <input id="passE" type="hidden" name="passE" value="<?= $empregador['password'] ?>">
+            <input id="fotografiaE" type="hidden" name="fotografiaE" value="<?= $empregador['fotoPath'] ?>">
             <label for="contactoE">Contacto</label><input id="contactoE" type="tel" name="contactoE" value="<?= $empregador['contato'] ?>"><?= isset($errorsE) && array_key_exists('contactoE', $errorsE) ? $errorsE['contactoE'] : '' ?>
             <label for="moradaE">Morada</label><input id="moradaE" type="text" name="moradaE" value="<?= $empregador['morada'] ?>"><?= isset($errorsE) && array_key_exists('moradaE', $errorsE) ? $errorsE['moradaE'] : '' ?>
             <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE" value="<?= $empregador['codPostal'] ?>"><?= isset($errorsE) && array_key_exists('codigopostalE', $errorsE) ? $errorsE['codigopostalE'] : '' ?>

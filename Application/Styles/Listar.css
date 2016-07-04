@@ -4,6 +4,7 @@ html{
 }
 
 body{
+    font-family: 'Lato', sans-serif;
     margin: 0px;
     padding: 0px;
     margin-bottom: 50px;
@@ -18,7 +19,7 @@ body{
 #head{
     background-color: #020509;
     position: relative;
-    height: 46px;
+    height: 45px;
     width: 100%;
     margin-bottom: 25px;
     top:0px;
@@ -88,15 +89,15 @@ body{
     display: none;
     position: absolute;
     z-index: 1;
-    width: 160px;
+    width: 180px;
 }
 .drop-nav li{
-    width: 160px;
+    width: 180px;
 }
 
 .drop-nav a {
     display: inline-block;
-    width: 128px;
+    width: 148px;
 }
 
 .dropdown:hover .drop-nav{
@@ -119,8 +120,9 @@ body{
 
 .buttonC{
     display: block;
-    margin: 20px;
-    margin-left:  120px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .button:hover{
     background-color: #0CDDE7;
@@ -197,7 +199,6 @@ tr:hover{
     width: 70%;
     background-color: white;
     margin: auto;
-
     box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.5);
 }
 
@@ -215,28 +216,36 @@ tr:hover{
     font-size: medium; 
     margin-left: 20%;
     margin-right: 20%;
+    margin-top: 5px;
 }
 
 #oferta article b{
-
     color:#707070;
     margin-right: 2px;
 }
 
 #comentarios{
+    text-align: center;
     padding: 5%;
     width: 50%;
     margin: auto;
 }
 
+#comentarios h2{
+    font-size: large;
+    padding: 10px;
+    text-align: center;
+    color:#383838;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
 
 .comentario{ 
-    width: 50%;
+    width: 70%;
     margin: auto;
     padding: 10px;
     border-bottom: 1px solid #383838;
     text-align: left;
-
 }
 
 .comentario .autor{

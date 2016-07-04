@@ -23,6 +23,7 @@ $tipo = SessionManager::existSession('tipoUser');
         <script src="Application/JS/PublicarJS.js"></script>
         <script src="Application/JS/candidatarJS.js"></script>
         <script src="Application/JS/comentarioJS.js"></script>
+        <script src="Application/JS/GuardarOfertaLocalJS.js"></script>
     </head>
     <body>
         <?php require_once 'Application/imports/Header.php'; ?>      

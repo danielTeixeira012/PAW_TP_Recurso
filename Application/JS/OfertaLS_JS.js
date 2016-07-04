@@ -90,11 +90,17 @@ function preencherOferta() {
             document.getElementById('requisitos').innerHTML = ofertas[i]['requisitos'];
             document.getElementById("tipoOferta").value = ofertas[i]['tipoOferta'];
             document.getElementById('regiao').setAttribute('value', ofertas[i]['regiao']);
-            document.getElementById('dataLimite').setAttribute('value', ofertas[i]['dataLimite']);
+            document.getElementById('dataInicio').setAttribute('value', ofertas[i]['dataInicio']);
+            document.getElementById('dataFim').setAttribute('value', ofertas[i]['dataFim']);
             //remover dalocal storage
             alert('Atenção!!!! A oferta escolhida foi removida localmente caso pretenda mantêla terá de a guardar novamente');
             ofertas.splice(i, 1);
             guardarOfertasStorage();
+            var nodeToRemove = document.getElementById('lsDIV');
+            while (nodeToRemove.firstChild) {
+                nodeToRemove.removeChild(nodeToRemove.firstChild);
+            }
+            appenSelect();
         }
     }
 }
@@ -107,7 +113,7 @@ function appenSelect() {
     var label = document.createElement("label");
     select.setAttribute('id', 'selectLoad');
     label.setAttribute('for', 'selectLoad');
-    label.innerHTML='Carregar dados locais';
+    label.innerHTML = 'Carregar dados locais';
     for (i = 0; i < ofertas.length; ++i) {
         var optionTemp = document.createElement("option");
         optionTemp.value = ofertas[i]['idOferta'];
@@ -115,13 +121,13 @@ function appenSelect() {
         select.appendChild(optionTemp);
         count++;
     }
-    if (count != 0) {
+    if (count !== 0) {
         document.getElementById('lsDIV').appendChild(label);
         document.getElementById('lsDIV').appendChild(select);
         document.getElementById("selectLoad").selectedIndex = -1;
         document.getElementById('selectLoad').addEventListener('change', preencherOferta);
     }
-    
+
 }
 
 function saveOferta() {
@@ -136,7 +142,8 @@ function saveOferta() {
     var regiao = document.getElementById('regiao').value;
     var idEmpregador = document.getElementById('idEmpregador').value;
     var tipoOferta = document.getElementById('tipoOferta').value;
-    var dataLimite = document.getElementById('dataLimite').value;
+    var dataInicio = document.getElementById('dataInicio').value;
+    var dataFim = document.getElementById('dataFim').value;
     if (categoria === null || categoria === "" ||
             tituloOferta === null || tituloOferta === "" ||
             informacaoOferta === null || informacaoOferta === "" ||
@@ -144,13 +151,14 @@ function saveOferta() {
             salario === null || salario === "" ||
             idEmpregador === null || idEmpregador === "" ||
             tipoOferta === null || tipoOferta === "" ||
-            dataLimite === null || dataLimite === "") {
+            dataInicio === null || dataInicio === "" ||
+            dataFim === null || dataFim === "") {
         alert("Um ou mais dos campos estão vazios!!!");
     } else {
         var oferta = {idOferta: idOferta, categoria: categoria, tituloOferta: tituloOferta,
             informacaoOferta: informacaoOferta, funcaoOferta: funcaoOferta, salario: salario,
             requisitos: requisitos, regiao: regiao, idEmpregador: idEmpregador,
-            tipoOferta: tipoOferta, dataLimite: dataLimite};
+            tipoOferta: tipoOferta, dataInicio: dataInicio, dataFim: dataFim};
 
         ofertas.push(oferta);
         countId += 1;

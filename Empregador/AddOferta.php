@@ -20,6 +20,7 @@ if ($session && $tipo) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
+        <script src="../Application/JS/OfertaLS_JS.js"></script> 
         <title></title>
     </head>
     <body>
@@ -58,12 +59,12 @@ if ($session && $tipo) {
                 <input class="buttonForm" id="submeter" type="submit" value="Submeter" name="submeter">
 
             </form>
-            <!--            <h3>Dados Locais</h3>
+                       <h3>Dados Locais</h3>
                         <p>Guardar dados localmente</p><button class="button2" id="guardarTemp">Guardar</button>
             
                         <div id="lsDIV">
             
-                        </div>-->
+                        </div>
 
         </section>
         <?php require_once '../Application/imports/Footer.php' ?>

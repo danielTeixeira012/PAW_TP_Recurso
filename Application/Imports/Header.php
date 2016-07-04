@@ -3,7 +3,7 @@
     require_once __DIR__ . '/../../login.php';
     ?>
     <nav>
-        <ul>
+        <ul id="navList">
             <li><a href="<?php echo Config::getRootPath() . 'index.php'; ?>">Home</a></li>
 
 

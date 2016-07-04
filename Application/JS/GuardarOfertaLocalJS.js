@@ -64,20 +64,32 @@ function localSaveOferta() {
 
 function initEvents() {
     loadAllFromLocalSorage();
-    var lSave = document.getElementsByClassName('localSave');
-    var i = 0;
-    for (i = 0; i < lSave.length; ++i) {
-        var idOferta = lSave[i].parentNode.getAttribute('data-idOferta');
-        if (!contains(idOferta)) {
-            lSave[i].addEventListener('click', localSaveOferta);
-        } else {
-            var parent = lSave[i].parentNode.parentNode;
-            var p = document.createElement('p');
-            p.innerHTML = 'Já se encontra guardado';
-            lSave[i].parentNode.remove();
-            parent.appendChild(p);
-            i--;
+    if (ofertas.length <= 0) {
 
+        var line = document.createElement('li');
+        var a = document.createElement('a');
+        a.setAttribute('href', "<?php echo Config::getRootPath() . 'VerOfertasLocais.php'; ?>");
+        a.innerHTML = 'Ofertas Guardadas';
+        line.appendChild(a);
+        document.getElementById('navList').appendChild(line);
+
+
+    }
+    var lSave = document.getElementsByClassName('localSave');
+    if (lSave.length > 0) {
+        var i = 0;
+        for (i = 0; i < lSave.length; ++i) {
+            var idOferta = lSave[i].parentNode.getAttribute('data-idOferta');
+            if (!contains(idOferta)) {
+                lSave[i].addEventListener('click', localSaveOferta);
+            } else {
+                var parent = lSave[i].parentNode.parentNode;
+                var p = document.createElement('p');
+                p.innerHTML = 'Já se encontra guardado';
+                lSave[i].parentNode.remove();
+                parent.appendChild(p);
+                i--;
+            }
         }
     }
 }
