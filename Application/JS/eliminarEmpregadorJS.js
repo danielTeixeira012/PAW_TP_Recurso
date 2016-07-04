@@ -15,7 +15,9 @@ function eliminarEmpregadorAJAX(){
     $.get('../Application/Service/EliminarEmpregadorService.php', {idEmpregador: id},
             function (data) {
                 results(data,id);
-            }
+            }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 

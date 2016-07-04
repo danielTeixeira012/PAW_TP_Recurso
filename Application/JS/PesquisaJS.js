@@ -45,7 +45,9 @@ function pesquisarOfertasAJAX(){
     $.get('Application/Service/PesquisaService.php', {categoria: pesquisa}, 
         function(data){
             escreverResultado(data);
-    }
+    }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 

@@ -27,4 +27,12 @@ class ComentariosManager extends MyDataAccessPDO{
     function getUltimoComentario(){
         return parent::getRecordsByUserQuery("SELECT * FROM `comentario` WHERE `idComentario` = (SELECT `idComentario` FROM `comentario` ORDER BY `idComentario` DESC LIMIT 1)");
     }
+    
+    function getComentarioByIDOferta($idOferta){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta));
+    }
+    
+    function removeComentariosByIDOferta($idOferta){
+        parent::delete(self::SQL_TABLE_NAME, array('idOferta' => $idOferta));
+    }
 }

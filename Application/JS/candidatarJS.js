@@ -12,7 +12,9 @@ function candidatarAJAX(){
     $.get('Application/Service/CandidatarService.php', {idOferta: id}, 
         function(data){
             candidatarRes(data);
-    }
+    }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 

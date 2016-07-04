@@ -22,16 +22,6 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     }
 }
 
-if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    if (filter_has_var($input, 'passPrestador') && filter_input($input, 'passPrestador') != '') {
-        $pass = filter_input($input, 'passPrestador', FILTER_SANITIZE_STRING);
-        if (strlen($pass) < 5) {
-            $erros['passPrestador'] = 'Novo parametro deve ter pelo menos 5 caracter na password';
-        }
-    } else {
-        $erros['passPrestador'] = 'Novo parametro password nao existe';
-    }
-}
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (!(filter_has_var($input, 'contactoPrestador') && filter_input($input, 'contactoPrestador') != '')) {

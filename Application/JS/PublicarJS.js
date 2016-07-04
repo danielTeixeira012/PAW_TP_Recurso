@@ -10,7 +10,9 @@ function publicarAJAX() {
     $.get('Application/Service/PublicarService.php', {idOferta: id},
             function (data) {
                 publicarResultado(data);
-            }
+            }).fail(function () {
+                    alert('Ocorreu um erro');
+                }
     );
 }
 

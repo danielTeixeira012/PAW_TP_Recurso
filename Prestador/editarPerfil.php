@@ -29,7 +29,6 @@ if ($session && $tipo) {
             require_once __DIR__ . '/verPerfilPrestador.php';
         } else {
             $email = filter_input(INPUT_POST, 'emailPrestador');
-            $password = filter_input(INPUT_POST, 'passPrestador');
             $nome = filter_input(INPUT_POST, 'nomePrestador');
             $contacto = filter_input(INPUT_POST, 'contactoPrestador');
             $morada = filter_input(INPUT_POST, 'moradaPrestador');
@@ -38,7 +37,7 @@ if ($session && $tipo) {
             $concelho = filter_input(INPUT_POST, 'concelhoPrestador');
             $manager = new PrestadorManager();
             $res = $manager->verifyEmail($email);
-            $newPrestador = new PrestadorServico($res[0]['idPrestador'], $email, sha1($password), $nome, $contacto, $res[0]['fotoPath'], $morada, $codigoPostal, $distrito, $concelho);
+            $newPrestador = new PrestadorServico($res[0]['idPrestador'], $email, $res[0]['password'], $nome, $contacto, $res[0]['fotoPath'], $morada, $codigoPostal, $distrito, $concelho);
             $manager->updatePrestador($newPrestador);
             ?>
             <h2>Dados alterados</h2>

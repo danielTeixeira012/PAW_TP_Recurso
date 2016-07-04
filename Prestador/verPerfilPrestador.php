@@ -45,7 +45,6 @@ and open the template in the editor.
                     <img src="../<?= $user[0]['fotoPath'] ?>" alt="Erro"/>
 
                     <label for="emailPrestador">Email</label><input readonly id="emailPrestador" type="email" name="emailPrestador" value="<?= $user[0]['email'] ?>">
-                    <label for="passPrestador">Password</label><input id="passPrestador" type="password" name="passPrestador" value="<?= $user[0]['password'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('passPrestador', $erros) ? $erros['passPrestador'] : '' ?></p>
                     <label for="nomePrestador">Nome</label><input id="nomePrestador" type="text" name="nomePrestador" value="<?= $user[0]['nome'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('nomePrestador', $erros) ? $erros['nomePrestador'] : '' ?></p>
                     <label for="contactoPrestador">Contacto</label><input id="contactoPrestador" type="tel" name="contactoPrestador" value="<?= $user[0]['contato'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('contactoPrestador', $erros) ? $erros['contactoPrestador'] : '' ?></p>
                     <label for="moradaPrestador">Morada</label><input id="moradaPrestador" type="text" name="moradaPrestador" value="<?= $user[0]['morada'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('moradaPrestador', $erros) ? $erros['moradaPrestador'] : '' ?></p>
