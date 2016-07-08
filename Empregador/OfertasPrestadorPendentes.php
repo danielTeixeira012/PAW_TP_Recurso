@@ -15,7 +15,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 $empregadorMan = new EmpregadorManager();
 ?>

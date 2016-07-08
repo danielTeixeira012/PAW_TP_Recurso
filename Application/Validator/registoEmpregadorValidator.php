@@ -70,8 +70,8 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'codigopostalE') && filter_input($input, 'codigopostalE') != '') {
         $codPostal = filter_input($input, 'codigopostalE', FILTER_SANITIZE_STRING);
-        $patern = "/[0-9]{4}-[0-9]{3}/";
-        if (preg_match($patern, $codPostal) === 0) {
+        $pattern = "/^\[0-9]{4}(-\[0-9]{3})?$/";
+        if (preg_match($patern, $codPostal) === 0 && strlen($codPostal) !== 8) {
             $errorsE['codigopostalE'] = 'Parametro codigo Postal incorreto';
         }
     } else {

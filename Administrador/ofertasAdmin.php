@@ -14,7 +14,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
 
@@ -22,19 +26,20 @@ if ($session && $tipo) {
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <link rel="stylesheet" type="text/css" href="../Application/Styles/verCSS.css"/>
+        <link rel="stylesheet" type="text/css" href="../Application/Styles/AdminCSS.css"/>
         <script src="../Application/Libs/jquery-2.2.4.js"></script>
         <script src="../Application/JS/adminOfertasJS.js"></script>
     </head>
     <body id="adminT">
+         <?php require_once '../Application/imports/Header.php'; ?>
         <?php
         $manOfer = new OfertaManager();
         $res = $manOfer->getOfertas();
         ?>
-        <table id="tableOfertas" border="1">
-            <h1>Lista Ofertas</h1>
+         <section id="opcoes">
+        <h1>Lista Ofertas</h1>
+        <table id="tableOfertas">            
             <th> Titulo </th>
-            <th> Estado </th>
             <th> Tipo </th>
             <th> Data Limite</th>
             <th> Opcao</th>
@@ -43,14 +48,16 @@ if ($session && $tipo) {
                 ?>
                 <tr id="<?= $value['idOferta'] ?>">
                     <td><?= $value['tituloOferta'] ?></td>
-                    <td><?= $value['statusO'] ?></td>
                     <td><?= $value['tipoOferta'] ?></td>
                     <td><?= $value['dataFim'] ?></td>
-                    <td><input class="eliminarOferta" type="button" value="Eliminar"><input class="opcao" type="button" value="<?= ($value['statusO'] === 'desativada') ? 'Ativar' : 'Desativar' ?>"></td>
+                    <td class="tdButtom"><input class="eliminarOferta" type="button" value="Eliminar"></td>
+                    <td class="tdButtom"><input class="opcao" type="button" value="<?= ($value['statusO'] === 'desativada') ? 'Ativar' : 'Desativar' ?>"></td>
                 </tr>
                 <?php
             }
             ?>
         </table>
+         </section>
+         <?php require_once '../Application/imports/footer.php'; ?>
     </body>
 </html>

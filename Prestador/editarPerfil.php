@@ -10,10 +10,14 @@ $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 if ($session && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') !== 'prestador') {
-        header('location: index.php');
+        header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    } else {
+        header('location: ../index.php');
+    }
 }
 ?>
 <html>
@@ -24,23 +28,31 @@ if ($session && $tipo) {
     <body>
         <?php
         require_once __DIR__ . '/../Application/Validator/EditarPerfilPrestador.php';
-
         if (count($erros) > 0) {
             require_once __DIR__ . '/verPerfilPrestador.php';
         } else {
-            $email = filter_input(INPUT_POST, 'emailPrestador');
-            $nome = filter_input(INPUT_POST, 'nomePrestador');
-            $contacto = filter_input(INPUT_POST, 'contactoPrestador');
-            $morada = filter_input(INPUT_POST, 'moradaPrestador');
-            $codigoPostal = filter_input(INPUT_POST, 'codigopostalPrestador');
-            $distrito = filter_input(INPUT_POST, 'distritoPrestador');
-            $concelho = filter_input(INPUT_POST, 'concelhoPrestador');
-            $manager = new PrestadorManager();
-            $res = $manager->verifyEmail($email);
-            $newPrestador = new PrestadorServico($res[0]['idPrestador'], $email, $res[0]['password'], $nome, $contacto, $res[0]['fotoPath'], $morada, $codigoPostal, $distrito, $concelho);
-            $manager->updatePrestador($newPrestador);
+            $prestadorMan = new PrestadorManager();
+            $emailSession = SessionManager::getSessionValue('email');
+            $prestadorSession = $prestadorMan->verifyEmail($emailSession);
+            if (!empty($prestadorSession)) {
+                $idPrestador = $prestadorSession[0]['idPrestador'];
+                $email = $prestadorSession[0]['email'];
+                $fotoPath = $prestadorSession[0]['fotoPath'];
+                $password = $prestadorSession[0]['password'];
+                $prestadorMan = new PrestadorManager();
+                $prestadorMan->updatePrestador(new PrestadorServico($idPrestador, $email, $password, $nome, $contato, $fotoPath, $morada, $codPostal, $distrito, $concelho));
+                ?>
+                <p>Editado com sucesso</p>
+                <a href="AreaEmpregador.php"><button class="button">Voltar Area Pessoal</button></a>
+                <?php
+            } else {
+                ?>
+                <p>Não foi editado</p>
+                <a href=verPerfilPrestador.php"><button class="button">Voltar ao Editar...</button></a>
+                <?php
+            }
             ?>
-            <h2>Dados alterados</h2>
+
             <a href="areaPessoalPrestador.php"><button>Voltar</button></a>
             <?php
         }

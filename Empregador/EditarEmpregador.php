@@ -12,7 +12,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../Login.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
 <html>
@@ -24,18 +28,16 @@ if ($session && $tipo) {
     <body>
         <?php require_once '../Application/imports/Header.php'?>
         <?php
-            require_once __DIR__ . '/../Application/Validator/EmpregadorValidator.php';
+            require_once __DIR__ . '/../Application/Validator/EditarEmpregadorValidator.php';
             $empregadorMan = new EmpregadorManager();
             $empregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0];
              ?>
         <section id="form">
-            <h2>Editar Empregador</h2>
+            <h2>Perfil Empregador <?= SessionManager::getSessionValue('email') ?></h2>
             <form id="formOferta" action="EditarEmpregadorValida.php" method="post">
             <img src="../<?= $empregador['fotoPath']?>"> 
-            <label for="emailE">Email</label><input readonly id="emailE" type="email" name="emailE" value="<?= $empregador['email'] ?>">
+            <label for="emailE">Email</label><input readonly id="emailE" type="email" name="emailE" value="<?= $empregador['email'] ?>"><?= isset($errorsE) && array_key_exists('emailE', $errorsE) ? $errorsE['emailE'] : '' ?>
             <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE" value="<?= $empregador['nome'] ?>"><?= isset($errorsE) && array_key_exists('nomeE', $errorsE) ? $errorsE['nomeE'] : '' ?>
-            <input id="passE" type="hidden" name="passE" value="<?= $empregador['password'] ?>">
-            <input id="fotografiaE" type="hidden" name="fotografiaE" value="<?= $empregador['fotoPath'] ?>">
             <label for="contactoE">Contacto</label><input id="contactoE" type="tel" name="contactoE" value="<?= $empregador['contato'] ?>"><?= isset($errorsE) && array_key_exists('contactoE', $errorsE) ? $errorsE['contactoE'] : '' ?>
             <label for="moradaE">Morada</label><input id="moradaE" type="text" name="moradaE" value="<?= $empregador['morada'] ?>"><?= isset($errorsE) && array_key_exists('moradaE', $errorsE) ? $errorsE['moradaE'] : '' ?>
             <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE" value="<?= $empregador['codPostal'] ?>"><?= isset($errorsE) && array_key_exists('codigopostalE', $errorsE) ? $errorsE['codigopostalE'] : '' ?>

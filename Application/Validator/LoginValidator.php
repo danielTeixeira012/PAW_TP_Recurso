@@ -18,6 +18,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
         if (filter_input($input, 'email', FILTER_SANITIZE_EMAIL)) {
             $email = filter_input($input, 'email');
             $password = filter_input($input, 'pass');
+            $remember =  filter_input($input, 'remember');
             $managerPrestador = new PrestadorManager();
             $managerEmpregador = new EmpregadorManager();
             $managerAdministrador = new AdministradorManager();

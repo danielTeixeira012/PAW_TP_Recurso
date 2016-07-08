@@ -18,5 +18,11 @@ class CategoriasManager extends MyDataAccessPDO {
     function getCategorias() {
         return $this->getRecords(self::SQL_TABLE_NAME);
     }
+    
+    function  getCategoriaByID($idCategoria){
+        return $this->getRecords(self::SQL_TABLE_NAME, array('idCategoria' => $idCategoria));
+    }
+    
+    
 
 }

@@ -64,16 +64,13 @@ function localSaveOferta() {
 
 function initEvents() {
     loadAllFromLocalSorage();
-    if (ofertas.length <= 0) {
-
+    if (ofertas.length > 0) {
         var line = document.createElement('li');
         var a = document.createElement('a');
-        a.setAttribute('href', "<?php echo Config::getRootPath() . 'VerOfertasLocais.php'; ?>");
+        a.setAttribute('href', "VerOfertasLocais.php");
         a.innerHTML = 'Ofertas Guardadas';
         line.appendChild(a);
         document.getElementById('navList').appendChild(line);
-
-
     }
     var lSave = document.getElementsByClassName('localSave');
     if (lSave.length > 0) {

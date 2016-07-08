@@ -17,7 +17,7 @@ $resultadosCategorias = $ManagerCategoria->getCategorias();
 
 foreach ($resultadosCategorias as $key => $value) {
     if ($value['nomeCategoria'] === $categoriaPesquisa) {
-        $resultado = $ManagerOfertas->getOfertasByCategoria($value['idCategoria']);
+        $resultado = $ManagerOfertas->getOfertasByCategoria($value['idCategoria']); 
         echo json_encode($resultado);
     }
 }

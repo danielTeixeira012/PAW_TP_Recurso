@@ -13,7 +13,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../Login.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
 <html>
@@ -49,7 +53,7 @@ if ($session && $tipo) {
                     <option value="fullTime">Full-Time</option>
                     <option value="partTime">Part-Time</option>
                 </select>
-                <label for="informacaoOferta">Informações</label><textarea id="informacaoOferta" name="infoO"></textarea><p class="error"><?= isset($errorsO) && array_key_exists('infoO', $errorsO) ? $errorsO['infoO'] : '' ?></p>
+                <label for="informacaoOferta">Informações</label><textarea id="informacaoOferta" maxlength="500" name="infoO" ></textarea><p class="error"><?= isset($errorsO) && array_key_exists('infoO', $errorsO) ? $errorsO['infoO'] : '' ?></p>
                 <label for="funcaoOferta">Funções</label><textarea id="funcaoOferta" name="funcO"></textarea><p class="error"><?= isset($errorsO) && array_key_exists('funcO', $errorsO) ? $errorsO['funcO'] : '' ?></p>
                 <label for="regiao">Região</label><input id="regiao" name="regi"><p class="error"><?= isset($errorsO) && array_key_exists('regi', $errorsO) ? $errorsO['regi'] : '' ?></p>
                 <label for="salario">Salario</label><input id="salario" name="sal" onkeyup="floatInput(this)"><p class="error"><?= isset($errorsO) && array_key_exists('sal', $errorsO) ? $errorsO['sal'] : '' ?></p>
@@ -59,12 +63,12 @@ if ($session && $tipo) {
                 <input class="buttonForm" id="submeter" type="submit" value="Submeter" name="submeter">
 
             </form>
-                       <h3>Dados Locais</h3>
-                        <p>Guardar dados localmente</p><button class="button2" id="guardarTemp">Guardar</button>
-            
-                        <div id="lsDIV">
-            
-                        </div>
+            <h3>Dados Locais</h3>
+            <button class="button" id="guardarTemp">Guardar Localmente</button>
+
+            <div id="lsDIV">
+
+            </div>
 
         </section>
         <?php require_once '../Application/imports/Footer.php' ?>

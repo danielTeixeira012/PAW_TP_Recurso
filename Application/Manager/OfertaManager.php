@@ -15,7 +15,7 @@ require_once (Conf::getApplicationModelPath() . 'OfertaTrabalho.php');
 class OfertaManager extends MyDataAccessPDO {
 
     const SQL_TABLE_NAME = 'ofertaTrabalho';
-
+    
     function getOfertas() {
 
         return $this->getRecords(self::SQL_TABLE_NAME);
@@ -50,43 +50,67 @@ class OfertaManager extends MyDataAccessPDO {
     }
 
     public function getOfertasPendentesUser($idUser) {
-        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `idEmpregador` = $idUser and `dataInicio` > CURRENT_DATE");
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `idEmpregador` = $idUser and `dataInicio` > CURRENT_DATE and `statusO` = 'ativada'");
     }
 
     public function getOfertasPendentes() {
-        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `dataInicio` > CURRENT_DATE");
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `dataInicio` > CURRENT_DATE and `statusO` = 'ativada'");
     }
 
     public function getOfertasPublicadasUser($idUser) {
-        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `idEmpregador` = $idUser and `dataInicio` < CURRENT_DATE and `dataFim` > CURRENT_DATE");
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `idEmpregador` = $idUser and `dataInicio` <= CURRENT_DATE and `dataFim` > CURRENT_DATE and `statusO` = 'ativada'");
     }
 
     public function getOfertasPublicadas() {
-        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `dataInicio` < CURRENT_DATE and `dataFim` > CURRENT_DATE");
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `dataInicio` <= CURRENT_DATE and `dataFim` > CURRENT_DATE and `statusO` = 'ativada'");
     }
 
     public function getOfertasFinalizadasUser($idUser) {
-        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.idOferta, ofertaTrabalho.idCategoria, ofertaTrabalho.tituloOferta, ofertaTrabalho.informacaoOferta, ofertaTrabalho.funcaoOferta, ofertaTrabalho.salario, ofertaTrabalho.requisitos, ofertaTrabalho.regiao, ofertaTrabalho.idEmpregador, ofertaTrabalho.statusO, ofertaTrabalho.tipoOferta, ofertaTrabalho.dataInicio, ofertaTrabalho.dataFim FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
-    ((ofertaTrabalho.idOferta = candidatura.idOferta and (candidatura.statusCandidatura='submetida') and `idEmpregador` = $idUser and ofertaTrabalho.dataFim < CURRENT_DATE))");
+        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
+    ((ofertaTrabalho.idOferta = candidatura.idOferta and (candidatura.statusCandidatura='submetida') and `idEmpregador` = $idUser and ofertaTrabalho.dataFim < CURRENT_DATE and ofertatrabalho.statusO = 'ativada'))");
     }
 
     public function getOfertasFinalizadas() {
-        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.idOferta, ofertaTrabalho.idCategoria, ofertaTrabalho.tituloOferta, ofertaTrabalho.informacaoOferta, ofertaTrabalho.funcaoOferta, ofertaTrabalho.salario, ofertaTrabalho.requisitos, ofertaTrabalho.regiao, ofertaTrabalho.idEmpregador, ofertaTrabalho.statusO, ofertaTrabalho.tipoOferta, ofertaTrabalho.dataInicio, ofertaTrabalho.dataFim FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
-    ((ofertaTrabalho.idOferta = candidatura.idOferta and (candidatura.statusCandidatura='submetida') and ofertaTrabalho.dataFim < CURRENT_DATE))");
+        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
+    ((ofertaTrabalho.idOferta = candidatura.idOferta and (candidatura.statusCandidatura='submetida') and ofertaTrabalho.dataFim < CURRENT_DATE and ofertatrabalho.statusO = 'ativada'))");
     }
 
     public function getOfertasExpiradasUser($idUser) {
-        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.idOferta, ofertaTrabalho.idCategoria, ofertaTrabalho.tituloOferta, ofertaTrabalho.informacaoOferta, ofertaTrabalho.funcaoOferta, ofertaTrabalho.salario, ofertaTrabalho.requisitos, ofertaTrabalho.regiao, ofertaTrabalho.idEmpregador, ofertaTrabalho.statusO, ofertaTrabalho.tipoOferta, ofertaTrabalho.dataInicio, ofertaTrabalho.dataFim  FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
+        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.*  FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
     ((ofertaTrabalho.idOferta = candidatura.idOferta and (candidatura.statusCandidatura='aceitada' or candidatura.statusCandidatura ='rejeitada')and `idEmpregador` = $idUser and ofertaTrabalho.dataFim < CURRENT_DATE) )
 union
-SELECT ofertaTrabalho.idOferta, ofertaTrabalho.idCategoria, ofertaTrabalho.tituloOferta, ofertaTrabalho.informacaoOferta, ofertaTrabalho.funcaoOferta, ofertaTrabalho.salario, ofertaTrabalho.requisitos, ofertaTrabalho.regiao, ofertaTrabalho.idEmpregador, ofertaTrabalho.statusO, ofertaTrabalho.tipoOferta, ofertaTrabalho.dataInicio, ofertaTrabalho.dataFim FROM `ofertaTrabalho` LEFT JOIN `candidatura` ON (candidatura.idOferta = ofertaTrabalho.idOferta ) WHERE candidatura.idOferta IS NULL and `idEmpregador` = $idUser and ofertaTrabalho.dataFim < CURRENT_DATE");
+SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` LEFT JOIN `candidatura` ON (candidatura.idOferta = ofertaTrabalho.idOferta ) WHERE candidatura.idOferta IS NULL and `idEmpregador` = $idUser and ofertaTrabalho.dataFim < CURRENT_DATE and ofertatrabalho.statusO = 'ativada'");
     }
 
     public function getOfertasExpiradas() {
-        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.idOferta, ofertaTrabalho.idCategoria, ofertaTrabalho.tituloOferta, ofertaTrabalho.informacaoOferta, ofertaTrabalho.funcaoOferta, ofertaTrabalho.salario, ofertaTrabalho.requisitos, ofertaTrabalho.regiao, ofertaTrabalho.idEmpregador, ofertaTrabalho.statusO, ofertaTrabalho.tipoOferta, ofertaTrabalho.dataInicio, ofertaTrabalho.dataFim  FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
+        return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.*  FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
     ((ofertaTrabalho.idOferta = candidatura.idOferta and (candidatura.statusCandidatura='aceitada' or candidatura.statusCandidatura ='rejeitada') and ofertaTrabalho.dataFim < CURRENT_DATE) )
 union
-SELECT ofertaTrabalho.idOferta, ofertaTrabalho.idCategoria, ofertaTrabalho.tituloOferta, ofertaTrabalho.informacaoOferta, ofertaTrabalho.funcaoOferta, ofertaTrabalho.salario, ofertaTrabalho.requisitos, ofertaTrabalho.regiao, ofertaTrabalho.idEmpregador, ofertaTrabalho.statusO, ofertaTrabalho.tipoOferta, ofertaTrabalho.dataInicio, ofertaTrabalho.dataFim FROM `ofertaTrabalho` LEFT JOIN `candidatura` ON (candidatura.idOferta = ofertaTrabalho.idOferta ) WHERE candidatura.idOferta IS NULL and ofertaTrabalho.dataFim < CURRENT_DATE");
+SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` LEFT JOIN `candidatura` ON (candidatura.idOferta = ofertaTrabalho.idOferta ) WHERE candidatura.idOferta IS NULL and ofertaTrabalho.dataFim < CURRENT_DATE and ofertatrabalho.statusO = 'ativada'");
+    }
+    
+    function VerificaOfertaPublicada($idOferta){
+        return empty($this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE ofertatrabalho.idOferta =$idOferta  and `dataFim` < CURRENT_DATE and `statusO` = 'ativada'"));
+    }
+    
+    function VerificaOfertaExpirou($idOferta){
+        return empty($this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE ofertatrabalho.idOferta =$idOferta  and `dataInicio` <= CURRENT_DATE and `dataFim` > CURRENT_DATE and `statusO` = 'ativada'"));
+    }
+    
+    function getDataAtual(){
+        return $this->getRecordsByUserQuery("SELECT CURRENT_DATE")[0]['CURRENT_DATE'];;
+    }
+    
+    function pesquisar($pesquisa){
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `tituloOferta` LIKE '%$pesquisa%' or `informacaoOferta` LIKE '%$pesquisa%' or `funcaoOferta` LIKE '%$pesquisa%'");
+    }
+    
+    function pesquisarCategoria($pesquisa){
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `idCategoria` = $pesquisa");
+    }
+    
+    function pesquisarHorario($pesquisa){
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `tipoOferta` = '$pesquisa'");
     }
 
 }

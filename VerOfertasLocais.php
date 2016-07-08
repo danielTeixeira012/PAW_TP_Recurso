@@ -10,6 +10,9 @@ require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'FavoritosManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
+if (!SessionManager::existSession('email') && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once 'VerificaCookies.php';
+}
 $session = SessionManager::existSession('email');
 if ($session) {
     header('location: index.php');
@@ -20,18 +23,25 @@ if ($session) {
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="Application/Styles/Listar.css">
         <title></title>
-    </head>
-    <body>
-        <?php require_once './Application/Imports/Header.php'; ?>
+        <script src="Application/Libs/jquery-2.2.4.js"></script>
+        <script src="Application/JS/ListarOfertasLocais.js"></script>
         <?php
         if (!$session) {
             ?>
-            <section id="ofertaLocais"/>
-                <?php
-            } else {
-                
-            }
-            ?>
-            <?php require_once './Application/Imports/Footer.php'; ?>
+            <script src="Application/JS/GuardarOfertaLocalJS.js"></script>
+            <?php
+        }
+        ?>
+    </head>
+    <body>
+        <?php require_once './Application/Imports/Header.php'; ?>      
+        <section id="ofertasLocais">
+            <table id="tableOfertasLocais">
+                <tr>
+                    <th>Titulo</th>
+                </tr>  
+            </table>
+        </section>
+        <?php require_once './Application/Imports/Footer.php'; ?>
     </body>
 </html>

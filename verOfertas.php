@@ -10,7 +10,7 @@ require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'ComentariosManager.php');
-$email = SessionManager::existSession('email');
+$session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 ?>
 
@@ -20,10 +20,15 @@ $tipo = SessionManager::existSession('tipoUser');
         <link  rel="stylesheet" type="text/css" href="Application/Styles/Listar.css">
         <title></title>  
         <script src="Application/Libs/jquery-2.2.4.js"></script>
-        <script src="Application/JS/PublicarJS.js"></script>
         <script src="Application/JS/candidatarJS.js"></script>
         <script src="Application/JS/comentarioJS.js"></script>
-        <script src="Application/JS/GuardarOfertaLocalJS.js"></script>
+        <?php
+        if (!$session) {
+            ?>
+            <script src="Application/JS/GuardarOfertaLocalJS.js"></script>
+            <?php
+        }
+        ?>
     </head>
     <body>
         <?php require_once 'Application/imports/Header.php'; ?>      
@@ -48,137 +53,112 @@ $tipo = SessionManager::existSession('tipoUser');
                     <p><b>Empregador: </b><?= $pre[0]['email'] ?></p>
 
                     <?php
-                    if ($email && $tipo) {
+                    if ($session && $tipo) {
                         if (SessionManager::getSessionValue('tipoUser') === 'prestador') {
                             $candMan = new CandidaturaManager();
                             $presMan = new PrestadorManager();
                             $returnPres = $presMan->verifyEmail(SessionManager::getSessionValue('email'));
                             $returnCand = $candMan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($returnPres[0]['idPrestador'], 'submetida', $idOferta);
-
-                            /* if (!empty($candMan->getCandidaturasSubmetidasByIdOferta($idOferta)) && !empty($candMan->getCandidaturasExpiradasByIdOferta($idOferta))) { */
-                            if (empty($returnCand)) {
-                                ?>
-                                <button class="button2" id="candidatar">Candidatar</button>    
-                                <?php
+                            $returnCand2 = $candMan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($returnPres[0]['idPrestador'], 'aceitada', $idOferta);
+                            $returnCand3 = $candMan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($returnPres[0]['idPrestador'], 'rejeitada', $idOferta);
+                            if (empty($returnCand) && empty($returnCand2) && empty($returnCand3)) {
+                                if (!$man->VerificaOfertaExpirou($idOferta)) {
+                                    ?>
+                                    <button class="buttonC" id="candidatar">Candidatar</button>    
+                                    <?php
+                                } else {
+                                    ?>
+                                    <p>Não são aceite candidaturas</p>
+                                    <?php
+                                }
                             } else {
+                            if(!empty($returnCand)){
                                 ?>
-                                <p>Já se candidatou a esta oferta de trabalho</p>
+                                <p>Já se candidatou a esta oferta de trabalho, no entanto ainda não foi escolhido o vencedor</p>
+                                <?php
+                            }else if(!empty($returnCand2)){
+                                 ?>
+                                <p>Foi aceite para esta oferta</p>
+                                <?php
+                            }else if(!empty($returnCand3)){
+                                 ?>
+                                <p>Infelizmente foi rejeitado para esta oferta</p>
                                 <?php
                             }
-                            /* } else {
-                              $candidaturasVence = $candMan->getVencedorCandidaturaByIdOferta($idOferta);
-                              if (empty($candidaturasVence)) {
-                              ?>
-                              <p>Não foram efetuadas candidaturas para esta oferta</p>
-                              <?php
-                              } else {
-                              $idVencedor = $candidaturasVence[0]['idPrestador'];
-                              $prestadorVencedor = $prestadorMan->getPrestadorByid($idVencedor);
-                              ?>
-                              <h1>Vencedor da oferta</h1>
-                              <table>
-                              <tr>
-                              <td><?= $prestadorVencedor[0]['nome'] ?></td>
-                              <td><a class="button2" href="empregador/VerHistoricoCandidato.php?prestador=<?= $idVencedor ?>">Ver prestador</a></td>
-                              </tr>
-                              </table>
-                              <?php
-                              }
-                              $candidaturasRejeitadas = $candMan->getCandidaturasRejeitadaByIdOferta($idOferta);
-                              if (!empty($candidaturasRejeitadas)) {
-                              ?>
-
-                              <table>
-
-                              <h1>Candidatos Rejeitados</h1>
-                              <?php
-                              foreach ($candidaturasRejeitadas as $key => $value) {
-                              ?>
-
-                              <tr>
-                              <td><?= $value['nome']; ?></td>
-                              <td><a class="button2" href="empregador/VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>">Ver prestador</a></td>
-
-                              </tr>
-                              <?php
-                              }
-                              ?>
-                              </table>
-                              <?php
-                              }
-                              } */
+                            }
                         } else if (SessionManager::getSessionValue('tipoUser') === 'empregador') {
                             //ver se é dele
                             $candidMan = new CandidaturaManager();
                             $logado = $manEmpregador->getEmpregadorByMail(SessionManager::getSessionValue('email'));
                             if ($res[0]['idEmpregador'] === $logado[0]['idEmpregador']) {
-                                if ($res[0]['statusO'] === 'pendente') {
+
+                                //publicada
+                                $candidaturas = $candidMan->getCandidaturasSubmetidasByIdOferta($idOferta);
+                                if (!empty($candidaturas)) {
                                     ?>
-                                    <button class="button2" id="publicar">Publicar</button>  
-                                    <?php
-                                } else if ($res[0]['statusO'] === 'publicada' || $res[0]['statusO'] === 'finalizada' || $res[0]['statusO'] === 'expirada') {
-                                    //publicada
-                                    $candidaturas = $candidMan->getCandidaturasSubmetidasByIdOferta($idOferta);
-                                    if (!empty($candidaturas)) {
-                                        ?>
-                                        <h1>Candidatos á oferta de trabalho</h1>
-                                        <table>
-
+                                    <h2>Candidatos á oferta de trabalho</h2>
+                                    <table>
+                                        <tr>
                                             <th>Prestador</th> 
+                                        </tr>
 
-
-                                            <?php
-                                            foreach ($candidaturas as $key => $value) {
-                                                ?>
-
-                                                <tr>
-                                                    <td><?= $prestadorMan->getPrestadorByid($value['idPrestador'])[0]['nome'] ?></td>
-                                                    <td><a class="button" href="empregador/VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>">Ver prestador</a></td>
-
-                                                </tr>
-                                            <?php }
+                                        <?php
+                                        foreach ($candidaturas as $key => $value) {
                                             ?>
-                                        </table>
+
+                                            <tr>
+                                                <td><?= $prestadorMan->getPrestadorByid($value['idPrestador'])[0]['nome'] ?></td>
+                                                <td class="tdButtom"><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><button class="tableButton">Ver prestador</button></a></td>
+                                            </tr>
+                                        <?php }
+                                        ?>
+                                    </table>
+                                    <?php
+                                } else {
+
+                                    $candidaturasVence = $candidMan->getVencedorCandidaturaByIdOferta($idOferta);
+                                    if (empty($candidaturasVence)) {
+                                        ?>
+                                        <p>Não foram efetuadas candidaturas para esta oferta</p>
                                         <?php
                                     } else {
-                                        $candidaturasVence = $candidMan->getVencedorCandidaturaByIdOferta($idOferta);
-                                        if (empty($candidaturasVence)) {
+                                        $idVencedor = $candidaturasVence[0]['idPrestador'];
+                                        $prestadorVencedor = $prestadorMan->getPrestadorByid($idVencedor);
+                                        ?>
+                                        <h2>Vencedor da oferta</h2>     
+                                        <table>
+                                            <tr>
+                                                <th>Prestador</th> 
+                                            </tr>
+                                            <tr>
+                                                <td><?= $prestadorVencedor[0]['nome'] ?></td>
+                                                <td class="tdButtom"><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $idVencedor ?>"><button class="tableButton">Ver prestador</button></a></td>
+                                            </tr>
+                                        </table>
+                                        <?php
+                                        $candidaturasRejeitadas = $candidMan->getCandidaturasRejeitadaByIdOferta($idOferta);
+                                        if (!empty($candidaturasRejeitadas)) {
                                             ?>
-                                            <p>Não foram efetuadas candidaturas para esta oferta</p>
-                                            <?php
-                                        } else {
-                                            $idVencedor = $candidaturasVence[0]['idPrestador'];
-                                            $prestadorVencedor = $prestadorMan->getPrestadorByid($idVencedor);
-                                            ?>
-                                            <h1>Vencedor da oferta</h1>     
+                                            <h2>Candidatos Rejeitados</h2>
                                             <table>
                                                 <tr>
-                                                    <td><?= $prestadorVencedor[0]['nome'] ?></td>
-                                                    <td><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $idVencedor ?>">Ver prestador</a></td>
+                                                    <th>Prestador</th> 
                                                 </tr>
-                                            </table>
-                                            <?php
-                                            $candidaturasRejeitadas = $candidMan->getCandidaturasRejeitadaByIdOferta($idOferta);
-                                            if (!empty($candidaturasRejeitadas)) {
-                                                ?>
-
-                                                <table>
-                                                    <h1>Candidatos Rejeitados</h1>
-                                                    <?php
-                                                    foreach ($candidaturasRejeitadas as $key => $value) {
-                                                        ?>
-
-                                                        <tr>
-                                                            <td><?= $value['idPrestador']; ?></td>
-                                                            <td><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>">Ver prestador</a></td>
-
-                                                        </tr>
-                                                    <?php }
-                                                    ?>
-                                                </table>
-
                                                 <?php
-                                            }
+                                                foreach ($candidaturasRejeitadas as $key => $value) {
+                                                    $prestadorMan = $prestadorMan->getPrestadorByid($value['idPrestador']);
+                                                    ?>
+
+                                                    <tr>
+                                                        <td><?= $prestadorMan[0]['nome'] ?></td>
+                                                        <td class="tdButtom"><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><button class="tableButton">Ver prestador</button></a></td>
+
+                                                    </tr>
+                                                <?php }
+                                                ?>
+                                            </table>
+
+                                            <?php
                                         }
                                     }
                                 }
@@ -187,29 +167,33 @@ $tipo = SessionManager::existSession('tipoUser');
                     }
                     ?>
                 </article>
-                
+
             </section>
-        <section id="comentarios" itemscope data-id="<?= $idOferta ?>">
+            <section id="comentarios" itemscope data-id="<?= $idOferta ?>">
                 <?php
-                if ($email && $tipo) {
+                if ($session && $tipo) {
                     ?>
-                <textarea id="areaComentario" type="text"></textarea>
-                <button class="buttonC" id="comentar">Comentar</button>
+                    <textarea id="areaComentario" type="text"></textarea>
+                    <button class="buttonC" id="comentar">Comentar</button>
                     <?php
                 }
                 ?>
-                <legend>Comentarios sobre a oferta</legend>
+
                 <?php
                 $ComentariosManager = new ComentariosManager();
                 $comentarios = $ComentariosManager->getComentarioByIDOferta($idOferta);
-
-                foreach ($comentarios as $key => $value) {
+                if (!empty($comentarios)) {
                     ?>
-                    <article class="comentario">
-                        <p class="autor">Autor: <?= $value['autor'] ?></p>
-                        <p class="coment"><?= $value['comentario'] ?></p>                 
-                    </article>
+                    <h2>Comentarios sobre a oferta</h2>
                     <?php
+                    foreach ($comentarios as $key => $value) {
+                        ?>
+                        <article class="comentario">
+                            <p class="autor">Autor: <?= $value['autor'] ?></p>
+                            <p class="coment"><?= $value['comentario'] ?></p>                 
+                        </article>
+                        <?php
+                    }
                 }
                 ?>
             </section>

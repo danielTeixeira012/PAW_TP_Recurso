@@ -50,6 +50,10 @@ class CandidaturaManager extends MyDataAccessPDO {
     function getCandidaturasSubmetidasByIdOferta($idOferta) {
         return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta, 'statusCandidatura' => 'submetida'));
     }
+    
+    function getCandidaturasSubmetidasByIdOfertaAndIdCandidatura($idOferta,$idCandidatura) {
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'idCandidatura' => $idCandidatura, 'statusCandidatura' => 'submetida'));
+    }
 
     function getCandidaturasExpiradasByIdOferta($idOferta) {
         return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta, 'statusCandidatura' => 'expirada'));

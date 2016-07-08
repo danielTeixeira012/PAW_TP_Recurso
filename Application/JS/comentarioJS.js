@@ -22,8 +22,7 @@ function escreverResultado(data) {
         p1.innerHTML = 'Autor: ' + res[0]['autor'];
         var p2 = document.createElement('p');
         p2.setAttribute('class','coment');
-        p2.innerHTML =res[0]['comentario'];
-        
+        p2.innerHTML =res[0]['comentario'];  
         article.appendChild(p1);
         article.appendChild(p2);
         section.appendChild(article);

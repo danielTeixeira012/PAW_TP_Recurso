@@ -12,6 +12,7 @@ body{
     font-family: 'Lato', sans-serif;
     font-size: 15px;
     background-color: #FAFAFA;
+    min-width: 780px;
 }
 
 *{
@@ -22,11 +23,17 @@ body{
 #head{
     background-color: #020509;
     position: relative;
-    height: 45px;
-    width: 100%;
+    height: 90px;
     top:0px;
     z-index: 1;
     box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.75);
+}
+
+#head #title{
+    height: 45px;
+    line-height: 2;
+    text-align: center;
+    color:white;
 }
 
 #loginSec #registo{
@@ -40,13 +47,22 @@ body{
     margin-right: 4px;
 }
 
-#loginSec p{
-    margin: 0px;
+#loginSec label{
+    margin-right: 2px;
+    font-size: 12px;
     color: white;
 }
 
-#loginSec .inputLog{    
+#loginSec #ErroLogin{
+    line-height: 0.3;
+    margin-left: 25px;
+    font-size: 12px;
+    color: red !important;
+}
 
+#loginSec p{
+    margin: 0px;
+    color: white;
 }
 
 #head ul {
@@ -126,15 +142,15 @@ body{
 
 
 #categorias{
-    height: 100%;
     position: absolute; 
     left: 0;
-    width: 21%;
-    padding: 2%;
+    margin-bottom: 40px;
+    width: 300px;
+    padding: 25px;
     color: white;
     background-color: #808080;
     text-align: left;
-    overflow: scroll;
+    overflow: auto;
 
 }
 
@@ -157,16 +173,21 @@ body{
 }
 
 #opcoes{
-    margin-left: 26%;
+    margin-left: 350px;
+    margin-bottom: 75px;
+    padding: 10px;
     text-align: center;
-    float: left;
-    width: 74%;
 }
 
 #opcoes a{
     text-decoration: none;
     color: #868D90;
     font-weight: bold;
+    text-align: center;
+}
+
+#opcoes .message{
+    padding: 5px;
     text-align: center;
 }
 
@@ -187,14 +208,22 @@ body{
     box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
+#opcoes h1{
+
+    padding: 10px;
+    text-align: center;
+    color:#383838;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
 #foot{
     position: fixed;
     bottom: 0px;
-    margin-left: 25%;
-    display: block;
+    float: left;
     color:white;
     clear:both;
     height: 50px;
+    line-height: 3.8;
     width: 100%;
     background-color: #020509;
     text-align:center;
@@ -202,12 +231,7 @@ body{
     box-shadow: 0px -1px 10px 0px rgba(0,0,0,0.75);
 }
 
-#foot p{
-    position: absolute;
-    top: 15px;
-    left: 20%;
 
-}
 
 
 /*Tables*/
@@ -230,7 +254,7 @@ th{
 
 tr{
     height: 30px;
-    border-top: 1px solid #585858;
+    border-top: 1px solid #585858 !important;
 }
 
 tr p{
@@ -265,4 +289,50 @@ tr:hover{
 .imageButton{
     width: 30px;
     height: 30px;  
+}
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px){
+    /* Styles */
+
+    body{
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        margin: 0px;
+        padding: 0px;
+        margin-bottom: 50px;
+        min-width: 780px;
+
+    }
+
+    /** Head CSS **/
+
+    #head{
+        height: 180px;
+        font-size: 30px;
+
+    }
+
+    #loginSec{
+        position: absolute; 
+        right: 0px;
+        bottom: 10px;
+    }
+
+    #head #menuNav{
+        position: absolute;
+        bottom: 0px;
+    }
+    /** Drop CSS **/
+    .drop-nav{
+        width: 300px;
+    }
+    .drop-nav li{
+        width: 300px;
+    }
+
+    .drop-nav a {
+        width: 268px;
+    }
 }

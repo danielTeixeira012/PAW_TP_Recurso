@@ -1,8 +1,19 @@
 <?php
+require_once (realpath(dirname(__FILE__)) . '/Config.php');
+use Config as Conf;
+
 require_once __DIR__ . '/Application/Validator/registoPrestadorServicoValidator.php';
 require_once __DIR__ . '/Application/Validator/registoEmpregadorValidator.php';
 require_once __DIR__ . '/Application/Validator/UploadFotoEmpregador.php';
 require_once __DIR__ . '/Application/Validator/UploadFotoPrestador.php';
+require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
+if (!SessionManager::existSession('email') && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once 'VerificaCookies.php';
+}
+$session = SessionManager::existSession('email');
+if ($session) {
+    header('location: index.php');
+}
 ?>
 <html>
     <head>
@@ -12,11 +23,8 @@ require_once __DIR__ . '/Application/Validator/UploadFotoPrestador.php';
         <link rel="stylesheet"  href="Application/Styles/registoCSS.css">
     </head>
     <body>
-        <header>
-            <h1>Registo de utilizadores</h1>
-        </header>
-        <a class="button2" href="index.php">Voltar ao index...</a>
-        <section if="form">
+        <?php require_once './Application/Imports/Header.php'; ?>
+        <section id="form">
             <section>
                 <p id="tipoUtilizador">Escolha o tipo Utilizador:</p>
                 <label id="empregador">Empregador</label><input id="tipoEmpregador" type="radio" value="empregador" name="tipoUtilizador">
@@ -47,5 +55,6 @@ require_once __DIR__ . '/Application/Validator/UploadFotoPrestador.php';
                 <input  class="button2" id="confirmP" type="submit" value="CONFIRM" name="confirmP">
             </form>
         </section>
+        <?php require_once './Application/Imports/Footer.php'; ?>
     </body>
 </html>

@@ -22,7 +22,7 @@ if (count($errorsO) > 0) {
     <html>
         <head>
             <meta charset="UTF-8">
-            <meta http-equiv="refresh" content="3; url='AreaEmpregador.php'"/>
+
             <title></title>
         </head>
         <body>
@@ -31,16 +31,32 @@ if (count($errorsO) > 0) {
             $ofertasMan = new OfertaManager();
             $empregadorMan = new EmpregadorManager();
             $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
-            $ofertas = $ofertasMan->getOfertaUser($idEmpregador);
             $idOfertaAlt = filter_input(INPUT_POST, 'idOferta');
+            $ofertas = $ofertasMan->getOfertaByID($idOfertaAlt);
             if (!empty($ofertas)) {
-                if ($ofertas[0]['idOferta'] === $idOfertaAlt) {
-                    $ofertasMan->editOferta(new ofertaTrabalho($idOfertaAlt, $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status, $dataInicio, $dataFim), $idOfertaAlt);
-                    $exist = true;
+                if ($ofertas[0]['idEmpregador'] === $idEmpregador) {
+                    if (!$ofertasMan->VerificaOfertaExpirou($idOfertaAlt)) {
+                        $ofertasMan->editOferta(new ofertaTrabalho($idOfertaAlt, $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status, $dataInicio, $dataFim), $idOfertaAlt);
+                        ?>
+                        <p>Editado com sucesso</p>
+                        <a href="AreaEmpregador.php"><button class="button">Voltar Área Pessoal</button></a>
+
+                        <?php
+                    } else {
+                        ?>
+                        <p>A oferta já expirou</p>
+                        <a href="AreaEmpregador.php"><button class="button">Voltar Área Pessoal</button></a>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <p>A oferta não foi editada</p>
+                    <a href="AreaEmpregador.php"><button class="button">Voltar Área Pessoal</button></a>
+                    <?php
                 }
             }
             ?>
-            <p>Editado com sucesso, está a ser redirecionado para a sua página pessoal aguarde!!</p>
+
             <?php
         }
         ?>

@@ -29,7 +29,7 @@ body{
 }
 
 #head #title{
-    height: 45px;
+    height: 45px;    
     line-height: 2;
     text-align: center;
     color:white;
@@ -42,7 +42,7 @@ body{
 #loginSec{
     position: absolute; 
     right: 0px;
-    margin-top: 6px;
+    margin-top: 8px;
     margin-right: 4px;
 }
 
@@ -144,57 +144,91 @@ body{
 
 }
 
+.error{
+    margin-left: 200px;
+    color:red;
+}
 
-.button, .buttonC{
-    background-color: #00c4cc;
-    border: none;
-    color: #ffffff;
-    height: 30px;
-    padding: 8px;
+#opcoes{
     text-align: center;
+    float: left;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+#opcoes a{
     text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-}
-
-.buttonC{
-    display: block;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.button:hover{
-    background-color: #0CDDE7;
-}
-
-/** Candidaturas CSS **/
-#candidaturasAceites, #candidaturasRejeitadas, #candidaturasSubmetidas{
-
+    color: #868D90;
+    font-weight: bold;
     text-align: center;
 }
 
-#candidaturasAceites h1, #candidaturasRejeitadas h1, #candidaturasSubmetidas h1{
+#opcoes .message{
+    padding: 5px;
+    text-align: center;
+}
+
+#opcoes article img{ 
+    margin: 5px;
+    width: 90px;
+    height: 90px;
+}
+
+#opcoes article{  
+    background-color: white;
+    margin: 5px;
+    margin-top: 25px;
+    width: 150px;
+    height: 150px;
+    overflow: auto;
+    display: inline-block;
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+#opcoes h1{
+    padding: 10px;
+    text-align: center;
+    color:#383838;
     font-family: Impact, Charcoal, sans-serif;
 }
 
+/*** Footer ***/
+
+#foot{
+    background-color: #020509;
+    color: white;
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    line-height: 4;
+    line-height: 2.2;
+    text-align: center;
+    bottom:0px;
+    box-shadow: 0px -1px 10px 0px rgba(0,0,0,0.75);
+}
+
+
 /*Tables*/
+
 table {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
     text-align: left;
     border: 2px solid #585858;
-    width: 400px;
+    width: 60%;
     margin: 25px auto;
 }
 
 th{
     padding: 5px;
     color: #686868;
-    text-align: center;
+
     font-family: Impact, Charcoal, sans-serif;
 }
 
 tr{
     height: 30px;
-    border-top: 1px solid #585858;
+    border-top: 1px solid #585858 !important;
 }
 
 tr p{
@@ -207,9 +241,10 @@ tr:hover{
 
 .tdButtom{
     width: 115px;
+    background-color: #FAFAFA;
 }
 
-.tableButton{
+.tableButton, .eliminarEmpregador, .eliminar, .eliminarOferta,.opcao{
     background-color: #00c4cc;
     border: none;
     color: #ffffff;
@@ -222,7 +257,7 @@ tr:hover{
     font-size: 12px;
 }
 
-.tableButton:hover{
+.tableButton:hover, .eliminarEmpregador:hover, .eliminar:hover{
     background-color: #0CDDE7;
 }
 
@@ -231,102 +266,48 @@ tr:hover{
     height: 30px;  
 }
 
-/** OFERTA CSS **/
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px){
+    /* Styles */
 
-#oferta{
-    padding: 5%;
-    width: 70%;
-    background-color: white;
-    margin: 25px auto;
-    
-    box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.5);
-}
+    body{
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        margin: 0px;
+        padding: 0px;
+        margin-bottom: 50px;
+        min-width: 780px;
 
-#oferta article h2{
-    font-size: 30px;
-    margin-left: 20%;
-    margin-right: 20%;
-    text-align: center;
-    padding: 10px;   
-    color:#383838;
-    font-family: Impact, Charcoal, sans-serif;
-}
+    }
 
-#oferta article p{  
-    font-size: medium; 
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 5px;
-}
+    /** Head CSS **/
 
-#oferta article b{
-    color:#707070;
-    margin-right: 2px;
-}
+    #head{
+        height: 180px;
+        font-size: 30px;
 
-#comentarios{
-    text-align: center;
-    padding: 5%;
-    width: 50%;
-    margin: auto;
-}
+    }
 
-#comentarios h2{
-    font-size: large;
-    padding: 10px;
-    text-align: center;
-    color:#383838;
-    font-family: Impact, Charcoal, sans-serif;
-}
+    #loginSec{
+        position: absolute; 
+        right: 0px;
+        bottom: 10px;
+    }
 
-#comentarios h1{
-    text-align: center;
-    margin-bottom: 20px;
-    color:#383838;
-    font-family: Impact, Charcoal, sans-serif;
-}
+    #head #menuNav{
+        position: absolute;
+        bottom: 0px;
+    }
+    /** Drop CSS **/
+    .drop-nav{
+        width: 300px;
+    }
+    .drop-nav li{
+        width: 300px;
+    }
 
-
-.comentario{ 
-    width: 70%;
-    margin: auto;
-    padding: 10px;
-    border-bottom: 1px solid #383838;
-    text-align: left;
-}
-
-.comentario .autor{
-    color:#707070;  
-}
-
-
-
-/*** Footer ***/
-
-#foot{
-    background-color: #020509;
-    color: white;
-    position: absolute;
-    width: 100%;
-    height: 35px;
-    line-height: 2.2;
-    text-align: center;
-    bottom:0px;
-    box-shadow: 0px -1px 10px 0px rgba(0,0,0,0.75);
-}
-
-
-#comentarios textArea{
-    background: #FAFAFA;
-    border: 1px solid #303030;
-    resize: none;
-    width: 300px;
-    height: 100px;
-    color: #303030;
-    padding: 5px;
-    outline: none;
-}
-
-#comentarios textArea:hover, #comentarios textArea:focus{
-    background: #E4E4E4;    
+    .drop-nav a {
+        width: 268px;
+    }
 }

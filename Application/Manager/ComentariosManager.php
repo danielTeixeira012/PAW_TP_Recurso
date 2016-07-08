@@ -35,4 +35,8 @@ class ComentariosManager extends MyDataAccessPDO{
     function removeComentariosByIDOferta($idOferta){
         parent::delete(self::SQL_TABLE_NAME, array('idOferta' => $idOferta));
     }
+    
+    function removeComentariosByAutor($email){
+        parent::delete(self::SQL_TABLE_NAME, array('autor' => $email));
+    }
 }

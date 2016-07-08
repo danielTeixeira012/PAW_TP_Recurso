@@ -15,7 +15,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 $empregadorMan = new EmpregadorManager();
 ?>
@@ -61,7 +65,6 @@ $empregadorMan = new EmpregadorManager();
                 <table>
                     <tr>
                         <th>Titulo</th>
-
                     </tr>
                     <?php
                     foreach ($ofertas as $key => $value) {
@@ -72,7 +75,7 @@ $empregadorMan = new EmpregadorManager();
 <!--                        <td><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><img class="imageButton" src="../Application/Resources/icons/view.png" alt="Ver"></a></td>
                             <td><a class="button2" href="EditarOferta.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>-->
                             <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>
-ß                        </tr>
+                        </tr>
                         <?php
                     }
                     ?>

@@ -14,7 +14,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../Login.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
 <html>
@@ -31,7 +35,6 @@ if ($session && $tipo) {
                     $ofertasMan = new OfertaManager();
                     $empregadorMan = new EmpregadorManager();
                     $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
-                    $data = date("Y-m-d");
                         $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, 'ativada', $dataInicio, $dataFim));
                         ?>
                         <h2>OFERTA SUBMETIDA COM SUCESSO</h2>

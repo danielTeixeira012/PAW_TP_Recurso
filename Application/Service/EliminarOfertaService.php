@@ -25,8 +25,8 @@ if ($exist && $tipo) {
         $manCand->deleteCandidaturaByIdOferta($id);
         $manOferta = new OfertaManager();
         $manOferta->deleteOfertasByIdOferta($id);
-        echo 'Oferta eliminado';
+        echo 'Oferta eliminada';
     } else {
-        echo '';
+        echo 'Não pode eliminar ofertas';
     }
 }

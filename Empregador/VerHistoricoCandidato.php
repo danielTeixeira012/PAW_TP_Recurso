@@ -9,14 +9,18 @@ require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
-$email = SessionManager::existSession('email');
+$session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
-if ($email && $tipo) {
+if ($session && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') !== 'empregador') {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    } else {
+        header('location: ../index.php');
+    }
 }
 $exists = false;
 $manEmpregador = new EmpregadorManager();
@@ -88,7 +92,6 @@ foreach ($ofertasPrestador as $key => $value) {
                             <tr>
                                 <td><?= $oferta[0]['tituloOferta'] ?></td>
                                 <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>                 
-
                             </tr>
                             <?php
                         }
@@ -107,11 +110,17 @@ foreach ($ofertasPrestador as $key => $value) {
                 <section id="candidaturasRejeitadas">
                     <h1>Candidaturas Rejeitadas</h1>
                     <table>
+                        <tr>
+                            <th>Oferta</th>
+                        </tr>
                         <?php
                         foreach ($candidaturasRejeitadas as $key => $value) {
+                            $oferta = $manOfertas->getOfertaByID($value['idOferta'])
                             ?>
                             <tr>
-                                <td><?= $value['idOferta'] ?></td>
+                                <td><?= $oferta[0]['tituloOferta'] ?></td>
+                                <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>                 
+
                             </tr>
                             <?php
                         }

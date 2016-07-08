@@ -9,10 +9,12 @@ class CategoriaOferta {
 
     private $idCategoria;
     private $nomeCategoria;
+    private $fotoPath;
 
-    function __construct($idCategoria, $nomeCategoria) {
+    function __construct($idCategoria, $nomeCategoria, $fotoPath) {
         $this->idCategoria = $idCategoria;
         $this->nomeCategoria = $nomeCategoria;
+        $this->fotoPath = $fotoPath;
     }
 
     function getIdCategoria() {
@@ -29,6 +31,14 @@ class CategoriaOferta {
 
     function setNomeCategoria($nomeCategoria) {
         $this->nomeCategoria = $nomeCategoria;
+    }
+
+    function getFotoPath() {
+        return $this->fotoPath;
+    }
+
+    function setFotoPath($fotoPath) {
+        $this->fotoPath = $fotoPath;
     }
 
 }

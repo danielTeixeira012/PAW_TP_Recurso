@@ -33,6 +33,7 @@ if ($session && $tipo) {
         <form id="registo" action="verificaLogin.php" method="post">
             <input class="inputLog" id="email" type="email" name="email" placeholder="Email" required>
             <input class="inputLog" id="pass" type="password" placeholder="Password" name="pass" required>
+            <label for="remember">Remember Me</label><input id="remember" type="checkbox" name="remember">
             <input class="button" id="login" type="submit" value="Login">       
         </form>
         <a  id="registoButton" href="registo.php" ><button class="button">Registar</button></a>

@@ -13,7 +13,9 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }
 }
 $prestadorMan = new PrestadorManager();
 ?>
@@ -40,7 +42,7 @@ $prestadorMan = new PrestadorManager();
             <p><b>Código Postal:</b> <?= $prest->getCodPostal() ?></p>
             <p><b>Distrito:</b> <?= $prest->getDistrito() ?></p>
             <p><b>Concelho:</b> <?= $prest->getConcelho() ?></p>
-            <a class="button2" id="editarButton" href="verPerfilPrestador.php">Editar dados...</a>
+            <a id="editarButton" href="verPerfilPrestador.php"><button class="button">Editar dados...</button></a>
         </section>
         <section id="opcoes">
             <a href="ofertasTrabalhoFavoritas.php">
@@ -57,6 +59,6 @@ $prestadorMan = new PrestadorManager();
                     <p>Ofertas Aceitado</p>
                 </article></a>
         </section>
-        <a href="../index.php"><button>Voltar</button></a>
+        <?php require_once '../Application/imports/Footer.php' ?>
     </body>
 </html>

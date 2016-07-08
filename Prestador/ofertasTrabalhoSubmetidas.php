@@ -15,7 +15,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
 
@@ -42,7 +46,7 @@ if ($session && $tipo) {
             <p><b>Código Postal:</b> <?= $prest->getCodPostal() ?></p>
             <p><b>Distrito:</b> <?= $prest->getDistrito() ?></p>
             <p><b>Concelho:</b> <?= $prest->getConcelho() ?></p>
-            <a class="button2" id="editarButton" href="verPerfilPrestador.php">Editar dados...</a>
+            <a id="editarButton" href="verPerfilPrestador.php"><button class="button">Editar dados...</button></a>
         </section>
         <section id="opcoes">
 
@@ -57,12 +61,15 @@ if ($session && $tipo) {
             if (!empty($cand)) {
                 ?>
                 <table>
+                    <tr>
+                        <th>Titulo</th>
+                    </tr>
                     <?php
                     foreach ($cand as $key => $value) {
                         ?>
                         <tr>
                             <td><?= $ofertasMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?></td>
-                            <td><a href="../verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a></td> 
+                            <td class="tdButtom"><a href="../verCandidatura.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td> 
                         </tr>
                         <?php }
                     ?>

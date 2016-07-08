@@ -15,15 +15,13 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -39,11 +37,9 @@ and open the template in the editor.
             $user = $manager->verifyEmail($mail);
             ?>
             <section id="form">
-                <a  href="areaPessoalPrestador.php"><button class="button2">Voltar</button></a>
                 <form id="formOferta" action="editarPerfil.php" method="post">
                     <h2>Perfil do Prestador Serviço <?= SessionManager::getSessionValue('email') ?></h2>
                     <img src="../<?= $user[0]['fotoPath'] ?>" alt="Erro"/>
-
                     <label for="emailPrestador">Email</label><input readonly id="emailPrestador" type="email" name="emailPrestador" value="<?= $user[0]['email'] ?>">
                     <label for="nomePrestador">Nome</label><input id="nomePrestador" type="text" name="nomePrestador" value="<?= $user[0]['nome'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('nomePrestador', $erros) ? $erros['nomePrestador'] : '' ?></p>
                     <label for="contactoPrestador">Contacto</label><input id="contactoPrestador" type="tel" name="contactoPrestador" value="<?= $user[0]['contato'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('contactoPrestador', $erros) ? $erros['contactoPrestador'] : '' ?></p>
@@ -51,10 +47,8 @@ and open the template in the editor.
                     <label for="codigopostalPrestador">Codigo-Postal</label><input id="codigopostalPrestador" type="text" name="codigopostalPrestador" value="<?= $user[0]['codPostal'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('codigopostalPrestador', $erros) ? $erros['codigopostalPrestador'] : '' ?></p>
                     <label for="distritoPrestador">Distrito</label><input id="distritoPrestador" type="text" name="distritoPrestador" value="<?= $user[0]['distrito'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('distritoPrestador', $erros) ? $erros['distritoPrestador'] : '' ?></p>
                     <label for="concelhoPrestador">Concelho</label><input id="concelhoPrestador" type="text" name="concelhoPrestador" value="<?= $user[0]['concelho'] ?>"> <p class="error"><?= isset($erros) && array_key_exists('concelhoPrestador', $erros) ? $erros['concelhoPrestador'] : '' ?></p>
-
-                    <input type="submit" value="Guardar novos dados">
+                    <input class="buttonForm" type="submit" value="Editar dados">
                 </form>         
-
             </section>
             <?php
         }

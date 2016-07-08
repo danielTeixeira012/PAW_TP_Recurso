@@ -6,17 +6,21 @@ use Config as Conf;
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
 require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
+require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
-$idOferta = filter_input(INPUT_GET, 'oferta');
 if ($session && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') !== 'empregador') {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    } else {
+        header('location: ../index.php');
+    }
 }
 ?>
 <html>
@@ -51,41 +55,61 @@ if ($session && $tipo) {
         <section id="opcoes">           
             <?php
             $candidaturasMan = new CandidaturaManager();
-            
-            $candidaturas = $candidaturasMan->getCandidaturasSubmetidasByIdOferta($idOferta);
-            if (!empty($candidaturas)) {
-                ?>
-                <table>
-                    <tr>
-                        <th>Candidatura</th>
-                        <th>Prestador</th> 
-                        <th>Oferta</th>
+            $ofertaMan = new OfertaManager();
+            $EmpregadorMan = new EmpregadorManager();
+            $idOferta = filter_input(INPUT_GET, 'oferta');
 
-                    </tr>
-                    <?php
-                    foreach ($candidaturas as $key => $value) {
+
+            $oferta = $ofertaMan->getOfertaByID($idOferta);
+            if (!empty($oferta)) {
+                $empregador = $EmpregadorMan->getEmpregadorByID($oferta[0]['idEmpregador']);
+                $ofertaExpirou = $ofertaMan->VerificaOfertaExpirou($idOferta);
+                if ($empregador[0]['email'] === SessionManager::getSessionValue('email')) {
+                    $candidaturas = $candidaturasMan->getCandidaturasSubmetidasByIdOferta($idOferta);
+
+                    if (!empty($candidaturas) && $ofertaExpirou) {
                         ?>
-                        <tr data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>">
-                            <td><?= $value['idCandidatura'] ?></td>
-                            <td><?= $value['idPrestador'] ?></td>
-                            <td><?= $value['idOferta'] ?></td>                          
-                            <td class="tdButtom"><a  href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><button class="tableButton">Ver Prestador</button></td>
-                            <td class="tdButtom"><a class="tdButtom" id="aceitarButton"><button class="tableButton">Aceitar</button></a></td>
-                        </tr>
+                        <table>
+                            <tr>
+                                <th>Candidatura</th>
+                                <th>Prestador</th> 
+                                <th>Oferta</th>
 
+                            </tr>
+                            <?php
+                            foreach ($candidaturas as $key => $value) {
+                                ?>
+                                <tr data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>">
+                                    <td><?= $value['idCandidatura'] ?></td>
+                                    <td><?= $value['idPrestador'] ?></td>
+                                    <td><?= $value['idOferta'] ?></td>                          
+                                    <td class="tdButtom"><a  href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><button class="tableButton">Ver Prestador</button></td>
+                                    <td data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>" class="tdButtom"><a class="tdButtom" id="aceitarButton"><button class="aceitarButton">Aceitar</button></a></td>
+                                </tr>
+
+                                <?php
+                            }
+                            ?>
+                        </table>
+                        <?php
+                    } else {
+                        ?>
+                        <p>Não existem candidaturas que necessitem de defenição de candidato de imediato</p>
                         <?php
                     }
-                    ?>
-                         </table>
-            <?php
                 } else {
                     ?>
-                    <p>Não existem candidaturas que necessitem de defenição de candidato de imediato</p>
+                    <p>A oferta que escolheu não é válida</p>
                     <?php
                 }
+            } else {
                 ?>
+                <p>A oferta que escolheu não é válida</p>
+                <?php
+            }
+            ?>
 
-           
+
 
 
         </section>

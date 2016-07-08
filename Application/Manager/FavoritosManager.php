@@ -49,4 +49,8 @@ class FavoritosManager extends MyDataAccessPDO{
         parent::delete(self::SQL_TABLE_NAME, array('idOferta' =>$idOferta));
     }
     
+    function removeFavoritosByIDPrestador($idPrestador){
+        parent::delete(self::SQL_TABLE_NAME, array('idPrestador' => $idPrestador));
+    }
+    
 }

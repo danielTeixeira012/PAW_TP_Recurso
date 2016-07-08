@@ -5,17 +5,19 @@ require_once (realpath(dirname(__FILE__)) . '/../../Config.php');
 use Config as Conf;
 
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
+require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 
 $errorsO = array();
 $input = INPUT_POST;
 
+$manOferta =  new OfertaManager();
 $categoria = filter_input($input, 'categoriaO');
 $tipo = filter_input($input, 'tipoO');
 $status = filter_input($input, 'statusO');
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'dataInicio') && filter_input($input, 'dataInicio') != '') {
-        $data = date("Y-m-d");
+        $data = $manOferta->getDataAtual();
         $dataInicio = filter_input($input, 'dataInicio');
         if($dataInicio < $data){
                   $errorsO['dataInicio'] = 'A data de início já passou';  

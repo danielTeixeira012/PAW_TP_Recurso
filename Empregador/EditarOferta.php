@@ -9,14 +9,18 @@ require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
-$empregador = SessionManager::existSession('email');
+$session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
-if ($empregador && $tipo) {
+if ($session && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') !== 'empregador') {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 $ofertas = new OfertaManager();
 $candidaturaMan = new CandidaturaManager();
@@ -34,7 +38,6 @@ if (empty($existCandidaturas)) {
         header('Location: AreaEmpregador.php');
     }
     ?>
-
     <html>
         <head>
             <meta charset="UTF-8">
@@ -45,9 +48,7 @@ if (empty($existCandidaturas)) {
             <?php require_once __DIR__ . '/../Application/imports/Header.php';?>
             <section id="form">
                 <form id="formOferta" action="EditarOfertaValida.php?altOfer=<?= $idOferta ?>" method="post">
-
                     <input type="hidden" id="idOferta" name="idOferta" value="<?= $idOferta ?>">
-
                     <label for="categoria">Categoria</label><select id="categoria" name="categoriaO">
                         <?php
                         $categoriaBD = new CategoriasManager();
@@ -92,13 +93,13 @@ if (empty($existCandidaturas)) {
         require_once __DIR__ . '/../Application/imports/Footer.php';
         ?>
     </html>
-<?php }else {
+<?php 
+    }else {
     ?>
 
     <html>
         <head
             <title></title>
-
             <meta http-equiv="refresh" content="3; url='AreaEmpregador.php'"/>
         </head>
         <body>

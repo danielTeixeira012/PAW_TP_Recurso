@@ -12,10 +12,14 @@ $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 if ($session && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') !== 'prestador') {
-        header('location: index.php');
+        header('location: ../index.php');
     }
 } else {
-    header('location: index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
 
@@ -42,7 +46,7 @@ if ($session && $tipo) {
             <p><b>Código Postal:</b> <?= $prest->getCodPostal() ?></p>
             <p><b>Distrito:</b> <?= $prest->getDistrito() ?></p>
             <p><b>Concelho:</b> <?= $prest->getConcelho() ?></p>
-            <a class="button2" id="editarButton" href="verPerfilPrestador.php">Editar dados...</a>
+            <a id="editarButton" href="verPerfilPrestador.php"><button class="button">Editar dados...</button></a>
         </section>
         <section id="opcoes">
 
@@ -59,12 +63,15 @@ if ($session && $tipo) {
                 ?>
 
                 <table>
+                    <tr>
+                        <th>Titulo Oferta</th>
+                    </tr>
                     <?php
                     foreach ($cand as $key => $value) {
                         ?>
                         <tr>
-                            <td> <?= $ofertasMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?></td>
-                            <td><a class="button2" href="../verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</td> 
+                            <td><?= $ofertasMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?></td>
+                            <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>
                         </tr>
                         <?php
                     }
@@ -73,7 +80,7 @@ if ($session && $tipo) {
                 <?php
             } else {
                 ?>
-                <p>Não foi o vencedor de nenhuma das ofertas de trabalho</p>
+                <p class="message">Não foi o vencedor de nenhuma das ofertas de trabalho</p>
                 <?php
             }
             $cand2 = $manCand->getCandidaturaByIdPrestadorAndStatusCandidatura($res[0]['idPrestador'], 'rejeitada');
@@ -84,12 +91,15 @@ if ($session && $tipo) {
                 ?>
 
                 <table>
+                    <tr>
+                        <th>Titulo Oferta</th>
+                    </tr>
                     <?php
                     foreach ($cand2 as $key => $value) {
                         ?>
-                        <tr>
-                            <td> <?= $ofertasMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?></td>
-                            <td><a class="button2" href="../verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</td> 
+                         <tr>
+                            <td><?= $ofertasMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?></td>
+                            <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>
                         </tr>
                         <?php
                     }
@@ -98,7 +108,7 @@ if ($session && $tipo) {
                 <?php
             } else {
                 ?>
-                <p>Não foi o rejeitado em nenhuma das ofertas de trabalho</p>
+            <p class="message">Não foi o rejeitado em nenhuma das ofertas de trabalho</p>
                 <?php
             }
             ?>

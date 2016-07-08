@@ -1,12 +1,13 @@
-<header id="head">         
+<header id="head">   
+    <section id="title">
+        <h1>Ofertas de Emprego para Todos</h1>
+    </section>
     <?php
     require_once __DIR__ . '/../../login.php';
-    ?>
-    <nav>
+    ?> 
+    <nav id="menuNav">
         <ul id="navList">
             <li><a href="<?php echo Config::getRootPath() . 'index.php'; ?>">Home</a></li>
-
-
             <?php
             if ($session) {
                 ?>
@@ -38,7 +39,16 @@
                     <?php
                 } else if ($tipoUtilizador === 'administrador') {
                     ?>
-                    <li><a href=" <?php echo Config::getRootPath() . 'Administrador/AreaAdministrador.php'; ?>">Área Administrador</a></li>
+
+                    <li class="dropdown">
+                        <a href="<?php echo Config::getRootPath() . 'Administrador/AreaAdministrador.php'; ?>" class="dropbtn">Área Administrador</a>
+                        <ul class="drop-nav">
+                            <li><a href="<?php echo Config::getRootPath() . 'Administrador/ofertasAdmin.php'; ?>">Gerir Ofertas</a></li>
+                            <li><a href="<?php echo Config::getRootPath() . 'Administrador/prestadoresServicosAdmin.php'; ?>">Gerir Prestadores</a></li>
+                            <li><a href="<?php echo Config::getRootPath() . 'Administrador/empregadorAdmin.php'; ?>">Gerir Empregadores</a></li>
+
+                        </ul>
+                    </li>
                     <?php
                 }
                 ?>

@@ -13,7 +13,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    }else{
+       header('location: ../index.php'); 
+    }
 }
 ?>
 
@@ -21,17 +25,21 @@ if ($session && $tipo) {
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <link rel="stylesheet" type="text/css" href="../Application/Styles/verCSS.css"/>
+        <link rel="stylesheet" type="text/css" href="../Application/Styles/AdminCSS.css"/>
         <script src="../Application/Libs/jquery-2.2.4.js"></script>
         <script src="../Application/JS/eliminarEmpregadorJS.js"></script>
     </head>
     <body id="adminT">
+        <?php require_once '../Application/imports/Header.php'; ?>
         <?php
         $managerEmpre = new EmpregadorManager();
         $res = $managerEmpre->getEmpregadores();
         ?>
-        <table id="tableEmpregador" border="1">
-            <h1>Lista de Empregadores</h1>
+        
+        <section id="opcoes">
+        <h1>Lista de Empregadores</h1>
+        <table id="tableEmpregador">
+            
             <th> Nome </th>
             <th> Email </th>
             <th> Opcao </th>
@@ -41,10 +49,13 @@ if ($session && $tipo) {
                 <tr id="<?= $value['idEmpregador'] ?>">
                     <td><?= $value['nome'] ?></td>
                     <td><?= $value['email'] ?></td>
-                    <td><button class="eliminarEmpregador">Eliminar</button></td>
+                    <td class="tdButtom"><button class="eliminarEmpregador">Eliminar</button></td>
                 </tr>
                 <?php
             }
             ?>
+        </table>
+        </section>
+        <?php require_once '../Application/imports/footer.php'; ?>
     </body>
 </html>

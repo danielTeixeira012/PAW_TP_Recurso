@@ -16,7 +16,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    } else {
+        header('location: ../index.php');
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -40,19 +44,19 @@ and open the template in the editor.
         $results = $managerFavoritos->verificarFavorito($id, $resPrest[0]['idPrestador']);
         $manOferta = new OfertaManager();
         $exist = $manOferta->getOfertaByID($id);
-        if(!empty($exist)){
-        if (empty($results)) {
-            $favorito = new Favoritos('', $resPrest[0]['idPrestador'], $id);
-            $managerFavoritos->insertFavorito($favorito);
-            ?>
-            <h2>A oferta foi adicionada aos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
-            <?php
+        if (!empty($exist)) {
+            if (empty($results)) {
+                $favorito = new Favoritos('', $resPrest[0]['idPrestador'], $id);
+                $managerFavoritos->insertFavorito($favorito);
+                ?>
+                <h2>A oferta foi adicionada aos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+                <?php
+            } else {
+                ?>
+                <h2>A oferta já existe nos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+                <?php
+            }
         } else {
-            ?>
-            <h2>A oferta já existe nos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
-            <?php
-        }}
-        else{
             ?>
             <h2>A oferta não existe, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
             <?php

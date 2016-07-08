@@ -15,7 +15,11 @@ if ($session && $tipo) {
         header('location: ../index.php');
     }
 } else {
-    header('location: ../index.php');
+    if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+        require_once '../VerificaCookies.php';
+    } else {
+        header('location: ../index.php');
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -47,7 +51,7 @@ and open the template in the editor.
             <p><b>Código Postal:</b> <?= $prest->getCodPostal() ?></p>
             <p><b>Distrito:</b> <?= $prest->getDistrito() ?></p>
             <p><b>Concelho:</b> <?= $prest->getConcelho() ?></p>
-            <a class="button2" id="editarButton" href="verPerfilPrestador.php">Editar dados...</a>
+            <a id="editarButton" href="verPerfilPrestador.php"><button class="button">Editar dados...</button></a>
         </section>
         <section id="opcoes">
 
@@ -60,13 +64,16 @@ and open the template in the editor.
                 $ofertaMan = new OfertaManager();
                 ?>
                 <table>
+                    <tr>
+                        <th>Titulo</th>
+                    </tr>
                     <?php
                     foreach ($return as $key => $value) {
                         ?>
                         <tr>
-                            <td><?=$ofertaMan->getOfertaByID($value['idOferta'])[0]['tituloOferta']?>
-                            <td><a class="button2" href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a></td>
-                            <td><a class="button2" href="removerFavoritos.php?oferta=<?= $value['idOferta'] ?>">Remover dos Favoritos</a></td>
+                            <td><?= $ofertaMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?>
+                            <td class="tdButtom"><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td>
+                            <td class="tdButtom"><a href="removerFavoritos.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Remover Favorito</button></a></td>
                         </tr>
                         <?php
                     }

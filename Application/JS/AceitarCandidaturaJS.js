@@ -6,7 +6,7 @@ function aceitarResultado(data) {
     }
     var p = document.createElement('p');
     p.innerHTML = data;
-    document.getElementById('candidaturas').appendChild(p);
+    document.getElementById('opcoes').appendChild(p);
 alert();
 
 }
