@@ -37,7 +37,7 @@ if ($session && $tipo) {
                     $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
                         $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, 'ativada', $dataInicio, $dataFim));
                         ?>
-                        <h2>OFERTA SUBMETIDA COM SUCESSO</h2>
+                        <h2>Oferta submetida com sucesso</h2>
                         <a href="../index.php"><input type="submit" value="Voltar Área Pessoal"></a> 
                         <?php
         }

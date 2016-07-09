@@ -34,6 +34,35 @@ if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
     </head>
     <body>
         <?php require_once './Application/Imports/Header.php'; ?>
+        <section id="pesquisarArea">
+            <?php
+            $categoriasMan = new CategoriasManager();
+            $categorias = $categoriasMan->getCategorias();
+            ?>
+            <form  method="get" action="Pesquisa.php"  id="procuraForm"> 
+                <label for="pesquisatexto">Pesquisar por descritivo</label>
+                <input  type="text" name="pesquisatexto" id="pesquisatexto">
+                <label for="categoriaSearch">Pesquisar por Categoria</label>
+                <select id = "categoriaSearch" name ="categoria">
+                    <option/>
+                    <?php
+                    foreach ($categorias as $key => $value) {
+                        ?>     
+                        <option value="<?= $value['idCategoria'] ?>"><?= $value['nomeCategoria'] ?></option>                     
+
+                        <?php
+                    }
+                    ?>  
+                </select>
+                <label for="tipoHorario">Pesquisar por Horário</label>
+                <select id = "tipoHorario" name ="horario"> 
+                    <option/>
+                    <option value="fullTime">Full-Time</option>
+                    <option value="partTime">Part-Time</option>       
+                </select>
+                <input  class="button" type="submit" value="Procurar"> 
+            </form> 
+        </section>
         <section id="ofertas">
             <?php
             if (isset($_GET['pesquisatexto']) && filter_input(INPUT_GET, 'pesquisatexto', FILTER_SANITIZE_STRING) != '') {

@@ -41,4 +41,12 @@ class CategoriaOferta {
         $this->fotoPath = $fotoPath;
     }
 
+    public function convertObjectToArray() {
+        $data = array(
+            'idCategoria' => '',
+            'nomeCategoria' => $this->getNomeCategoria(),
+            'fotoPath' => $this->getFotoPath());
+        return $data;
+    }
+
 }

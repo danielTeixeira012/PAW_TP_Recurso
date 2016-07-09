@@ -17,8 +17,8 @@ if ($session && $tipo) {
 } else {
     if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         require_once '../VerificaCookies.php';
-    }else{
-       header('location: ../index.php'); 
+    } else {
+        header('location: ../index.php');
     }
 }
 $empregadorMan = new EmpregadorManager();
@@ -64,18 +64,19 @@ $empregadorMan = new EmpregadorManager();
                     <img src="../Application/Resources/icons/Earth-Node-256GRAY.png">
                     <p>Ofertas Publicadas</p>
                 </article>
-                <a href="OfertasPrestadorFinalizadas.php">
-                    <article>                
-                        <img src="../Application/Resources/icons/User-Earth-256GRY.png">
-                        <p>Ofertas Finalizadas</p>
-                    </article>
-                </a>
-                <a href="OfertasPrestadorExpiradas.php">
-                    <article>                
-                        <img src="../Application/Resources/icons/Lock-Earth-256GRAY.png">
-                        <p>Ofertas Expiradas</p>
-                    </article>
-                </a>
+            </a>
+            <a href="OfertasPrestadorFinalizadas.php">
+                <article>                
+                    <img src="../Application/Resources/icons/User-Earth-256GRY.png">
+                    <p>Ofertas Finalizadas</p>
+                </article>
+            </a>
+            <a href="OfertasPrestadorExpiradas.php">
+                <article>                
+                    <img src="../Application/Resources/icons/Lock-Earth-256GRAY.png">
+                    <p>Ofertas Expiradas</p>
+                </article>
+            </a>
         </section>
         <?php require_once '../Application/imports/Footer.php' ?>
     </body>

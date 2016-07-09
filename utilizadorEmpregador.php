@@ -1,10 +1,11 @@
 <?php
 require_once (realpath(dirname(__FILE__)) . '/Config.php');
-
 use Config as Conf;
 
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
 require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
+require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
+$session = SessionManager::existSession('email');
 ?>
 
 <html>

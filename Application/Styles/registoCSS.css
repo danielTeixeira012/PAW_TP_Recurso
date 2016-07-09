@@ -175,8 +175,8 @@ body{
 }
 
 #form input, #form textArea, #form select{
-     display: block;
-    margin-bottom: 15px;
+    display: block;
+    margin-bottom: 5px;
     width: 280px; 
     background: #FAFAFA;
     border: 1px solid #303030;
@@ -199,3 +199,8 @@ body{
     font-weight: bold;
 }
 
+.error{
+    margin-left: 200px;
+    margin-bottom: 10px;
+    color:red;
+}

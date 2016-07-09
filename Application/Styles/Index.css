@@ -3,7 +3,7 @@
 
 html{
     position: relative;
-    
+
 
 }
 
@@ -20,7 +20,7 @@ body{
     margin-bottom: 50px;
     background-color: #FAFAFA;
     min-width: 780px;
-   
+
 }
 
 /** Head CSS **/
@@ -257,98 +257,98 @@ body{
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 480px){
-/* Styles */
-    
-  body{
-    font-family: 'Lato', sans-serif;
-    font-size: 20px;
-    margin: 0px;
-    padding: 0px;
-    margin-bottom: 50px;
-    min-width: 780px;
-   
-}
+    /* Styles */
 
-/** Head CSS **/
+    body{
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        margin: 0px;
+        padding: 0px;
+        margin-bottom: 50px;
+        min-width: 780px;
 
-#head{
-    height: 180px;
-    font-size: 30px;
+    }
 
-}
+    /** Head CSS **/
 
-#loginSec{
-    position: absolute; 
-    right: 0px;
-    bottom: 10px;
-}
+    #head{
+        height: 180px;
+        font-size: 30px;
 
+    }
 
-#head #menuNav{
-    position: absolute;
-    bottom: 0px;
-}
-/** Drop CSS **/
-.drop-nav{
-    width: 300px;
-}
-.drop-nav li{
-    width: 300px;
-}
-
-.drop-nav a {
-    width: 268px;
-}
-
-#ofertas article{
-    display: block;
-    margin: 20px auto;
-    width: 750px;
-    height: 900px;
-}
+    #loginSec{
+        position: absolute; 
+        right: 0px;
+        bottom: 10px;
+    }
 
 
+    #head #menuNav{
+        position: absolute;
+        bottom: 0px;
+    }
+    /** Drop CSS **/
+    .drop-nav{
+        width: 300px;
+    }
+    .drop-nav li{
+        width: 300px;
+    }
 
-#ofertas article section{  
-    width: 750px;
-    height: 775px;
-}
+    .drop-nav a {
+        width: 268px;
+    }
 
-#ofertas article h2{
-    font-size: 40px;
-    
-    
-}
-
-#ofertas article p{
-    margin: 4px 16px 4px 16px;
-    font-size: 35px;
-}
-
-#ofertas article b{
-    color:#707070;
-    margin-right: 2px;
-}
+    #ofertas article{
+        display: block;
+        margin: 20px auto;
+        width: 750px;
+        height: 900px;
+    }
 
 
-#ofertas article img{
-    height: 340px;
-    width: 750px;
-}
 
-#ofertas article a{
-    height: 340px;
-    width: 750px;
-}
+    #ofertas article section{  
+        width: 750px;
+        height: 775px;
+    }
 
-#ofertas article button{
-    border: none;
-    margin: 10px;
-}
+    #ofertas article h2{
+        font-size: 40px;
 
-#ofertas .favorito, #ofertas button .localSave{
-    width:100px;
-    height:100px;   
-}
+
+    }
+
+    #ofertas article p{
+        margin: 4px 16px 4px 16px;
+        font-size: 35px;
+    }
+
+    #ofertas article b{
+        color:#707070;
+        margin-right: 2px;
+    }
+
+
+    #ofertas article img{
+        height: 340px;
+        width: 750px;
+    }
+
+    #ofertas article a{
+        height: 340px;
+        width: 750px;
+    }
+
+    #ofertas article button{
+        border: none;
+        margin: 10px;
+    }
+
+    #ofertas .favorito, #ofertas button .localSave{
+        width:100px;
+        height:100px;   
+    }
 
 }

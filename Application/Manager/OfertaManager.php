@@ -89,8 +89,8 @@ union
 SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` LEFT JOIN `candidatura` ON (candidatura.idOferta = ofertaTrabalho.idOferta ) WHERE candidatura.idOferta IS NULL and ofertaTrabalho.dataFim < CURRENT_DATE and ofertatrabalho.statusO = 'ativada'");
     }
     
-    function VerificaOfertaPublicada($idOferta){
-        return empty($this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE ofertatrabalho.idOferta =$idOferta  and `dataFim` < CURRENT_DATE and `statusO` = 'ativada'"));
+    function VerificaOfertaPendente($idOferta){
+        return empty($this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE ofertatrabalho.idOferta =$idOferta  and `dataInicio` > CURRENT_DATE and `statusO` = 'ativada'"));
     }
     
     function VerificaOfertaExpirou($idOferta){
@@ -102,15 +102,15 @@ SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` LEFT JOIN `candidatura` O
     }
     
     function pesquisar($pesquisa){
-        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `tituloOferta` LIKE '%$pesquisa%' or `informacaoOferta` LIKE '%$pesquisa%' or `funcaoOferta` LIKE '%$pesquisa%'");
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `dataInicio` <= CURRENT_DATE and `dataFim` > CURRENT_DATE and `statusO` = 'ativada' and (`tituloOferta` LIKE '%$pesquisa%' or `informacaoOferta` LIKE '%$pesquisa%' or `funcaoOferta` LIKE '%$pesquisa%')");
     }
     
     function pesquisarCategoria($pesquisa){
-        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `idCategoria` = $pesquisa");
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `idCategoria` = $pesquisa and `dataInicio` <= CURRENT_DATE and `dataFim` > CURRENT_DATE and `statusO` = 'ativada'");
     }
     
     function pesquisarHorario($pesquisa){
-        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `tipoOferta` = '$pesquisa'");
+        return $this->getRecordsByUserQuery("SELECT * FROM `ofertatrabalho` WHERE `tipoOferta` = '$pesquisa' and `dataInicio` <= CURRENT_DATE and `dataFim` > CURRENT_DATE and `statusO` = 'ativada'");
     }
 
 }

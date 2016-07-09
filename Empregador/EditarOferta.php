@@ -42,7 +42,7 @@ if (empty($existCandidaturas)) {
         <head>
             <meta charset="UTF-8">
             <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
-            <title></title>
+            <title>Editar Oferta</title>
         </head>
         <body>
             <?php require_once __DIR__ . '/../Application/imports/Header.php';?>

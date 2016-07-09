@@ -22,10 +22,11 @@ if (count($errorsO) > 0) {
     <html>
         <head>
             <meta charset="UTF-8">
-
-            <title></title>
+            <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
+            <title>Editar Oferta</title>
         </head>
         <body>
+            <?php require_once __DIR__ . '/../Application/imports/Header.php'; ?>
             <?php
             $exist = false;
             $ofertasMan = new OfertaManager();
@@ -35,22 +36,22 @@ if (count($errorsO) > 0) {
             $ofertas = $ofertasMan->getOfertaByID($idOfertaAlt);
             if (!empty($ofertas)) {
                 if ($ofertas[0]['idEmpregador'] === $idEmpregador) {
-                    if (!$ofertasMan->VerificaOfertaExpirou($idOfertaAlt)) {
+                    if (!$ofertasMan->VerificaOfertaExpirou($idOfertaAlt) || !$ofertasMan->VerificaOfertaPendente($idOfertaAlt)) {
                         $ofertasMan->editOferta(new ofertaTrabalho($idOfertaAlt, $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status, $dataInicio, $dataFim), $idOfertaAlt);
                         ?>
-                        <p>Editado com sucesso</p>
+                        <p class="message">Editado com sucesso</p>
                         <a href="AreaEmpregador.php"><button class="button">Voltar Área Pessoal</button></a>
 
                         <?php
                     } else {
                         ?>
-                        <p>A oferta já expirou</p>
+                        <p class="message">A oferta já expirou</p>
                         <a href="AreaEmpregador.php"><button class="button">Voltar Área Pessoal</button></a>
                         <?php
                     }
                 } else {
                     ?>
-                    <p>A oferta não foi editada</p>
+                    <p class="message">A oferta não foi editada</p>
                     <a href="AreaEmpregador.php"><button class="button">Voltar Área Pessoal</button></a>
                     <?php
                 }
@@ -60,6 +61,6 @@ if (count($errorsO) > 0) {
             <?php
         }
         ?>
-
+        <?php require_once __DIR__ . '/../Application/imports/Footer.php'; ?>
     </body>
 </html>

@@ -14,8 +14,8 @@ if ($session && $tipo) {
 } else {
     if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         require_once '../VerificaCookies.php';
-    }else{
-       header('location: ../index.php'); 
+    } else {
+        header('location: ../index.php');
     }
 }
 ?>
@@ -27,10 +27,33 @@ if ($session && $tipo) {
         <title></title>
     </head>
     <body>
-        <?php require_once '../Application/Imports/Header.php' ; ?>
-        <a  href="ofertasAdmin.php"><button class="button2">Ofertas</button></a>
-        <a href="prestadoresServicosAdmin.php"><button class="button2" >Prestadores de Serviços</button></a>
-        <a  href="empregadorAdmin.php"><button class="button2">Empregadores</button></a>
+        <?php require_once '../Application/Imports/Header.php'; ?>
+         <section id="opcoes">
+        <a href="ofertasAdmin.php">
+            <article>          
+                <img src="../Application/Resources/icons/Earth-Node-256GRAY.png">
+                <p>Adicionar Categoria</p>
+            </article>
+        </a> 
+        <a href="prestadoresServicosAdmin.php">
+            <article>          
+                <img src="../Application/Resources/icons/Employee-256GRAY.png">
+                <p>Adicionar Categoria</p>
+            </article>
+        </a> 
+        <a href="empregadorAdmin.php">
+            <article>          
+                <img src="../Application/Resources/icons/Principal-01-256GRAY.png">
+                <p>Adicionar Categoria</p>
+            </article>
+        </a>
+        <a href="AddCategoria.php">
+            <article>          
+                <img src="../Application/Resources/icons/Add-256GRAY.png">
+                <p>Adicionar Categoria</p>
+            </article>
+        </a>
+         </section>
         <?php require_once '../Application/Imports/Footer.php'; ?>
     </body>
 </html>

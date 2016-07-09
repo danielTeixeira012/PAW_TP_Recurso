@@ -46,7 +46,7 @@
                             <li><a href="<?php echo Config::getRootPath() . 'Administrador/ofertasAdmin.php'; ?>">Gerir Ofertas</a></li>
                             <li><a href="<?php echo Config::getRootPath() . 'Administrador/prestadoresServicosAdmin.php'; ?>">Gerir Prestadores</a></li>
                             <li><a href="<?php echo Config::getRootPath() . 'Administrador/empregadorAdmin.php'; ?>">Gerir Empregadores</a></li>
-
+                            <li><a href="<?php echo Config::getRootPath() . 'Administrador/AddCategoria.php'; ?>">Adicionar Categoria</a></li>
                         </ul>
                     </li>
                     <?php

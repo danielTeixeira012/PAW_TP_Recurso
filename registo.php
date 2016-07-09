@@ -31,27 +31,27 @@ if ($session) {
                 <label id="prestador">Prestador de serviços</label><input id="tipoPrestador" type="radio" value="prestador" name="tipoUtilizador">
             </section>  
             <form id="formEmpregador" action="utilizadorEmpregador.php" method="post" enctype="multipart/form-data">
-                <label for="emailE">Email</label><input id="emailE" type="email" name="emailE"><?= isset($errorsE) && array_key_exists('emailE', $errorsE) ? $errorsE['emailE'] : '' ?>
-                <label for="fotografiaE">Fotografia</label><input id="fotografiaE" type="file" name="fotografiaE"><?= isset($imgErrorsE) && array_key_exists('img', $imgErrorsE) ? $imgErrorsE['img'] : '' ?>
-                <label for="passE">Password</label><input id="passE" type="password" name="passE"><?= isset($errorsE) && array_key_exists('passE', $errorsE) ? $errorsE['passE'] : '' ?>
-                <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE"><?= isset($errorsE) && array_key_exists('nomeE', $errorsE) ? $errorsE['nomeE'] : '' ?>
-                <label for="contactoE">Contacto</label><input id="contactoE" type="text" name="contactoE"><?= isset($errorsE) && array_key_exists('contactoE', $errorsE) ? $errorsE['contactoE'] : '' ?>
-                <label for="moradaE">Morada</label><input id="moradaE" type="text" name="moradaE">
-                <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE"><?= isset($errorsE) && array_key_exists('codigopostalE', $errorsE) ? $errorsE['codigopostalE'] : '' ?>
-                <label for="distritoE">Distrito</label><input id="distritoE" type="text" name="distritoE">
-                <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE">
+                <label for="emailE">Email</label><input id="emailE" type="email" name="emailE"><p class="error"><?= isset($errorsE) && array_key_exists('emailE', $errorsE) ? $errorsE['emailE'] : '' ?></p>
+                <label for="fotografiaE">Fotografia</label><input id="fotografiaE" type="file" name="fotografiaE"><p class="error"><?= isset($imgErrorsE) && array_key_exists('img', $imgErrorsE) ? $imgErrorsE['img'] : '' ?></p>
+                <label for="passE">Password</label><input id="passE" type="password" name="passE"><p class="error"><?= isset($errorsE) && array_key_exists('passE', $errorsE) ? $errorsE['passE'] : '' ?></p>
+                <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE"><p class="error"><?= isset($errorsE) && array_key_exists('nomeE', $errorsE) ? $errorsE['nomeE'] : '' ?></p>
+                <label for="contactoE">Contacto</label><input id="contactoE" type="text" name="contactoE"><p class="error"><?= isset($errorsE) && array_key_exists('contactoE', $errorsE) ? $errorsE['contactoE'] : '' ?></p>
+                <label for="moradaE">Morada</label><input id="moradaE" type="text" name="moradaE"><p class="error"><?= isset($errorsE) && array_key_exists('moradaE', $errorsE) ? $errorsE['moradaE'] : '' ?></p>
+                <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE"><p class="error"><?= isset($errorsE) && array_key_exists('codigopostalE', $errorsE) ? $errorsE['codigopostalE'] : '' ?></p>
+                <label for="distritoE">Distrito</label><input id="distritoE" type="text" name="distritoE"><p class="error"><?= isset($errorsE) && array_key_exists('distritoE', $errorsE) ? $errorsE['distritoE'] : '' ?></p>
+                <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE"><p class="error"><?= isset($errorsE) && array_key_exists('concelhoE', $errorsE) ? $errorsE['concelhoE'] : '' ?></p>
                 <input class="button2" name="confirmE" id="confirmE" type="submit" value="CONFIRM">
             </form>
             <form id="formPrestador" action="utilizadorPrestadorServico.php" method="post" enctype="multipart/form-data">
-                <label for="emailP">Email</label><input id="emailP" type="email" name="emailP" required><?= isset($errors) && array_key_exists('emailP', $errors) ? $errors['emailP'] : '' ?>
-                <label for="passP">Password</label><input id="passP" type="password" name="passP" required><?= isset($errors) && array_key_exists('passP', $errors) ? $errors['passP'] : '' ?>
-                <label for="nomeP">Nome</label><input id="nomeP" type="text" name="nomeP" required><?= isset($errors) && array_key_exists('nomeP', $errors) ? $errors['nomeP'] : '' ?>
-                <label for="contactoP">Contacto</label><input id="contactoP" type="text" name="contactoP" required><?= isset($errors) && array_key_exists('contactoP', $errors) ? $errors['contactoP'] : '' ?>
-                <label for="fotografiaP">Fotografia</label><input id="fotografiaP" type="file" name="fotografiaP" required><?= isset($imgErrors) && array_key_exists('img', $imgErrors) ? $imgErrors['img'] : '' ?>
-                <label for="moradaP">Morada</label><input id="moradaP" type="text" name="moradaP" required>
-                <label for="codigopostalP">Codigo-Postal</label><input id="codigopostalP" type="text" name="codigopostalP" required><?= isset($errors) && array_key_exists('codigopostalP', $errors) ? $errors['codigopostalP'] : '' ?>
-                <label for="distritoP">Distrito</label><input id="distritoP" type="text" name="distritoP" required>
-                <label for="concelhoP">Concelho</label><input id="concelhoP" type="text" name="concelhoP" required>
+                <label for="emailP">Email</label><input id="emailP" type="email" name="emailP" required><p class="error"><?= isset($errors) && array_key_exists('emailP', $errors) ? $errors['emailP'] : '' ?></p>
+                    <label for="passP">Password</label><input id="passP" type="password" name="passP" required><p class="error"><?= isset($errors) && array_key_exists('passP', $errors) ? $errors['passP'] : '' ?></p>
+                    <label for="nomeP">Nome</label><input id="nomeP" type="text" name="nomeP" required><p class="error"><?= isset($errors) && array_key_exists('nomeP', $errors) ? $errors['nomeP'] : '' ?></p>
+                    <label for="contactoP">Contacto</label><input id="contactoP" type="text" name="contactoP" required><p class="error"><?= isset($errors) && array_key_exists('contactoP', $errors) ? $errors['contactoP'] : '' ?></p>
+                    <label for="fotografiaP">Fotografia</label><input id="fotografiaP" type="file" name="fotografiaP" required><p class="error"><?= isset($imgErrors) && array_key_exists('img', $imgErrors) ? $imgErrors['img'] : '' ?></p>
+                <label for="moradaP">Morada</label><input id="moradaP" type="text" name="moradaP" required><?= isset($errors) && array_key_exists('moradaP', $errors) ? $errors['moradaP'] : '' ?></p>
+                <label for="codigopostalP">Codigo-Postal</label><input id="codigopostalP" type="text" name="codigopostalP" required><p class="error"><?= isset($errors) && array_key_exists('codigopostalP', $errors) ? $errors['codigopostalP'] : '' ?></p>
+                <label for="distritoP">Distrito</label><input id="distritoP" type="text" name="distritoP" required><?= isset($errors) && array_key_exists('distritoP', $errors) ? $errors['distritoP'] : '' ?></p>
+                <label for="concelhoP">Concelho</label><input id="concelhoP" type="text" name="concelhoP" required><?= isset($errors) && array_key_exists('concelhoP', $errors) ? $errors['concelhoP'] : '' ?></p>
                 <input  class="button2" id="confirmP" type="submit" value="CONFIRM" name="confirmP">
             </form>
         </section>
