@@ -9,6 +9,7 @@ require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
+require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 require_once (Conf::getApplicationManagerPath() . 'ComentariosManager.php');
 $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
@@ -38,14 +39,17 @@ $tipo = SessionManager::existSession('tipoUser');
         $res = $man->getOfertaByID($idOferta);
         $prestadorMan = new PrestadorManager();
         $manEmpregador = new EmpregadorManager();
-        if ($res != array()) {
+        if (!empty($res)) {
             $pre = $manEmpregador->getEmpregadorByid($res[0]['idEmpregador']);
+            $manCat = new CategoriasManager();
+            $cat = $manCat->getCategoriaByID($res[0]['idCategoria']);
             ?>
             <section id="oferta">
                 <article id="article" itemscope data-id="<?= $idOferta ?>">
                     <h2><?= $res[0]['tituloOferta'] ?></h2>
                     <p><b>Informação Oferta:</b> <?= $res[0]['informacaoOferta'] ?></p>
                     <p><b>Função Oferta:</b> <?= $res[0]['funcaoOferta'] ?></p>
+                    <p><b>Categoria:</b> <?= $cat[0]['nomeCategoria']?></p>
                     <p><b>Salario: </b><?= $res[0]['salario'] ?></p>
                     <p><b>Requisitos:</b> <?= $res[0]['requisitos'] ?></p>
                     <p><b>Regiao: </b><?= $res[0]['regiao'] ?></p>
