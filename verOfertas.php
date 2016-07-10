@@ -34,7 +34,7 @@ $tipo = SessionManager::existSession('tipoUser');
     <body>
         <?php require_once 'Application/imports/Header.php'; ?>      
         <?php
-        $idOferta = filter_input(INPUT_GET, 'oferta');
+        $idOferta = filter_input(INPUT_GET, 'oferta',FILTER_SANITIZE_NUMBER_INT);
         $man = new OfertaManager();
         $res = $man->getOfertaByID($idOferta);
         $prestadorMan = new PrestadorManager();

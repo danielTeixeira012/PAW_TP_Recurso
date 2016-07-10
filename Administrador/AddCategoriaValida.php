@@ -38,7 +38,7 @@ if ($session && $tipo) {
             $categoriaMan->insertOferta(new CategoriaOferta('', $categoria, $target_file));
             ?>
             <h2>Categoria submetida com sucesso</h2>
-            <a href="../index.php"><input type="submit" value="Voltar Área Pessoal"></a> 
+            <a href="AreaAdministrador.php"><input type="submit" value="Voltar Área Pessoal"></a> 
             <?php
         }
         ?>

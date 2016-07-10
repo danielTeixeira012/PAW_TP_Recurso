@@ -15,7 +15,7 @@ $tipo = SessionManager::existSession('tipoUser');
 
 if ($exist && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') === 'administrador') {
-        $id = filter_input(INPUT_GET, 'idPrestador');
+        $id = filter_input(INPUT_GET, 'idPrestador', FILTER_SANITIZE_NUMBER_INT);
         $managerPrest = new PrestadorManager();
         $managerCand = new CandidaturaManager();
         $managerCand->deleteCandidaturaByIdPrestador($id);

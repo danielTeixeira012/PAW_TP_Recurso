@@ -15,8 +15,8 @@ $exist = SessionManager::existSession('email');
 
 
 if ($exist) {
-    $idCandidatura = filter_input(INPUT_GET, 'idCandidatura');
-    $idOferta = filter_input(INPUT_GET, 'idOferta');
+    $idCandidatura = filter_input(INPUT_GET, 'idCandidatura', FILTER_SANITIZE_NUMBER_INT);
+    $idOferta = filter_input(INPUT_GET, 'idOferta', FILTER_SANITIZE_NUMBER_INT);
     $candidaturasMan = new CandidaturaManager();
     $ofertaMan = new OfertaManager();
     $oferta = $ofertaMan->getOfertaByID($idOferta);

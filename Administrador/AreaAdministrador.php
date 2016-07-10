@@ -32,19 +32,19 @@ if ($session && $tipo) {
         <a href="ofertasAdmin.php">
             <article>          
                 <img src="../Application/Resources/icons/Earth-Node-256GRAY.png">
-                <p>Adicionar Categoria</p>
+                <p>Gerir Ofertas</p>
             </article>
         </a> 
         <a href="prestadoresServicosAdmin.php">
             <article>          
                 <img src="../Application/Resources/icons/Employee-256GRAY.png">
-                <p>Adicionar Categoria</p>
+                <p>Gerir Prestadores de Serviços</p>
             </article>
         </a> 
         <a href="empregadorAdmin.php">
             <article>          
                 <img src="../Application/Resources/icons/Principal-01-256GRAY.png">
-                <p>Adicionar Categoria</p>
+                <p>Gerir Empregadores</p>
             </article>
         </a>
         <a href="AddCategoria.php">

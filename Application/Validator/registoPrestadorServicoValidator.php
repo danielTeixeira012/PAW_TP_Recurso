@@ -13,7 +13,7 @@ $input = INPUT_POST;
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'emailP') && filter_input($input, 'emailP')) {
-        $mail = filter_input($input, 'emailP', FILTER_SANITIZE_EMAIL);
+        $mail = filter_input($input, 'emailP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         $manager = new PrestadorManager();
         $exist = $manager->verifyEmail($mail);
         $manager1 = new EmpregadorManager();
@@ -31,7 +31,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'nomeP') && filter_input($input, 'nomeP') != '') {
-        $name = filter_input($input, 'nomeP', FILTER_SANITIZE_STRING);
+        $name = filter_input($input, 'nomeP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         if (strlen($name) < 5) {
             $errors['nomeP'] = 'Pelo menos 5 caracteres no nome';
         }
@@ -42,7 +42,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'passP') && filter_input($input, 'passP') != '') {
-        $pass = filter_input($input, 'passP', FILTER_SANITIZE_STRING);
+        $pass = filter_input($input, 'passP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         if (strlen($pass) < 5) {
             $errors['passP'] = 'Pelo menos 5 caracter na password';
         }
@@ -53,7 +53,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'contactoP') && filter_input($input, 'contactoP') != '') {
-        $contato = filter_input($input, 'contactoP', FILTER_SANITIZE_STRING);
+        $contato = filter_input($input, 'contactoP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         $pattern = "/9[1236][0-9]{7}|2[1-9][0-9]{7}/";
         if (preg_match($pattern, $contato) === 0) {
             $errors['contactoP'] = 'Parametro contacto incorreto';
@@ -66,7 +66,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'codigopostalP') && filter_input($input, 'codigopostalP') != '') {
-        $codPostal = filter_input($input, 'codigopostalP', FILTER_SANITIZE_STRING);
+        $codPostal = filter_input($input, 'codigopostalP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         $pattern = "/^\[0-9]{4}(-\[0-9]{3})?$/";
         if (preg_match($pattern, $codPostal) === 0 && strlen($codPostal) !== 8) {
             $errors['codigopostalP'] = 'Parametro codigo Postal incorreto';

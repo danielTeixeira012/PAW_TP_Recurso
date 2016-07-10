@@ -13,7 +13,7 @@ require_once (Conf::getApplicationModelPath() . 'Candidatura.php');
 $exist = SessionManager::existSession('email');
 if ($exist) {
     $emailLigado = SessionManager::getSessionValue('email');
-    $id = filter_input(INPUT_GET, 'idOferta');
+    $id = filter_input(INPUT_GET, 'idOferta', FILTER_SANITIZE_NUMBER_INT);
     $ofertaMan = new OfertaManager();
     if (!empty($ofertaMan->getOfertaByID($id)) && !$ofertaMan->VerificaOfertaExpirou($id)) {
         $manPrest = new PrestadorManager();

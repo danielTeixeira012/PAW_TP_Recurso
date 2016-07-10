@@ -16,9 +16,9 @@ $input = INPUT_POST;
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'email') && filter_input($input, 'email') != '' && filter_has_var($input, 'pass') && filter_input($input, 'pass')) {
         if (filter_input($input, 'email', FILTER_SANITIZE_EMAIL)) {
-            $email = filter_input($input, 'email');
-            $password = filter_input($input, 'pass');
-            $remember =  filter_input($input, 'remember');
+            $email = filter_input($input, 'email', FILTER_SANITIZE_EMAIL);
+            $password = filter_input($input, 'pass', FILTER_SANITIZE_STRING);
+            $remember =  filter_input($input, 'remember', FILTER_SANITIZE_STRING);
             $managerPrestador = new PrestadorManager();
             $managerEmpregador = new EmpregadorManager();
             $managerAdministrador = new AdministradorManager();

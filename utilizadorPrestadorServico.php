@@ -19,14 +19,14 @@ require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
         if (count($errors) > 0 || count($imgErrors) > 0) {
             require_once __DIR__ . '/registo.php';
         } else {
-            $email = filter_input(INPUT_POST, 'emailP');
-            $password = filter_input(INPUT_POST, 'passP');
-            $nome = filter_input(INPUT_POST, 'nomeP');
-            $contato = filter_input(INPUT_POST, 'contactoP');
-            $morada = filter_input(INPUT_POST, 'moradaP');
-            $codigoPostal = filter_input(INPUT_POST, 'codigopostalP');
-            $distrito = filter_input(INPUT_POST, 'distritoP');
-            $concelho = filter_input(INPUT_POST, 'concelhoP');
+            $email = filter_input(INPUT_POST, 'emailP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $password = filter_input(INPUT_POST, 'passP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $nome = filter_input(INPUT_POST, 'nomeP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $contato = filter_input(INPUT_POST, 'contactoP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $morada = filter_input(INPUT_POST, 'moradaP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $codigoPostal = filter_input(INPUT_POST, 'codigopostalP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $distrito = filter_input(INPUT_POST, 'distritoP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $concelho = filter_input(INPUT_POST, 'concelhoP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
             $prestador = new PrestadorServico('', $email, sha1($password), $nome, $contato, $target_file, $morada, $codigoPostal, $distrito, $concelho);
             $prestadorManager = new PrestadorManager();
             $prestadorManager->insertPrestadorServico($prestador);

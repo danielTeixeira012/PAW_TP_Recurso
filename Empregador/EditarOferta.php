@@ -25,7 +25,7 @@ if ($session && $tipo) {
 $ofertas = new OfertaManager();
 $candidaturaMan = new CandidaturaManager();
 $empregadorMan = new EmpregadorManager();
-$idOferta = filter_input(INPUT_GET, 'altOfer');
+$idOferta = filter_input(INPUT_GET, 'altOfer',FILTER_SANITIZE_NUMBER_INT);
 $existCandidaturas = $candidaturaMan->getCandidaturasByIdOferta($idOferta);
 require_once __DIR__ . '/../Application/Validator/OfertaValidator.php';
 if (empty($existCandidaturas)) {

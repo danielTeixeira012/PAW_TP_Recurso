@@ -11,7 +11,7 @@ $erros = array();
 $input = INPUT_POST;
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    if (filter_has_var($input, 'emailP') && filter_input($input, 'emailP')) {
+    if (filter_has_var($input, 'emailP') && filter_input($input, 'emailP') != '') {
         $email = filter_input($input, 'emailP', FILTER_SANITIZE_EMAIL);
         if (SessionManager::existSession('email') && SessionManager::existSession('tipoUtilizador') === 'prestador') {
             if (SessionManager::getSessionValue('email') !== $email) {
@@ -27,7 +27,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'nomePrestador') && filter_input($input, 'nomePrestador') != '') {
-        $nome = filter_input($input, 'nomePrestador', FILTER_SANITIZE_STRING);
+        $nome = filter_input($input, 'nomePrestador', FILTER_SANITIZE_STRING, FILTER_SANITIZE_SPECIAL_CHARS);
         if (strlen($nome) < 5) {
             $erros['nomePrestador'] = 'Novo parametro deve ter pelo menos 5 caracteres no nome';
         }
@@ -51,7 +51,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 }
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    $morada = filter_input($input, 'moradaPrestador', FILTER_SANITIZE_STRING);
+    $morada = filter_input($input, 'moradaPrestador', FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
     if (!(filter_has_var($input, 'moradaPrestador') && filter_input($input, 'moradaPrestador') != '')) {
         $erros['moradaPrestador'] = 'Novo parametro morada nao existe';
     }

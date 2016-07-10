@@ -20,14 +20,14 @@ $session = SessionManager::existSession('email');
         if (count($errorsE) > 0 || count($imgErrorsE) > 0) {
             require_once __DIR__ . '/registo.php';
         } else {
-            $email = filter_input(INPUT_POST, 'emailE');
-            $password = filter_input(INPUT_POST, 'passE');
-            $nome = filter_input(INPUT_POST, 'nomeE');
-            $contato = filter_input(INPUT_POST, 'contactoE');
-            $morada = filter_input(INPUT_POST, 'moradaE');
-            $codPostal = filter_input(INPUT_POST, 'codigopostalE');
-            $distrito = filter_input(INPUT_POST, 'distritoE');
-            $concelho = filter_input(INPUT_POST, 'concelhoE');
+            $email = filter_input(INPUT_POST, 'emailE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $password = filter_input(INPUT_POST, 'passE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $nome = filter_input(INPUT_POST, 'nomeE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $contato = filter_input(INPUT_POST, 'contactoE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $morada = filter_input(INPUT_POST, 'moradaE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $codPostal = filter_input(INPUT_POST, 'codigopostalE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $distrito = filter_input(INPUT_POST, 'distritoE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+            $concelho = filter_input(INPUT_POST, 'concelhoE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
             $empregador = new Empregador('', $email, $target_fileE, sha1($password), $nome, $contato, $morada, $codPostal, $distrito, $concelho);
             $manager = new EmpregadorManager();
             $manager->insertPrestadorServico($empregador);

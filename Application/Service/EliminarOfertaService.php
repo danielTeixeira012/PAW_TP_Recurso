@@ -16,7 +16,7 @@ $tipo = SessionManager::existSession('tipoUser');
 
 if ($exist && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') === 'administrador') {
-        $id = filter_input(INPUT_GET, 'idOferta');
+        $id = filter_input(INPUT_GET, 'idOferta',FILTER_SANITIZE_NUMBER_INT);
         $manFav = new FavoritosManager();
         $manFav->removeFavoritosByIDOferta($id);
         $manComts = new ComentariosManager();

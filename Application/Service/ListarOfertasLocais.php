@@ -10,7 +10,7 @@ require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationModelPath() . 'OfertaTrabalho.php');
 $exist = SessionManager::existSession('email');
 
-$idOferta = filter_input(INPUT_GET, 'idOferta');
+$idOferta = filter_input(INPUT_GET, 'idOferta', FILTER_SANITIZE_NUMBER_INT);
 $ofertasMan =new OfertaManager();
 $oferta =  $ofertasMan->getOfertaByID($idOferta);
 

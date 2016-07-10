@@ -13,8 +13,8 @@ $exist = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 
 if ($exist && $tipo) {
-    $idOferta = filter_input(INPUT_GET, 'idOferta');
-    $comentario = filter_input(INPUT_GET, 'comentario');
+    $idOferta = filter_input(INPUT_GET, 'idOferta', FILTER_SANITIZE_NUMBER_INT);
+    $comentario = filter_input(INPUT_GET, 'comentario', FILTER_SANITIZE_STRING, FILTER_SANITIZE_SPECIAL_CHARS);
     $mailUser = SessionManager::getSessionValue('email');
     if (SessionManager::getSessionValue('tipoUser') === 'prestador') {
         $managerPrestador = new PrestadorManager();

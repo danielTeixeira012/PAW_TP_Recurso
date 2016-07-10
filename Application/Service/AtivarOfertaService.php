@@ -13,7 +13,7 @@ $tipo = SessionManager::existSession('tipoUser');
 
 if ($exist && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') === 'administrador') {
-        $id = filter_input(INPUT_GET, 'idOferta');
+        $id = filter_input(INPUT_GET, 'idOferta', FILTER_SANITIZE_NUMBER_INT);
         $manOferta = new OfertaManager();
         $res = $manOferta->getOfertaByID($id);
         $data = $manOferta->getDataAtual();

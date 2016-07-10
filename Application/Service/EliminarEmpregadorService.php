@@ -15,7 +15,7 @@ $tipo = SessionManager::existSession('tipoUser');
 
 if ($exist && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') === 'administrador') {
-        $id = filter_input(INPUT_GET, 'idEmpregador');
+        $id = filter_input(INPUT_GET, 'idEmpregador', FILTER_SANITIZE_NUMBER_INT);
         $manEmp = new EmpregadorManager();
         $manOfer = new OfertaManager();
         $manCom = new ComentariosManager();

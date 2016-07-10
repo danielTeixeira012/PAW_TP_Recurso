@@ -57,7 +57,7 @@ if ($session && $tipo) {
             $candidaturasMan = new CandidaturaManager();
             $ofertaMan = new OfertaManager();
             $EmpregadorMan = new EmpregadorManager();
-            $idOferta = filter_input(INPUT_GET, 'oferta');
+            $idOferta = filter_input(INPUT_GET, 'oferta',FILTER_SANITIZE_NUMBER_INT);
 
 
             $oferta = $ofertaMan->getOfertaByID($idOferta);

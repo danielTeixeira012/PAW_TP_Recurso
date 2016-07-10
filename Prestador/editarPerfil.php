@@ -43,12 +43,7 @@ if ($session && $tipo) {
                 $prestadorMan->updatePrestador(new PrestadorServico($idPrestador, $email, $password, $nome, $contato, $fotoPath, $morada, $codPostal, $distrito, $concelho));
                 ?>
                 <p>Editado com sucesso</p>
-                <a href="AreaEmpregador.php"><button class="button">Voltar Area Pessoal</button></a>
-                <?php
-            } else {
-                ?>
-                <p>Não foi editado</p>
-                <a href=verPerfilPrestador.php"><button class="button">Voltar ao Editar...</button></a>
+                <a href="areaPessoalPrestador.php"><button class="button">Voltar Area Pessoal</button></a>
                 <?php
             }
             ?>

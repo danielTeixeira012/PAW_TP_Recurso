@@ -15,7 +15,7 @@ $input = INPUT_POST;
 require_once __DIR__ . '/../Application/Validator/OfertaValidator.php';
 
 if (count($errorsO) > 0) {
-    $idOferta = filter_input(INPUT_POST, 'idOferta');
+    $idOferta = filter_input(INPUT_POST, 'idOferta',FILTER_SANITIZE_NUMBER_INT);
     require_once __DIR__ . '/EditarOferta.php';
 } else {
     ?>

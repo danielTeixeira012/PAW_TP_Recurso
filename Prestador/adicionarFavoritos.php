@@ -37,7 +37,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        $id = filter_input(INPUT_GET, 'oferta');
+        $id = filter_input(INPUT_GET, 'oferta',FILTER_SANITIZE_NUMBER_INT);
         $ManagerPrestador = new PrestadorManager();
         $resPrest = $ManagerPrestador->verifyEmail(SessionManager::getSessionValue('email'));
         $managerFavoritos = new FavoritosManager();

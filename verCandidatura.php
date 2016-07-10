@@ -32,7 +32,7 @@ if ($email && $tipo) {
     <body>
         <?php
         require_once 'Application/imports/Header.php'; 
-        $idOferta = filter_input(INPUT_GET, 'oferta');
+        $idOferta = filter_input(INPUT_GET, 'oferta',FILTER_SANITIZE_NUMBER_INT);
 
         $manCand = new CandidaturaManager();
         $manPrest = new PrestadorManager();

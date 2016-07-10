@@ -27,7 +27,7 @@ $manEmpregador = new EmpregadorManager();
 $manOfertas = new OfertaManager();
 $manCandidaturas = new CandidaturaManager();
 
-$id = filter_input(INPUT_GET, 'prestador');
+$id = filter_input(INPUT_GET, 'prestador',FILTER_SANITIZE_NUMBER_INT);
 
 $logado = $manEmpregador->getEmpregadorByMail(SessionManager::getSessionValue('email'));
 $idEmpregador = $logado[0]['idEmpregador'];
