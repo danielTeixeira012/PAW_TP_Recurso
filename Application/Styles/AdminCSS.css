@@ -10,6 +10,7 @@ body{
     padding: 0px;
     margin-bottom: 50px;
     background-color: #FAFAFA;
+    min-width: 800px;
 }
 
 *{

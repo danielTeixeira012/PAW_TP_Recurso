@@ -48,7 +48,7 @@ if ($session && $tipo) {
             }
             ?>
 
-            <a href="areaPessoalPrestador.php"><button>Voltar</button></a>
+                <a href="../index.php"><button>Pagina Inicial</button></a>
             <?php
         }
         ?>

@@ -59,7 +59,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'contactoE') && filter_input($input, 'contactoE') != '') {
         $contato = filter_input($input, 'contactoE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         $pattern = "/9[1236][0-9]{7}|2[1-9][0-9]{7}/";
-        if (preg_match($pattern, $contato) === 0) {
+        if (preg_match($pattern, $contato) === 0 && strlen($contato) !== 9) {
             $errorsE['contactoE'] = 'Parametro contacto incorreto';
         }
     } else {
@@ -70,11 +70,30 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'codigopostalE') && filter_input($input, 'codigopostalE') != '') {
         $codPostal = filter_input($input, 'codigopostalE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
-        $pattern = "/^\[0-9]{4}(-\[0-9]{3})?$/";
+        $pattern = "/^[0-9]{4}-[0-9]{3}/";
         if (preg_match($pattern, $codPostal) === 0 && strlen($codPostal) !== 8) {
             $errorsE['codigopostalE'] = 'Parametro codigo Postal incorreto';
         }
     } else {
         $errorsE['codigopostalE'] = 'Parametro codido Postal nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    $distrito = filter_input($input, 'distritoE', FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+    if (!(filter_has_var($input, 'distritoE') && filter_input($input, 'distritoE') != '')) {
+        $erros['distritoE'] = 'Parametro distrito postal nao existe';
+    }
+}
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    $concelho = filter_input($input, 'concelhoE', FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+    if (!(filter_has_var($input, 'concelhoE') && filter_input($input, 'concelhoE') != '')) {
+        $erros['concelhoE'] = 'Parametro concelho nao existe';
+    }
+}
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    $morada = filter_input($input, 'moradaE', FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
+    if (!(filter_has_var($input, 'moradaE') && filter_input($input, 'moradaE') != '')) {
+        $erros['moradaE'] = 'Parametro morada nao existe';
     }
 }

@@ -10,6 +10,7 @@ require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
+require_once (Conf::getApplicationManagerPath() . 'ComentariosManager.php');
 $email = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 if ($email && $tipo) {
@@ -58,7 +59,30 @@ if ($email && $tipo) {
                 <p>Regiao: <?= $res[0]['regiao'] ?></p>
                 <p>Tipo Oferta: <?= $res[0]['tipoOferta'] ?></p>
                 <p>Empregador: <?= $pre[0]['email'] ?></p>
-
+                <section id="comentarios">
+                <h2>Comentarios sobre a oferta</h2>    
+                <?php
+                $ComentariosManager = new ComentariosManager();
+                $comentarios = $ComentariosManager->getComentarioByIDOferta($idOferta);
+                
+                if (!empty($comentarios)) {
+                    $manPrest = new PrestadorManager();
+                    foreach ($comentarios as $key => $value) {
+                        $return = $manPrest->verifyEmail($value['autor']);
+                        ?>
+                        <article class="comentario">
+                            <p class="autor">Autor: <?= $return[0]['nome'] ?></p>
+                            <p class="coment"><?= $value['comentario'] ?></p>                 
+                        </article>
+                        <?php
+                    }
+                }else{
+                    ?>
+                        <p>Não existem comentários</p>
+                    <?php
+                }
+                ?>
+            </section>
                 <?php
             } else {
                 ?>

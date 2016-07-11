@@ -78,7 +78,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 }
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    $tempSal = str_replace(',', '.', filter_input($input, 'sal'. FILTER_SANITIZE_NUMBER_FLOAT));
+    $tempSal = str_replace(',', '.', filter_input($input, 'sal', FILTER_SANITIZE_NUMBER_FLOAT));
     if (filter_has_var($input, 'sal') && filter_input($input, 'sal') != '' && filter_var($tempSal, FILTER_VALIDATE_FLOAT)) {
         $salario = $tempSal;
     } else {

@@ -186,25 +186,31 @@ $tipo = SessionManager::existSession('tipoUser');
                 <?php
                 $ComentariosManager = new ComentariosManager();
                 $comentarios = $ComentariosManager->getComentarioByIDOferta($idOferta);
+                ?>
+                <h2>Comentarios sobre a oferta</h2>
+                <?php
                 if (!empty($comentarios)) {
-                    ?>
-                    <h2>Comentarios sobre a oferta</h2>
-                    <?php
+                    $manPrest = new PrestadorManager();
                     foreach ($comentarios as $key => $value) {
+                        $return = $manPrest->verifyEmail($value['autor']);
                         ?>
                         <article class="comentario">
-                            <p class="autor">Autor: <?= $value['autor'] ?></p>
+                            <p class="autor">Autor: <?= $return[0]['nome']?></p>
                             <p class="coment"><?= $value['comentario'] ?></p>                 
                         </article>
                         <?php
                     }
+                }else{
+                    ?>
+                        <p>Não existem comentários</p>
+                    <?php
                 }
                 ?>
             </section>
             <?php
         } else {
             ?>
-            <h2>Não existe nenhuma oferta com o id <?= $idOferta ?></h2>
+            <h2>A oferta que quer visualizar não existe</h2>
             <?php
         }
         ?>

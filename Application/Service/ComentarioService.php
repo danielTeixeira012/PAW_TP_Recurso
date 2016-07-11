@@ -26,7 +26,7 @@ if ($exist && $tipo) {
         if (SessionManager::getSessionValue('tipoUser') === 'empregador') {
             $managerEmpregador = new EmpregadorManager();
             $return = $managerEmpregador->verifyEmail($mailUser);
-            $comment = new Comentario('', $idOferta, $comentario, $return[0]['nome']);
+            $comment = new Comentario('', $idOferta, $comentario, $return[0]['email']);
             $managerComentario = new ComentariosManager();
             $managerComentario->insertComentario($comment);
         }

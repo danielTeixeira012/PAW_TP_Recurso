@@ -83,7 +83,7 @@ $empregadorMan = new EmpregadorManager();
                 <?php
             } else {
                 ?>
-                <p>Não existem ofertas Publicadas</p>
+                <p>Não existem ofertas Expiradas</p>
                 <?php
             }
             ?>

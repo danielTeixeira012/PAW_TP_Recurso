@@ -83,8 +83,8 @@ if ($session && $tipo) {
                                     <td><?= $value['idCandidatura'] ?></td>
                                     <td><?= $value['idPrestador'] ?></td>
                                     <td><?= $value['idOferta'] ?></td>                          
-                                    <td class="tdButtom"><a  href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><button class="tableButton">Ver Prestador</button></td>
-                                    <td data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>" class="tdButtom"><a class="tdButtom" id="aceitarButton"><button class="aceitarButton">Aceitar</button></a></td>
+                                    <td class="tdButtom"><a  href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><button class="tableButton">Ver Prestador</button></a></td>
+                                    <td class="tdButtom" data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>" class="tdButtom"><button class="aceitarButton">Aceitar</button></td>
                                 </tr>
 
                                 <?php

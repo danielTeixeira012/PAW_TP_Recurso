@@ -141,12 +141,12 @@ if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         $ofertaMan = new OfertaManager();
         $categoriaMan = new CategoriasManager();
         $categoria = $categoriaMan->getCategoriaByID($pesquisa);
+        ?>
+        <h2>Pesquisa por categoria "<?= $categoria[0]['nomeCategoria'] ?>"</h2>
+        <?php
         if (!empty($categoria)) {
             $ofertasCategoria = $ofertaMan->pesquisarCategoria($pesquisa);
             if (!empty($ofertasCategoria)) {
-                ?>
-                <h2>Pesquisa por categoria "<?= $categoria[0]['nomeCategoria'] ?>"</h2>
-                <?php
                 foreach ($ofertasCategoria as $key => $value) {
                     ?>
                     <a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>">
@@ -218,12 +218,12 @@ if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 if (isset($_GET['horario']) && filter_input(INPUT_GET, 'horario', FILTER_SANITIZE_STRING) != '') {
     $pesquisa = filter_input(INPUT_GET, 'horario', FILTER_SANITIZE_STRING);
     $ofertaMan = new OfertaManager();
+    ?>
+    <h2>Pesquisa por Horário "<?= $pesquisa ?>"</h2>
+    <?php
     if ($pesquisa !== "fullTime" || $pesquisa !== "partTime") {
         $ofertasHorario = $ofertaMan->pesquisarHorario($pesquisa);
         if (!empty($ofertasHorario)) {
-            ?>
-            <h2>Pesquisa por Horário "<?= $pesquisa ?>"</h2>
-            <?php
             foreach ($ofertasHorario as $key => $value) {
                 ?>
                 <a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>">
