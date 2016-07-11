@@ -29,21 +29,21 @@ if ($session && $tipo) {
     </head>
     <body>
         <?php
-        require_once '../Application/Imports/Header.php';
         require_once '../Application/Validator/OfertaValidator.php';
         if (count($errorsO) > 0) {
             require_once __DIR__ . '/AddOferta.php';
         } else {
-           
+            require_once '../Application/Imports/Header.php';
             $ofertasMan = new OfertaManager();
             $empregadorMan = new EmpregadorManager();
             $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
             $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, 'ativada', $dataInicio, $dataFim));
             ?>
             <h2>Oferta submetida com sucesso</h2>
+
             <?php
+            require_once '../Application/Imports/Footer.php';
         }
-        require_once '../Application/Imports/Footer.php';
         ?>
     </body>
 </html>
