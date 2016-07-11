@@ -10,6 +10,7 @@ require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'ComentariosManager.php');
+require_once (Conf::getApplicationManagerPath() . 'FavoritosManager.php');
 $exist = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 
@@ -22,9 +23,11 @@ if ($exist && $tipo) {
         $resOfer = $manOfer->getOfertaUser($id);
         if (!empty($resOfer)) {
             $manCand = new CandidaturaManager();
+            $manFav = new FavoritosManager();
             foreach ($resOfer as $key => $value) {
                 $manCand->deleteCandidaturaByIdOferta($value['idOferta']);
                 $manCom->removeComentariosByIDOferta($value['idOferta']);
+                $manFav->removeFavoritosByIDOferta($value['idOferta']);
             }
         }
         $manOfer->deleteOfertasByIdEmpregador($id);

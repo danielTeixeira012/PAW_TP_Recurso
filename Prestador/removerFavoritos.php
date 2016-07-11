@@ -32,11 +32,12 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="3; url='areaPessoalPrestador.php'"/>
-        <title></title>
+        <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
+        <title>Favoritos</title>
     </head>
     <body>
         <?php
+        require_once '../Application/Imports/Header.php';
         $remove = false;
         $id = filter_input(INPUT_GET, 'oferta',FILTER_SANITIZE_NUMBER_INT);
         $ManagerPrestador = new PrestadorManager();
@@ -52,13 +53,14 @@ and open the template in the editor.
         }
         if ($remove) {
             ?>
-            <h2>Oferta removida dos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+            <h2>Oferta removida dos favoritos</h2>
             <?php
         } else {
             ?>
-            <h2>A oferta não existe nas suas ofertas favoritas, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+            <h2>A oferta não existe nas suas ofertas favoritas</h2>
             <?php
         }
+         require_once '../Application/Imports/Footer.php';
         ?>
     </body>
 </html>

@@ -19,7 +19,7 @@ if ($exist && $tipo) {
     if (SessionManager::getSessionValue('tipoUser') === 'prestador') {
         $managerPrestador = new PrestadorManager();
         $return = $managerPrestador->verifyEmail($mailUser);
-        $comment = new Comentario('', $idOferta, $comentario, $return[0]['nome']);
+        $comment = new Comentario('', $idOferta, $comentario, $return[0]['email']);
         $managerComentario = new ComentariosManager();
         $managerComentario->insertComentario($comment);
     } else {

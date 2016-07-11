@@ -26,7 +26,8 @@ if ($session && $tipo) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <link rel="stylesheet" type="text/css" href="../Application/Styles/AdminCSS.css"/>
+        <title>Adicionar Categoria</title>
     </head>
     <body>
         <?php
@@ -34,12 +35,13 @@ if ($session && $tipo) {
         if (count($errors) > 0) {
             require_once __DIR__ . '/AddCategoria.php';
         } else {
+            require_once '../Application/Imports/Header.php';
             $categoriaMan = new CategoriasManager();
             $categoriaMan->insertOferta(new CategoriaOferta('', $categoria, $target_file));
             ?>
             <h2>Categoria submetida com sucesso</h2>
-            <a href="AreaAdministrador.php"><input type="submit" value="Voltar Área Pessoal"></a> 
             <?php
+            require_once '../Application/Imports/Footer.php';
         }
         ?>
     </body>

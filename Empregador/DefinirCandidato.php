@@ -66,23 +66,23 @@ if ($session && $tipo) {
                 $ofertaExpirou = $ofertaMan->VerificaOfertaExpirou($idOferta);
                 if ($empregador[0]['email'] === SessionManager::getSessionValue('email')) {
                     $candidaturas = $candidaturasMan->getCandidaturasSubmetidasByIdOferta($idOferta);
-
                     if (!empty($candidaturas) && $ofertaExpirou) {
+                        $manP = new PrestadorManager();
+                        $manO = new OfertaManager();
                         ?>
                         <table>
                             <tr>
-                                <th>Candidatura</th>
                                 <th>Prestador</th> 
                                 <th>Oferta</th>
 
                             </tr>
                             <?php
                             foreach ($candidaturas as $key => $value) {
+                                
                                 ?>
                                 <tr data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>">
-                                    <td><?= $value['idCandidatura'] ?></td>
-                                    <td><?= $value['idPrestador'] ?></td>
-                                    <td><?= $value['idOferta'] ?></td>                          
+                                    <td><?= $manP->getPrestadorByid($value['idPrestador'])[0]['email']?></td>
+                                    <td><?= $manO->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?></td>                          
                                     <td class="tdButtom"><a  href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>"><button class="tableButton">Ver Prestador</button></a></td>
                                     <td class="tdButtom" data-idCandidatura="<?= $value['idCandidatura'] ?>" data-idOferta="<?= $value['idOferta'] ?>" class="tdButtom"><button class="aceitarButton">Aceitar</button></td>
                                 </tr>

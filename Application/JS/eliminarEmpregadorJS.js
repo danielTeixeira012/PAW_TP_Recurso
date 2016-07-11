@@ -5,9 +5,16 @@
  */
 
 function results(data, id){
-    alert(data);
-    document.querySelector('tr[id="'+id+'"]').remove();
-    
+    if(data !== ''){
+        if(data === 'Eliminado'){
+            alert(data);
+            document.querySelector('tr[id="'+id+'"]').remove();
+        }else{
+            alert('Não pode realizar esta acção');
+        }
+    }else{
+        alert('Ocorreu um erro');
+    }
 }
 
 function eliminarEmpregadorAJAX(){

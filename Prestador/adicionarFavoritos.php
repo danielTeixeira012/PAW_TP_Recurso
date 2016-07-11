@@ -32,11 +32,12 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <meta http-equiv="refresh" content="3; url='areaPessoalPrestador.php'"/>
+        <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
+        <title>Favoritos</title>
     </head>
     <body>
         <?php
+        require_once '../Application/Imports/Header.php';
         $id = filter_input(INPUT_GET, 'oferta',FILTER_SANITIZE_NUMBER_INT);
         $ManagerPrestador = new PrestadorManager();
         $resPrest = $ManagerPrestador->verifyEmail(SessionManager::getSessionValue('email'));
@@ -49,18 +50,19 @@ and open the template in the editor.
                 $favorito = new Favoritos('', $resPrest[0]['idPrestador'], $id);
                 $managerFavoritos->insertFavorito($favorito);
                 ?>
-                <h2>A oferta foi adicionada aos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+                <h2>A oferta foi adicionada aos favoritos</h2>
                 <?php
             } else {
                 ?>
-                <h2>A oferta já existe nos favoritos, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+                <h2>A oferta já existe nos favoritos</h2>
                 <?php
             }
         } else {
             ?>
-            <h2>A oferta não existe, está a ser redirecionado para a sua página pessoal aguarde!!</h2>
+            <h2>A oferta não existe</h2>
             <?php
         }
+        require_once '../Application/Imports/Footer.php';
         ?>
     </body>
 </html>

@@ -23,10 +23,12 @@ if ($session && $tipo) {
 <html>
     <head>
         <meta charset="UTF-8">
+        <link  rel="stylesheet" type="text/css" href="../Application/Styles/AreaPessoal.css">
         <title>Editar Perfil</title>
     </head>
     <body>
         <?php
+        require_once '../Application/Imports/Header.php';
         require_once __DIR__ . '/../Application/Validator/EditarPerfilPrestador.php';
         if (count($erros) > 0) {
             require_once __DIR__ . '/verPerfilPrestador.php';
@@ -43,13 +45,9 @@ if ($session && $tipo) {
                 $prestadorMan->updatePrestador(new PrestadorServico($idPrestador, $email, $password, $nome, $contato, $fotoPath, $morada, $codPostal, $distrito, $concelho));
                 ?>
                 <p>Editado com sucesso</p>
-                <a href="areaPessoalPrestador.php"><button class="button">Voltar Area Pessoal</button></a>
                 <?php
             }
-            ?>
-
-                <a href="../index.php"><button>Pagina Inicial</button></a>
-            <?php
+            require_once '../Application/Imports/Footer.php';
         }
         ?>
     </body>

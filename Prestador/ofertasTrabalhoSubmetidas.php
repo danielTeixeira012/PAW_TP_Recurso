@@ -69,7 +69,7 @@ if ($session && $tipo) {
                         ?>
                         <tr>
                             <td><?= $ofertasMan->getOfertaByID($value['idOferta'])[0]['tituloOferta'] ?></td>
-                            <td class="tdButtom"><a href="../verCandidatura.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Oferta</button></a></td> 
+                            <td class="tdButtom"><a href="verCandidatura.php?oferta=<?= $value['idOferta'] ?>"><button class="tableButton">Ver Informações</button></a></td> 
                         </tr>
                         <?php }
                     ?>

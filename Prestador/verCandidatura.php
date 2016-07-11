@@ -1,5 +1,5 @@
 <?php
-require_once (realpath(dirname(__FILE__)) . '/Config.php');
+require_once (realpath(dirname(__FILE__)) . '/../Config.php');
 
 use Config as Conf;
 
@@ -26,13 +26,13 @@ if ($email && $tipo) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <link  rel="stylesheet" type="text/css" href="Application/Styles/Listar.css">
-        <link  rel="stylesheet" type="text/css" href="Application/Styles/verCSS.css">
+        <link  rel="stylesheet" type="text/css" href="../Application/Styles/Listar.css">
+        <link  rel="stylesheet" type="text/css" href="../Application/Styles/verCSS.css">
         <title>Ver Candidatura</title>
     </head>
     <body>
         <?php
-        require_once 'Application/imports/Header.php'; 
+        require_once '../Application/imports/Header.php'; 
         $idOferta = filter_input(INPUT_GET, 'oferta',FILTER_SANITIZE_NUMBER_INT);
 
         $manCand = new CandidaturaManager();
@@ -67,11 +67,13 @@ if ($email && $tipo) {
                 
                 if (!empty($comentarios)) {
                     $manPrest = new PrestadorManager();
+                    $manEmpr = new EmpregadorManager();
                     foreach ($comentarios as $key => $value) {
-                        $return = $manPrest->verifyEmail($value['autor']);
+                        $returnP = $manPrest->verifyEmail($value['autor']);
+                        $returnE = $manEmpr->verifyEmail($value['autor']);
                         ?>
                         <article class="comentario">
-                            <p class="autor">Autor: <?= $return[0]['nome'] ?></p>
+                            <p class="autor">Autor: <?= empty(!$returnP) ? $returnP[0]['nome']: $returnE[0]['nome'] ?></p>
                             <p class="coment"><?= $value['comentario'] ?></p>                 
                         </article>
                         <?php
@@ -92,6 +94,6 @@ if ($email && $tipo) {
             ?>
 
         </section>
-        <?php require_once 'Application/imports/Footer.php'; ?>
+        <?php require_once '../Application/imports/Footer.php'; ?>
     </body>
 </html>

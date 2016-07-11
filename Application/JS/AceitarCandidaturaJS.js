@@ -7,16 +7,11 @@ function aceitarResultado(data) {
     var p = document.createElement('p');
     p.innerHTML = data;
     document.getElementById('opcoes').appendChild(p);
-alert();
-
 }
 
 function AceitarAJAX() {
-    alert();
     var idCandidatura = this.parentNode.parentNode.getAttribute('data-idCandidatura');
     var idOferta = this.parentNode.parentNode.getAttribute('data-idOferta');
-    alert(idCandidatura);
-    alert(idOferta);
     $.get('../Application/Service/AceitarCandidatura.php', {idCandidatura: idCandidatura, idOferta: idOferta},
             function (data) {
                 aceitarResultado(data);

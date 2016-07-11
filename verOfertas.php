@@ -91,12 +91,9 @@ $tipo = SessionManager::existSession('tipoUser');
                             }
                             }
                         } else if (SessionManager::getSessionValue('tipoUser') === 'empregador') {
-                            //ver se é dele
                             $candidMan = new CandidaturaManager();
                             $logado = $manEmpregador->getEmpregadorByMail(SessionManager::getSessionValue('email'));
                             if ($res[0]['idEmpregador'] === $logado[0]['idEmpregador']) {
-
-                                //publicada
                                 $candidaturas = $candidMan->getCandidaturasSubmetidasByIdOferta($idOferta);
                                 if (!empty($candidaturas)) {
                                     ?>
@@ -191,19 +188,17 @@ $tipo = SessionManager::existSession('tipoUser');
                 <?php
                 if (!empty($comentarios)) {
                     $manPrest = new PrestadorManager();
+                    $manEmpr = new EmpregadorManager();
                     foreach ($comentarios as $key => $value) {
-                        $return = $manPrest->verifyEmail($value['autor']);
+                        $returnP = $manPrest->verifyEmail($value['autor']);
+                        $returnE = $manEmpr->verifyEmail($value['autor']);
                         ?>
                         <article class="comentario">
-                            <p class="autor">Autor: <?= $return[0]['nome']?></p>
+                            <p class="autor">Autor: <?= empty(!$returnP) ? $returnP[0]['nome']: $returnE[0]['nome'] ?></p>
                             <p class="coment"><?= $value['comentario'] ?></p>                 
                         </article>
                         <?php
                     }
-                }else{
-                    ?>
-                        <p>Não existem comentários</p>
-                    <?php
                 }
                 ?>
             </section>

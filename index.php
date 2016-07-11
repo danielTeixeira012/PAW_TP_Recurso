@@ -20,7 +20,7 @@ if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Ofertas de trabalho para todos</title>
         <link rel="stylesheet" type="text/css" href="Application/Styles/Index.css">
         <script src="Application/Libs/jquery-2.2.4.js"></script>
         <script src="Application/JS/PesquisaJS.js"></script>
@@ -64,25 +64,6 @@ if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
                 <input  class="button" type="submit" value="Procurar"> 
             </form> 
         </section>
-<!--        <section id = "categorias">
-        <?php
-        $categoriaBD = new CategoriasManager();
-        $categorias = $categoriaBD->getCategorias();
-        ?>
-            <select id = "areaPesquisa" name = "areaPesquisa">
-        <?php
-        foreach ($categorias as $key => $value) {
-            ?>     
-                                        <option value="<?= $value['nomeCategoria'] ?>"><?= $value['nomeCategoria'] ?></option>                     
-
-            <?php
-        }
-        ?>  
-            </select>
-            <button id = "pesquisa">Pesquisa</button>
-            <button id = "apagar">Apagar Pesquisa</button>
-            <section id = "resultado"></section>
-        </section>-->
         <section id="ofertas">
             <?php
             $database = new OfertaManager();

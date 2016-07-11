@@ -16,31 +16,34 @@ if ($session && $tipo) {
 } else {
     if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
         require_once '../VerificaCookies.php';
-    }else{
-       header('location: ../index.php'); 
+    } else {
+        header('location: ../index.php');
     }
 }
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
+        <title>Adicionar Oferta</title>
     </head>
     <body>
         <?php
+        require_once '../Application/Imports/Header.php';
         require_once '../Application/Validator/OfertaValidator.php';
         if (count($errorsO) > 0) {
             require_once __DIR__ . '/AddOferta.php';
         } else {
-                    $ofertasMan = new OfertaManager();
-                    $empregadorMan = new EmpregadorManager();
-                    $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
-                        $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, 'ativada', $dataInicio, $dataFim));
-                        ?>
-                        <h2>Oferta submetida com sucesso</h2>
-                        <a href="../index.php"><input type="submit" value="Voltar Área Pessoal"></a> 
-                        <?php
+           
+            $ofertasMan = new OfertaManager();
+            $empregadorMan = new EmpregadorManager();
+            $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
+            $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, 'ativada', $dataInicio, $dataFim));
+            ?>
+            <h2>Oferta submetida com sucesso</h2>
+            <?php
         }
+        require_once '../Application/Imports/Footer.php';
         ?>
     </body>
 </html>
