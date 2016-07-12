@@ -66,7 +66,7 @@ $tipo = SessionManager::existSession('tipoUser');
                             $returnCand2 = $candMan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($returnPres[0]['idPrestador'], 'aceitada', $idOferta);
                             $returnCand3 = $candMan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($returnPres[0]['idPrestador'], 'rejeitada', $idOferta);
                             if (empty($returnCand) && empty($returnCand2) && empty($returnCand3)) {
-                                if (!$man->VerificaOfertaExpirou($idOferta) && !$man->VerificaOfertaPendente($idOferta)) {
+                                if ($man->VerificaOfertaExpirou($idOferta) === false || !$man->VerificaOfertaPendente($idOferta) === false) {
                                     ?>
                                     <button class="buttonC" id="candidatar">Candidatar</button>    
                                     <?php
