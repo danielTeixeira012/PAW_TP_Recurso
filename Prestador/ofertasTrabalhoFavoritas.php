@@ -32,7 +32,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link  rel="stylesheet" type="text/css" href="../Application/Styles/AreaPessoal.css">
-        <title></title>
+        <title>Ofertas Favoritas</title>
     </head>
     <body>      
         <?php require_once __DIR__ . '/../Application/imports/Header.php'; ?>

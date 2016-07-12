@@ -5,11 +5,14 @@ use Config as Conf;
 
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
 require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
+require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
+$session = SessionManager::existSession('email');
 ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="Application/Styles/Index.css">
         <title>Registo</title>
     </head>
     <body>
@@ -19,6 +22,7 @@ require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
         if (count($errors) > 0 || count($imgErrors) > 0) {
             require_once __DIR__ . '/registo.php';
         } else {
+            require_once 'Application/Imports/Header.php';
             $email = filter_input(INPUT_POST, 'emailP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
             $password = filter_input(INPUT_POST, 'passP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
             $nome = filter_input(INPUT_POST, 'nomeP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
@@ -33,8 +37,8 @@ require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
             ?>
             <h2>Prestadar Adicionado</h2>
             <p>O prestador foi adicionado, Obrigado!</p>
-            <a href="index.php"><input type="submit" value="Pagina Inicial"></a> 
             <?php
+            require_once 'Application/Imports/Header.php';
         }
         ?>
     </body>

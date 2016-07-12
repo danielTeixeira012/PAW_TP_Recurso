@@ -26,7 +26,7 @@ if ($session && $tipo) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Definir Candidato</title>
         <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
         <script src="../Application/Libs/jquery-2.2.4.js"></script>
         <script src="../Application/JS/AceitarCandidaturaJS.js"></script>

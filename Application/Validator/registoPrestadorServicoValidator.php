@@ -55,7 +55,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'contactoP') && filter_input($input, 'contactoP') != '') {
         $contato = filter_input($input, 'contactoP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         $pattern = "/9[1236][0-9]{7}|2[1-9][0-9]{7}/";
-        if (preg_match($pattern, $contato) === 0 && strlen($contato) !== 9) {
+        if (preg_match($pattern, $contato) === 0 || strlen($contato) !== 9) {
             $errors['contactoP'] = 'Parametro contacto incorreto';
         }
     } else {
@@ -68,7 +68,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'codigopostalP') && filter_input($input, 'codigopostalP') != '') {
         $codPostal = filter_input($input, 'codigopostalP',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
         $pattern = "/^[0-9]{4}-[0-9]{3}/";
-        if (preg_match($pattern, $codPostal) === 0 && strlen($codPostal) !== 8) {
+        if (preg_match($pattern, $codPostal) === 0 || strlen($codPostal) !== 8) {
             $errors['codigopostalP'] = 'Parametro codigo Postal incorreto';
         }
     } else {

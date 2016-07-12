@@ -26,7 +26,7 @@ $empregadorMan = new EmpregadorManager();
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Ofertas Pendentes</title>
         <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
     </head>
     <body>

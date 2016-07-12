@@ -27,7 +27,7 @@ if ($session && $tipo) {
     <head>
         <meta charset="UTF-8">
         <link  rel="stylesheet" type="text/css" href="../Application/Styles/AreaPessoal.css">
-        <title></title>
+        <title>Ofertas Submetidas</title>
     </head>
     <body>      
         <?php require_once __DIR__ . '/../Application/imports/Header.php'; ?>

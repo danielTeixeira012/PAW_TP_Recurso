@@ -25,7 +25,7 @@ if ($session && $tipo) {
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
         <script src="../Application/JS/OfertaLS_JS.js"></script> 
-        <title></title>
+        <title>Adicionar Oferta</title>
     </head>
     <body>
         <?php require_once '../Application/imports/Header.php' ?>

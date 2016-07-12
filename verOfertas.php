@@ -19,7 +19,7 @@ $tipo = SessionManager::existSession('tipoUser');
     <head>
         <meta charset="UTF-8">
         <link  rel="stylesheet" type="text/css" href="Application/Styles/Listar.css">
-        <title></title>  
+        <title>Ver Oferta</title>  
         <script src="Application/Libs/jquery-2.2.4.js"></script>
         <script src="Application/JS/candidatarJS.js"></script>
         <script src="Application/JS/comentarioJS.js"></script>
@@ -66,7 +66,7 @@ $tipo = SessionManager::existSession('tipoUser');
                             $returnCand2 = $candMan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($returnPres[0]['idPrestador'], 'aceitada', $idOferta);
                             $returnCand3 = $candMan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($returnPres[0]['idPrestador'], 'rejeitada', $idOferta);
                             if (empty($returnCand) && empty($returnCand2) && empty($returnCand3)) {
-                                if (!$man->VerificaOfertaExpirou($idOferta)) {
+                                if (!$man->VerificaOfertaExpirou($idOferta) && !$man->VerificaOfertaPendente($idOferta)) {
                                     ?>
                                     <button class="buttonC" id="candidatar">Candidatar</button>    
                                     <?php

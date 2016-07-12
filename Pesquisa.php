@@ -20,7 +20,7 @@ if (!$session && isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Pesquisa</title>
         <link rel="stylesheet" type="text/css" href="Application/Styles/Index.css">
         <script src="Application/Libs/jquery-2.2.4.js"></script>
         <script src="Application/JS/PesquisaJS.js"></script>

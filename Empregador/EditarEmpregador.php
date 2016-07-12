@@ -23,7 +23,7 @@ if ($session && $tipo) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
-        <title></title>
+        <title>Editar Empregador</title>
     </head>
     <body>
         <?php require_once '../Application/imports/Header.php'?>
@@ -35,15 +35,15 @@ if ($session && $tipo) {
         <section id="form">
             <h2>Perfil Empregador <?= SessionManager::getSessionValue('email') ?></h2>
             <form id="formOferta" action="EditarEmpregadorValida.php" method="post">
-            <img src="../<?= $empregador['fotoPath']?>"> 
-            <label for="emailE">Email</label><input readonly id="emailE" type="email" name="emailE" value="<?= $empregador['email'] ?>"><?= isset($errorsE) && array_key_exists('emailE', $errorsE) ? $errorsE['emailE'] : '' ?>
-            <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE" value="<?= $empregador['nome'] ?>"><?= isset($errorsE) && array_key_exists('nomeE', $errorsE) ? $errorsE['nomeE'] : '' ?>
-            <label for="contactoE">Contacto</label><input id="contactoE" type="tel" name="contactoE" value="<?= $empregador['contato'] ?>"><?= isset($errorsE) && array_key_exists('contactoE', $errorsE) ? $errorsE['contactoE'] : '' ?>
-            <label for="moradaE">Morada</label><input id="moradaE" type="text" name="moradaE" value="<?= $empregador['morada'] ?>"><?= isset($errorsE) && array_key_exists('moradaE', $errorsE) ? $errorsE['moradaE'] : '' ?>
-            <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE" value="<?= $empregador['codPostal'] ?>"><?= isset($errorsE) && array_key_exists('codigopostalE', $errorsE) ? $errorsE['codigopostalE'] : '' ?>
-            <label for="distritoE">Distrito</label><input id="distritoE" type="text" name="distritoE" value="<?= $empregador['distrito'] ?>"><?= isset($errorsE) && array_key_exists('distritoE', $errorsE) ? $errorsE['distritoE'] : '' ?>
-            <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE" value="<?= $empregador['concelho'] ?>"><?= isset($errorsE) && array_key_exists('concelhoE', $errorsE) ? $errorsE['concelhoE'] : '' ?>
-            <input class="buttonForm" id="confirmE" type="submit" value="Editar Empregador">
+                <img src="../<?= $empregador['fotoPath']?>"> 
+                <label for="emailE">Email</label><input readonly id="emailE" type="email" name="emailE" value="<?= $empregador['email'] ?>"><p class="error"><?= isset($errorsE) && array_key_exists('emailE', $errorsE) ? $errorsE['emailE'] : '' ?></p>
+                <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE" value="<?= $empregador['nome'] ?>"><p class="error"><?= isset($errorsE) && array_key_exists('nomeE', $errorsE) ? $errorsE['nomeE'] : '' ?></p>
+                <label for="contactoE">Contacto</label><input id="contactoE" type="tel" name="contactoE" value="<?= $empregador['contato'] ?>"><p class="error"><?= isset($errorsE) && array_key_exists('contactoE', $errorsE) ? $errorsE['contactoE'] : '' ?></p>
+                <label for="moradaE">Morada</label><input id="moradaE" type="text" name="moradaE" value="<?= $empregador['morada'] ?>"><p class="error"><?= isset($errorsE) && array_key_exists('moradaE', $errorsE) ? $errorsE['moradaE'] : '' ?></p>
+                <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE" value="<?= $empregador['codPostal'] ?>"><p class="error"><?= isset($errorsE) && array_key_exists('codigopostalE', $errorsE) ? $errorsE['codigopostalE'] : '' ?></p>
+                <label for="distritoE">Distrito</label><input id="distritoE" type="text" name="distritoE" value="<?= $empregador['distrito'] ?>"><p class="error"><?= isset($errorsE) && array_key_exists('distritoE', $errorsE) ? $errorsE['distritoE'] : '' ?></p>
+                <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE" value="<?= $empregador['concelho'] ?>"><p class="error"><?= isset($errorsE) && array_key_exists('concelhoE', $errorsE) ? $errorsE['concelhoE'] : '' ?></p>
+                <input class="buttonForm" id="confirmE" type="submit" value="Editar Empregador">
             </form>
             
         </section>

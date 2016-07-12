@@ -11,7 +11,7 @@ $empregador = SessionManager::existSession('email');
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
-        <title></title>
+        <title>Editar Empregador</title>
     </head>
     <body>
         <?php require_once '../Application/imports/Header.php'?>
@@ -32,13 +32,7 @@ $empregador = SessionManager::existSession('email');
                 $empregadorMan->updateEmpregador(new Empregador($idEmpregador, $email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho), $idEmpregador);
                 ?>
                 <p>Editado com sucesso</p>
-                <a href="AreaEmpregador.php"><button class="button">Voltar Area Pessoal</button></a>
-                    <?php
-            } else {
-                ?>
-                <p>Não foi editado</p>
-                <a href="EditarEmpregador.php"><button class="button">Voltar ao Editar...</button></a>
-                    <?php
+                <?php
             }
         }
         ?>

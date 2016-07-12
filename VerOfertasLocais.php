@@ -22,7 +22,7 @@ if ($session) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="Application/Styles/Listar.css">
-        <title></title>
+        <title>Ofertas Guardadas</title>
         <script src="Application/Libs/jquery-2.2.4.js"></script>
         <script src="Application/JS/ListarOfertasLocais.js"></script>
         <?php

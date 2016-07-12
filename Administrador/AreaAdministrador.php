@@ -24,7 +24,7 @@ if ($session && $tipo) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../Application/Styles/AdminCSS.css"/>
-        <title></title>
+        <title>Area de Administrador</title>
     </head>
     <body>
         <?php require_once '../Application/Imports/Header.php'; ?>

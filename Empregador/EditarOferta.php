@@ -32,10 +32,10 @@ if (empty($existCandidaturas)) {
     $oferta = $ofertas->getOfertaByID($idOferta);
     $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
     if (empty($oferta)) {
-        header('Location: AreaEmpregador.php');
+        header('location: AreaEmpregador.php');
     }
     if ($oferta[0]['idEmpregador'] !== $idEmpregador) {
-        header('Location: AreaEmpregador.php');
+        header('location: AreaEmpregador.php');
     }
     ?>
     <html>

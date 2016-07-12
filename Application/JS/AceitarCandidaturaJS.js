@@ -23,7 +23,6 @@ function AceitarAJAX() {
 }
 
 function initEvents() {
-
     var buts = document.getElementsByClassName('aceitarButton');
     var i = 0;
     for (i = 0; i < buts.length; ++i) {

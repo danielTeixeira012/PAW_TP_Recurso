@@ -64,7 +64,7 @@ class OfertaManager extends MyDataAccessPDO {
     public function getOfertasPublicadas() {
         return $this->getRecordsByUserQuery("SELECT * FROM `ofertaTrabalho` WHERE `dataInicio` <= CURRENT_DATE and `dataFim` > CURRENT_DATE and `statusO` = 'ativada'");
     }
-
+    
     public function getOfertasFinalizadasUser($idUser) {
         return $this->getRecordsByUserQuery("SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` INNER JOIN `candidatura` on 
     ((ofertaTrabalho.idOferta = candidatura.idOferta and (candidatura.statusCandidatura='submetida') and `idEmpregador` = $idUser and ofertaTrabalho.dataFim < CURRENT_DATE and ofertatrabalho.statusO = 'ativada'))");
@@ -98,7 +98,7 @@ SELECT DISTINCT ofertaTrabalho.* FROM `ofertaTrabalho` LEFT JOIN `candidatura` O
     }
     
     function getDataAtual(){
-        return $this->getRecordsByUserQuery("SELECT CURRENT_DATE")[0]['CURRENT_DATE'];;
+        return $this->getRecordsByUserQuery("SELECT CURRENT_DATE")[0]['CURRENT_DATE'];
     }
     
     function pesquisar($pesquisa){

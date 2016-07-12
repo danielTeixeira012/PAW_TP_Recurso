@@ -45,7 +45,7 @@ foreach ($ofertasPrestador as $key => $value) {
         <meta charset="UTF-8">
         <link  rel="stylesheet" type="text/css" href="../Application/Styles/Listar.css">
 
-        <title></title>
+        <title>Ver Historico Candidato</title>
     </head>
     <body>
         <?php require_once '../Application/imports/Header.php' ?>

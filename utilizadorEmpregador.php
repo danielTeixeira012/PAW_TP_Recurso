@@ -11,6 +11,7 @@ $session = SessionManager::existSession('email');
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="Application/Styles/Index.css">
         <title>Registo</title>
     </head>
     <body>
@@ -20,6 +21,7 @@ $session = SessionManager::existSession('email');
         if (count($errorsE) > 0 || count($imgErrorsE) > 0) {
             require_once __DIR__ . '/registo.php';
         } else {
+            require_once 'Application/Imports/Header.php';
             $email = filter_input(INPUT_POST, 'emailE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
             $password = filter_input(INPUT_POST, 'passE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
             $nome = filter_input(INPUT_POST, 'nomeE',FILTER_SANITIZE_STRING,FILTER_SANITIZE_SPECIAL_CHARS);
@@ -34,8 +36,8 @@ $session = SessionManager::existSession('email');
             ?>
             <h2>Empregador Adicionado</h2>
             <p>O Empregador foi adicionado, Obrigado!</p>
-            <a href="index.php"><input type="submit" value="Pagina Inicial"></a> 
             <?php
+            require_once 'Application/Imports/Header.php';
         }
         ?>
     </body>

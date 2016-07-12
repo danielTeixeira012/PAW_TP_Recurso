@@ -26,7 +26,7 @@ if ($session && $tipo) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
-        <title>Ver Perfil</title>
+        <title>Editar Perfil</title>
     </head>
     <body>
         <?php require_once __DIR__ . '/../Application/imports/Header.php'; ?>

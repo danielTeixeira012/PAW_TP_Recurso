@@ -27,7 +27,7 @@ $empregadorMan = new EmpregadorManager();
     <head>
         <meta charset="UTF-8">
         <link  rel="stylesheet" type="text/css" href="../Application/Styles/AreaPessoal.css">
-        <title></title>
+        <title>Area Pessoal</title>
     </head>
     <body>
         <?php require_once '../Application/imports/Header.php' ?>

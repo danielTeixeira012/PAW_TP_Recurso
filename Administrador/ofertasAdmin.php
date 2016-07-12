@@ -25,7 +25,7 @@ if ($session && $tipo) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Gerir Ofertas</title>
         <link rel="stylesheet" type="text/css" href="../Application/Styles/AdminCSS.css"/>
         <script src="../Application/Libs/jquery-2.2.4.js"></script>
         <script src="../Application/JS/adminOfertasJS.js"></script>
